@@ -143,6 +143,12 @@ html:not([data-route="inicio"]) .mux-nav { visibility: hidden; }
 .menu ul { list-style: none; margin: 0 0 28px; padding: 0; display: grid; }
 .menu a:not(.btn) { display: block; font-family: var(--gang); font-size: 2.3rem; text-decoration: none; text-transform: uppercase; line-height: 1.3; }
 .menu-open { overflow: hidden; }
+/* Lenis */
+html.lenis, html.lenis body { height: auto; }
+.lenis:not(.lenis-autoToggle).lenis-stopped { overflow: clip; }
+.lenis [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth iframe { pointer-events: none; }
 @media (max-width: 1180px) { .mux-nav { display: none; } }
 /* Mux lateral, como en B: caja fija en el margen derecho, solo cuando el margen alcanza para no pisar contenido */
 .mux-side { display: none; position: fixed; right: max(14px, env(safe-area-inset-right, 0px)); top: 50%; transform: translateY(-50%); z-index: 40; width: 92px; flex-direction: column; gap: 10px; padding: 12px 10px 14px; background: var(--k-black-up); color: var(--k-white); clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%); }

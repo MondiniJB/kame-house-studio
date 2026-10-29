@@ -11,6 +11,26 @@
   const reducedQuery = matchMedia('(prefers-reduced-motion: reduce)');
   KH.reduced = () => reducedQuery.matches;
 
+  /* ---------- Scroll con inercia (Lenis) ----------
+     Con movimiento reducido no se crea: el scroll queda nativo. */
+  KH.lenis = null;
+  KH.ease = { inOutCubic: (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2), outExpo: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)) };
+  KH.scrollTo = (y, o = {}) => {
+    y = Math.max(0, y);
+    if (KH.lenis) return KH.lenis.scrollTo(y, { duration: 1.2, easing: KH.ease.outExpo, force: true, ...o });
+    window.scrollTo({ top: y, behavior: o.immediate || KH.reduced() ? 'auto' : 'smooth' });
+  };
+  function startLenis() {
+    if (KH.lenis || KH.reduced() || typeof Lenis === 'undefined') return;
+    const l = (KH.lenis = new Lenis({ lerp: 0.09, wheelMultiplier: 1, autoRaf: false }));
+    l.on('scroll', () => runScenes());
+    const loop = (t) => { if (KH.lenis === l) { l.raf(t); requestAnimationFrame(loop); } };
+    requestAnimationFrame(loop);
+  }
+  function stopLenis() {
+    if (KH.lenis) { KH.lenis.destroy(); KH.lenis = null; }
+  }
+
   /* ---------- Router ---------- */
   const views = $$('[data-view]');
   const ROUTES = views.map((v) => v.dataset.view);
@@ -21,7 +41,7 @@
     const el = document.getElementById(ALIAS[name]);
     if (!el) return;
     const y = el.getBoundingClientRect().top + scrollY - 80;
-    scrollTo({ top: Math.max(0, y), behavior: smooth && !KH.reduced() ? 'smooth' : 'auto' });
+    KH.scrollTo(y, { immediate: !smooth });
   }
   function show(route, opts = {}) {
     if (ALIAS[route]) {
@@ -37,6 +57,7 @@
     }
     if (!ROUTES.includes(route)) route = 'inicio';
     views.forEach((v) => (v.hidden = v.dataset.view !== route));
+    KH.lenis && KH.lenis.resize(); // el largo de la página cambió con la vista
     document.documentElement.dataset.route = route;
     const meta = (KH.META || {})[route];
     if (meta) {
@@ -51,7 +72,7 @@
       else a.removeAttribute('aria-current');
     });
     KH.closeMenu && KH.closeMenu();
-    if (!opts.keepScroll) window.scrollTo(0, 0);
+    if (!opts.keepScroll) KH.scrollTo(0, { immediate: true });
     if (opts.focus) {
       const h1 = $(`[data-view="${route}"] h1`);
       if (h1) {
@@ -60,7 +81,6 @@
       }
     }
     document.dispatchEvent(new CustomEvent('kh:route', { detail: route }));
-    KH.resetScenes && KH.resetScenes();
     KH.refreshScenes && KH.refreshScenes();
   }
   KH.go = (route) => {
@@ -122,6 +142,7 @@
     if (!menu) return;
     menu.classList.remove('is-open');
     document.documentElement.classList.remove('menu-open');
+    KH.lenis && KH.lenis.start();
     menuBtn && menuBtn.setAttribute('aria-expanded', 'false');
   };
   if (menu && menuBtn) {
@@ -130,6 +151,7 @@
       menu.classList.toggle('is-open', open);
       document.documentElement.classList.toggle('menu-open', open);
       menuBtn.setAttribute('aria-expanded', String(open));
+      if (KH.lenis) open ? KH.lenis.stop() : KH.lenis.start();
       if (open) {
         const first = menu.querySelector('a,button');
         first && first.focus();
@@ -154,7 +176,6 @@
   function runScenes() {
     ticking = false;
     const vh = innerHeight;
-    let busy = false;
     for (const s of scenes) {
       if (s.el.offsetParent === null && !s.opts.always) continue;
       const r = s.el.getBoundingClientRect();
@@ -166,22 +187,9 @@
         p = span > 0 ? -r.top / span : r.top < 0 ? 1 : 0;
       }
       p = Math.min(1, Math.max(0, p));
-      // Las escenas fijadas siguen al scroll con una inercia corta: el movimiento no tironea
-      // cuando el scroll llega a saltos (rueda del mouse). Con movimiento reducido, directo.
-      const smooth = s.opts.smooth !== undefined ? s.opts.smooth : s.opts.mode !== 'view' && !s.opts.always;
-      if (smooth && !reducedQuery.matches) {
-        if (s.cur == null) s.cur = p;
-        const d = p - s.cur;
-        if (Math.abs(d) > 0.0004) { s.cur += d * 0.18; busy = true; } else s.cur = p;
-        s.fn(s.cur, r);
-      } else {
-        s.cur = p;
-        s.fn(p, r);
-      }
+      s.fn(p, r);
     }
-    if (busy) KH.refreshScenes();
   }
-  KH.resetScenes = () => scenes.forEach((s) => (s.cur = null));
   KH.refreshScenes = () => {
     if (!ticking) {
       ticking = true;
@@ -192,9 +200,11 @@
   addEventListener('resize', KH.refreshScenes);
   reducedQuery.addEventListener('change', () => {
     document.documentElement.classList.toggle('rm', KH.reduced());
+    KH.reduced() ? stopLenis() : startLenis();
     KH.refreshScenes();
   });
   document.documentElement.classList.toggle('rm', KH.reduced());
+  startLenis();
 
   /* ---------- Foco por scroll en táctil (hover que funciona en mobile) ---------- */
   function setupFocusBand() {

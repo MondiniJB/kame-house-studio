@@ -18,9 +18,10 @@ python -m http.server 8000
 ```
 index.html            las tres vistas: inicio, artistas y reservar
 css/styles.css        tokens, secciones y componentes
-js/core.js            router por hash, ES/EN, escenas de scroll, menú, formularios
+js/core.js            router por hash, ES/EN, scroll con Lenis, escenas de scroll, menú, formularios
 js/main.js            lógica de la home: artistas, configurador, mux, tira de sesiones, reserva
 assets/brand/         isotipo, imagotipos, favicon y patrón de isotipos (SVG)
+assets/js/            Lenis 1.3.27 (scroll con inercia), copia local
 assets/fonts/         Gang of Three (go3v2.ttf), tipografía base del logo
 assets/media/         portadas de los temas y capturas de reels del Instagram del estudio
 ```
@@ -40,6 +41,7 @@ Las vistas se cambian con el hash (`#inicio`, `#artistas`, `#reservar`). `#estud
 Es un proyecto académico de tesis, sin fines comerciales ni publicitarios.
 
 - **Portadas y reels** (`assets/media/`): las portadas pertenecen a sus artistas y las capturas de reels provienen del Instagram del estudio (`@estudiokamehouse`) y de All Santoz. Se usan solo para ilustrar el boceto. El detalle está en `assets/media/README.md`.
+- **Lenis** (`assets/js/lenis.min.js`): librería de scroll suave de Darkroom Engineering, licencia MIT. Con movimiento reducido no se activa.
 - **Gang of Three** (`assets/fonts/go3v2.ttf`): tipografía de Vic Fieger (2007), base del logo según el manual de marca.
 - **Identidad visual:** diseño de Rocco Cámpora y Juan Bautista Mondini para la tesis.
 

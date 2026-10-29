@@ -63,7 +63,7 @@
   </div>
 </header>
 
-<div class="menu s-black" id="menu" data-menu>
+<div class="menu s-black" id="menu" data-menu data-lenis-prevent>
   <ul>
     <li><a href="#inicio" data-i18n="nav.inicio">Inicio</a></li>
     <li><a href="#estudio" data-i18n="nav.estudio">Estudio</a></li>
@@ -399,7 +399,7 @@
               <div class="field" data-field>
                 <label for="referencias" data-i18n="f.ref">Referencias</label>
                 <p class="hint" id="ref-hint" data-i18n="f.ref.h">Links a tus demos o a temas que te gusten cómo suenan. Opcional.</p>
-                <textarea class="input" id="referencias" name="referencias" aria-describedby="ref-hint" placeholder="https://..."></textarea>
+                <textarea data-lenis-prevent class="input" id="referencias" name="referencias" aria-describedby="ref-hint" placeholder="https://..."></textarea>
               </div>
             </fieldset>
 
@@ -431,7 +431,7 @@
                 <div class="field" data-field><label for="whatsapp">WhatsApp <span class="soft" data-i18n="opt">(opcional)</span></label><input class="input" id="whatsapp" name="whatsapp" type="tel" autocomplete="tel" placeholder="+54 9 11 ..."></div>
                 <div class="field" data-field><label for="instagram">Instagram <span class="soft" data-i18n="opt">(opcional)</span></label><input class="input" id="instagram" name="instagram" type="text" placeholder="@"></div>
               </div>
-              <div class="field" data-field><label for="mensaje" data-i18n="f.msg">Algo más que quieras contarnos</label><textarea class="input" id="mensaje" name="mensaje"></textarea></div>
+              <div class="field" data-field><label for="mensaje" data-i18n="f.msg">Algo más que quieras contarnos</label><textarea data-lenis-prevent class="input" id="mensaje" name="mensaje"></textarea></div>
             </fieldset>
 
             <div class="form-nav">
@@ -502,6 +502,7 @@
 
 <div class="mbar"><a class="btn btn-primary" href="#reservar" data-i18n="cta.reservar">Reservar sesión</a></div>
 
+<script src="assets/js/lenis.min.js"></script>
 <script src="js/core.js"></script>
 <script src="js/main.js"></script>
 </body>

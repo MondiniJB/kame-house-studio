@@ -103,6 +103,7 @@
 
   /* ---- Artistas: nombres en vertical, al llegar al último los temas se deslizan en horizontal ---- */
   const clamp01 = (v) => Math.max(0, Math.min(1, v));
+  const NAMES_END = 0.44; // hasta acá del recorrido de la escena corren los nombres
   KH.scene(art, (p) => {
     if (!art.classList.contains('is-pinned')) {
       // sin escena fijada: se marca el nombre más cercano al centro de la pantalla
@@ -114,9 +115,10 @@
     }
     const win = artWin.getBoundingClientRect();
     const last = artNames[artNames.length - 1];
-    const start = win.height * 0.55;
+    const first = artNames[0];
+    const start = win.height / 2 - (first.offsetTop + first.offsetHeight / 2);
     const end = win.height / 2 - (last.offsetTop + last.offsetHeight / 2);
-    const names = clamp01(p / 0.44);
+    const names = clamp01(p / NAMES_END);
     const enter = clamp01((p - 0.52) / 0.1);
     const pan = clamp01((p - 0.64) / 0.36);
     const y = start + (end - start) * names - enter * win.height * 0.6;
@@ -137,6 +139,53 @@
     const extra = Math.max(0, tTrack.scrollWidth - innerWidth + (parseFloat(getComputedStyle(tTrack).paddingLeft) || 0));
     tTrack.style.transform = `translate3d(${(-extra * pan).toFixed(1)}px, 0, 0)`;
   });
+
+  /* ---- Artistas por escalones: cada gesto de rueda (o tecla) corre un nombre ---- */
+  const N = artNames.length;
+  const zone = () => ({ top: art.getBoundingClientRect().top + scrollY, span: (art.offsetHeight - innerHeight) * NAMES_END });
+  const posOf = (k) => { const z = zone(); return z.top + z.span * (k / (N - 1)); };
+  const idxNow = () => { const z = zone(); return ((scrollY - z.top) / z.span) * (N - 1); };
+  const EPS = 0.02;
+  let stepping = false, lastWheel = 0, snapTimer = 0;
+  // ¿el scroll en esta dirección todavía cae adentro de los escalones?
+  const inSteps = (dir) => {
+    if (!art.classList.contains('is-pinned')) return false;
+    const f = idxNow();
+    return dir > 0 ? f > -EPS && f < N - 1 - EPS : f > EPS && f < N - 1 + EPS;
+  };
+  function stepTo(k, duration = 0.65) {
+    stepping = true;
+    KH.scrollTo(posOf(Math.max(0, Math.min(N - 1, k))), { duration, easing: KH.ease.inOutCubic, lock: true });
+    setTimeout(() => (stepping = false), duration * 1000 + 80);
+  }
+  const stepFrom = (dir) => { const f = idxNow(); stepTo(dir > 0 ? Math.floor(f + EPS) + 1 : Math.ceil(f - EPS) - 1); };
+  addEventListener('wheel', (e) => {
+    if (e.ctrlKey || Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
+    const dir = Math.sign(e.deltaY);
+    if (!dir || !inSteps(dir)) return;
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    const a = Math.abs(e.deltaY) * (e.deltaMode === 1 ? 33 : 1), now = performance.now();
+    const tail = now - lastWheel < 150 && a < 60; // cola de inercia del trackpad
+    lastWheel = now;
+    if (!stepping && !tail) stepFrom(dir);
+  }, { passive: false, capture: true });
+  addEventListener('keydown', (e) => {
+    if (e.metaKey || e.ctrlKey || e.altKey || e.target.closest('input,textarea,select,button,a,[contenteditable]')) return;
+    const dir = { ArrowDown: 1, PageDown: 1, ArrowUp: -1, PageUp: -1 }[e.key] || (e.key === ' ' ? (e.shiftKey ? -1 : 1) : 0);
+    if (!dir || !inSteps(dir)) return;
+    e.preventDefault();
+    if (!stepping) stepFrom(dir);
+  });
+  // si el scroll se frena entre dos nombres (touch, barra de scroll), se acomoda al más cercano
+  addEventListener('scroll', () => {
+    clearTimeout(snapTimer);
+    if (!art.classList.contains('is-pinned')) return;
+    snapTimer = setTimeout(() => {
+      const f = idxNow();
+      if (!stepping && f > -EPS && f < N - 1 + EPS && Math.abs(f - Math.round(f)) > EPS) stepTo(Math.round(f), 0.4);
+    }, 170);
+  }, { passive: true });
 
   /* ---- Armá tu sesión (configurador de B) ---- */
   const conf = { svc: 'grabacion', temas: 3, beat: 'propio' };
@@ -200,7 +249,7 @@
       e.stopPropagation(); // el router de core.js volvería a subir al tope
       const goScroll = () => {
         const y = sec.getBoundingClientRect().top + scrollY - 80;
-        scrollTo({ top: Math.max(0, y), behavior: KH.reduced() ? 'auto' : 'smooth' });
+        KH.scrollTo(y);
       };
       if (location.hash.slice(1) && location.hash.slice(1) !== 'inicio') { KH.go('inicio'); setTimeout(goScroll, 120); } else goScroll();
     });
@@ -217,7 +266,7 @@
   $$('[data-scroll]').forEach((a) => a.addEventListener('click', (e) => {
     e.preventDefault();
     const t = document.getElementById(a.dataset.scroll);
-    scrollTo({ top: t.getBoundingClientRect().top + scrollY - 80, behavior: KH.reduced() ? 'auto' : 'smooth' });
+    KH.scrollTo(t.getBoundingClientRect().top + scrollY - 80);
   }));
 
   /* ---- Generador de portada ---- */
