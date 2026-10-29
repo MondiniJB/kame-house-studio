@@ -14,7 +14,7 @@
   /* ---------- Scroll con inercia (Lenis) ----------
      Con movimiento reducido no se crea: el scroll queda nativo. */
   KH.lenis = null;
-  KH.ease = { inOutCubic: (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2), outExpo: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)) };
+  KH.ease = { inOutCubic: (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2), outCubic: (t) => 1 - Math.pow(1 - t, 3), outExpo: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)) };
   KH.scrollTo = (y, o = {}) => {
     y = Math.max(0, y);
     if (KH.lenis) return KH.lenis.scrollTo(y, { duration: 1.2, easing: KH.ease.outExpo, force: true, ...o });

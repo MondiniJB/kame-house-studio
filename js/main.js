@@ -146,36 +146,39 @@
   const posOf = (k) => { const z = zone(); return z.top + z.span * (k / (N - 1)); };
   const idxNow = () => { const z = zone(); return ((scrollY - z.top) / z.span) * (N - 1); };
   const EPS = 0.02;
-  let stepping = false, lastWheel = 0, snapTimer = 0;
+  const STEP_PX = 90; // lo que hay que scrollear para correr un nombre (una rueda de mouse = 100)
+  let target = null, acc = 0, lastWheel = 0, lastStep = 0, snapTimer = 0;
   // ¿el scroll en esta dirección todavía cae adentro de los escalones?
   const inSteps = (dir) => {
     if (!art.classList.contains('is-pinned')) return false;
     const f = idxNow();
     return dir > 0 ? f > -EPS && f < N - 1 - EPS : f > EPS && f < N - 1 + EPS;
   };
-  function stepTo(k, duration = 0.65) {
-    stepping = true;
-    KH.scrollTo(posOf(Math.max(0, Math.min(N - 1, k))), { duration, easing: KH.ease.inOutCubic, lock: true });
-    setTimeout(() => (stepping = false), duration * 1000 + 80);
+  // cada scroll corre un nombre desde el último destino, sin esperar a que termine el anterior
+  function step(dir) {
+    if (target == null) { const f = idxNow(); target = dir > 0 ? Math.floor(f + EPS) : Math.ceil(f - EPS); }
+    target = Math.max(0, Math.min(N - 1, target + dir));
+    lastStep = performance.now();
+    KH.scrollTo(posOf(target), { duration: 0.32, easing: KH.ease.outCubic });
   }
-  const stepFrom = (dir) => { const f = idxNow(); stepTo(dir > 0 ? Math.floor(f + EPS) + 1 : Math.ceil(f - EPS) - 1); };
   addEventListener('wheel', (e) => {
     if (e.ctrlKey || Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
     const dir = Math.sign(e.deltaY);
     if (!dir || !inSteps(dir)) return;
     e.preventDefault();
     e.stopImmediatePropagation();
-    const a = Math.abs(e.deltaY) * (e.deltaMode === 1 ? 33 : 1), now = performance.now();
-    const tail = now - lastWheel < 150 && a < 60; // cola de inercia del trackpad
+    const now = performance.now();
+    if (now - lastWheel > 200 || Math.sign(acc) !== dir) acc = 0;
     lastWheel = now;
-    if (!stepping && !tail) stepFrom(dir);
+    acc += e.deltaY * (e.deltaMode === 1 ? 33 : 1);
+    while (Math.abs(acc) >= STEP_PX) { acc -= dir * STEP_PX; step(dir); }
   }, { passive: false, capture: true });
   addEventListener('keydown', (e) => {
     if (e.metaKey || e.ctrlKey || e.altKey || e.target.closest('input,textarea,select,button,a,[contenteditable]')) return;
     const dir = { ArrowDown: 1, PageDown: 1, ArrowUp: -1, PageUp: -1 }[e.key] || (e.key === ' ' ? (e.shiftKey ? -1 : 1) : 0);
     if (!dir || !inSteps(dir)) return;
     e.preventDefault();
-    if (!stepping) stepFrom(dir);
+    step(dir);
   });
   // si el scroll se frena entre dos nombres (touch, barra de scroll), se acomoda al más cercano
   addEventListener('scroll', () => {
@@ -183,8 +186,10 @@
     if (!art.classList.contains('is-pinned')) return;
     snapTimer = setTimeout(() => {
       const f = idxNow();
-      if (!stepping && f > -EPS && f < N - 1 + EPS && Math.abs(f - Math.round(f)) > EPS) stepTo(Math.round(f), 0.4);
-    }, 170);
+      if (performance.now() - lastStep < 350) return;
+      target = null;
+      if (f > -EPS && f < N - 1 + EPS && Math.abs(f - Math.round(f)) > EPS) KH.scrollTo(posOf(Math.round(f)), { duration: 0.3, easing: KH.ease.outCubic });
+    }, 200);
   }, { passive: true });
 
   /* ---- Armá tu sesión (configurador de B) ---- */
