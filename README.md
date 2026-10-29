@@ -1,0 +1,60 @@
+# Kame House Estudio
+
+Web institucional de **Kame House Estudio**, estudio de grabación, mezcla y mastering de música urbana en Chacarita, CABA. Es parte de la tesis de Diseño Gráfico (UAI, 2026) de Rocco Cámpora y Juan Bautista Mondini.
+
+Esta es la **opción E** de los bocetos: la base de D con la estructura de C, la paleta de B y los detalles tipográficos tipo grafiti. Es un sitio estático, sin framework ni paso de build.
+
+## Cómo verlo
+
+Abrí `index.html` en el navegador, o levantá un servidor local:
+
+```bash
+python -m http.server 8000
+# http://localhost:8000
+```
+
+## Estructura
+
+```
+index.html            todas las vistas (inicio, artistas, reservar y páginas pendientes)
+css/styles.css        tokens, secciones y componentes
+js/core.js            router por hash, ES/EN, escenas de scroll, menú, formularios
+js/main.js            lógica de la home: artistas, configurador, mux, tira de sesiones, reserva
+assets/brand/         isotipo, imagotipos, favicon y patrón de isotipos (SVG)
+assets/fonts/         Gang of Three (no versionada, ver abajo)
+assets/media/         portadas y capturas de reels (no versionadas, ver abajo)
+```
+
+Las vistas se cambian con el hash (`#inicio`, `#artistas`, `#reservar`). Están construidas Inicio, Artistas y Reservar; Estudio, Servicios, Sesiones y Merch son páginas "en construcción".
+
+## Sistema visual
+
+- **Colores:** negro `#1d1d1b`, violeta `#73378c`, blanco, y papel `#f4f2f6` como segundo claro. Las secciones alternan negro, blanco, papel y violeta.
+- **Contraste:** el violeta nunca es texto sobre negro (2,1:1). Sobre oscuro el texto es blanco; el violeta se usa en campos, bandas y botones con texto blanco. El violeta como texto solo va sobre blanco o papel (7,9:1).
+- **Tipografías:** Gang of Three en títulos de sección, Archivo en UI y subtítulos, Instrument Sans en texto, Sedgwick Ave Display como firma de calle (stickers). Archivo, Instrument Sans y Sedgwick se cargan desde Google Fonts.
+- **Marca:** el logo no se deforma, recolorea ni rota. El patrón de isotipos aparece solo en la banda del footer.
+- **Movimiento:** escenas ligadas al scroll solo en pantallas anchas y sin `prefers-reduced-motion`; en mobile y con movimiento reducido pasan a listas y tiras con swipe.
+
+## Archivos que no están en el repo
+
+Se agregan a mano en local; el sitio funciona sin ellos, con peores resultados visuales:
+
+- `assets/fonts/go3v2.ttf`: Gang of Three (Vic Fieger, 2007). La licencia no está confirmada, por eso no se versiona. Sin el archivo, los títulos caen a Archivo.
+- `assets/media/*.jpg`: portadas de los temas y capturas de reels del Instagram del estudio. Son material de terceros (artistas, All Santoz) y aparecen personas. Sin los archivos, las imágenes se ven rotas. La lista de nombres esperados está en `assets/media/README.md`.
+
+## Pendiente de confirmar
+
+Todo lo que no se pudo verificar está marcado en el sitio como `[a confirmar]`:
+
+- roles y años de cada artista y tema; confirmar si Khea va en la lista de artistas
+- nombre y catálogo del sello discográfico
+- teléfono, mail, dirección y web reales (hoy son de ejemplo); URL del Instagram
+- canal de YouTube, link de la tienda de merch y fecha del próximo drop
+- condiciones del alquiler de sala y flujo de una sesión
+- URL de la firma "Diseñado por Rocco Cámpora y Juan Bautista Mondini" (hoy `URL_A_DEFINIR`)
+- clips de YouTube de las sesiones, foto de Mariano Bilinkis, merch y mapa (siguen como placeholder)
+- traducciones al inglés de los textos largos (marcados `[EN pendiente]`)
+
+## Bocetos anteriores
+
+Los bocetos A, B, C y D siguen publicados como artifacts y no forman parte de este repo.

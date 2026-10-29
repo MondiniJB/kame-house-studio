@@ -1,0 +1,304 @@
+(function () {
+  const { $, $$ } = KH;
+  const root = document.documentElement;
+  root.classList.add('js');
+
+  KH.META = {
+    inicio: { title: 'Kame House Estudio | Activá los poderes', description: 'Estudio de grabación, mezcla y mastering de música urbana en Chacarita, CABA. Armá tu sesión y reservá.' },
+    artistas: { title: 'Quiénes pasaron | Kame House Estudio', description: 'Skrillex, Feid, YSY A, Bhavi, Khea y más artistas que grabaron en Kame House.' },
+    reservar: { title: 'Reservá tu sesión | Kame House Estudio', description: 'Pedí fecha y presupuesto para grabar, mezclar o masterizar en Kame House, Chacarita.' },
+    estudio: { title: 'El estudio | Kame House Estudio', description: 'Historia, Mariano Bilinkis, el sello y la sala.' },
+    servicios: { title: 'Servicios | Kame House Estudio', description: 'Grabación, mezcla, mastering, producción y sala.' },
+    sesiones: { title: 'Sesiones | Kame House Estudio', description: 'Portadas, YouTube y Reels de las sesiones.' },
+    merch: { title: 'Merch | Kame House Estudio', description: 'Merch oficial de Kame House.' },
+  };
+
+  KH.I18N = { en: {
+    skip: 'Skip to content', menu: 'Menu',
+    'nav.inicio': 'Home', 'nav.estudio': 'Studio', 'nav.artistas': 'Artists', 'nav.servicios': 'Services', 'nav.sesiones': 'Sessions', 'nav.merch': 'Merch',
+    'cta.reservar': 'Book a session',
+    'hero.l1': 'Power', 'hero.l2': 'up.', 'hero.sub': 'Kame House: recording, mixing and mastering studio for urban music in Chacarita, Buenos Aires.', 'hero.ses': 'See sessions',
+    'b.h': 'Build your session', 'b.svc': 'What do you need?', 'b.temas': 'How many tracks?', 'b.beat': 'And the beat?', 'b.beat.a': 'I bring my own', 'b.beat.b': 'I need production', 'b.res': 'Your session', 'b.go': 'Continue to booking',
+    'art.h': 'Artists who came through', 'art.p': 'Through the studio, over six-plus years of urban music recorded in Chacarita.', 'art.all': 'See all credits',
+    'temas.h': 'Tracks recorded here', 'temas.p': 'Cover art by the artists. Roles and credits for each track, to be confirmed with the studio.', 'tag.rec': 'recorded here',
+    'field.h': 'Activate the powers', 'field.cta': 'About the studio',
+    'chain.h': 'How a session works', 'chain.p': 'From the take to the final file, in the same studio. [Flow to be confirmed with the studio]',
+    'ch.1': 'Recording', 'ch.2': 'Editing', 'ch.3': 'Mixing', 'ch.4': 'Mastering', 'ch.5': 'Delivery',
+    'ch.1.p': 'Vocals and instruments in the room, through the analog and digital chain.', 'ch.2.p': 'The best takes are picked and timing and tuning are adjusted.', 'ch.3.p': 'Every track in its place: balance, space and the character the song needs.', 'ch.4.p': 'Consistent loudness and tone so it sounds right on any platform.', 'ch.5.p': 'You leave with final files ready for distribution.',
+    'chain.also': 'You can also book just one part, add production or rent the room:', 'chain.only': 'Mixing or mastering only', 'chain.quote': 'Ask for a quote',
+    'svc.h': 'Services', 'svc.price': 'Pricing depends on each project. Tell us and we quote.', 'svc.go': 'Ask',
+    'svc.grabacion': 'Recording', 'svc.mezcla': 'Mixing', 'svc.mastering': 'Mastering', 'svc.produccion': 'Production', 'svc.sala': 'Room rental', 'svc.sala.short': 'Room',
+    'svc.grabacion.p': 'Vocals and instruments in the room, with analog and digital gear.', 'svc.mezcla.p': 'Your tracks balanced, with the character the song asks for.', 'svc.mastering.p': 'Your track sounding consistent on every platform.', 'svc.produccion.p': 'Come with an idea and no beat, and we build it with you.', 'svc.sala.p': 'The room by the hour for you and your crew [terms to be confirmed].',
+    'ses.h': 'Sessions', 'ses.p': 'Everything on YouTube and Reels shares one cover rule: black band, artist, track and session number.', 'ses.all': 'All sessions',
+    'mk.h': 'Make your cover', 'mk.note': 'It is the same template the studio uses for every session. Add your AKA and your track name.', 'mk.aka': 'Your AKA', 'mk.tema': 'Your track', 'mk.color': 'Plate', 'mk.negro': 'Black', 'mk.violeta': 'Violet', 'mk.go': 'I want to record it',
+    'merch.h': 'Official merch', 'merch.p': 'Hoodies, caps, polos and lanyards with the studio brand. Next drop: [date to be confirmed].', 'm.1': 'Hoodie', 'm.2': 'Cap', 'm.3': 'Polo', 'm.go': 'See in store',
+    'closer.h': 'Come to the house.', 'closer2.h': 'The next name is yours.',
+    'art.h1': 'Who came through', 'art.lead': 'Artists and producers who recorded at Kame House. The studio’s role on each project is to be confirmed.', 'art.a': 'Artist', 'art.pr': 'Producer',
+    'f.all': 'All', 'f.art': 'Artists', 'f.prod': 'Producers',
+    'book.h1': 'Book your session', 'book.lead': 'Tell us what you want to do and we get back to you with availability and a quote.',
+    'st.1': 'What', 'st.2': 'When', 'st.3': 'You', 'st.1.l': 'What you’re here for', 'st.2.l': 'When', 'st.3.l': 'Who you are',
+    'f.svc': 'Services', 'f.temas': 'Number of tracks', 'f.ref': 'References', 'f.ref.h': 'Links to your demos or to tracks whose sound you like. Optional.', 'f.fecha': 'Preferred date', 'f.flex': 'My dates are flexible', 'f.presu': 'Budget', 'f.presu.a': 'Send me a quote', 'f.presu.b': 'I have an amount in mind', 'f.monto': 'How much do you have in mind?',
+    'f.aka': 'Artist name or AKA', 'f.mail': 'Email', 'f.msg': 'Anything else you want to tell us', opt: '(optional)', 'f.prev': 'Back', 'f.next': 'Next', 'f.send': 'Send request',
+    'done.p': 'On the real site, this request reaches the studio by email and they reply by WhatsApp or email. This is a mockup: nothing was sent.', 'done.again': 'Start another request',
+    'direct.h': 'Write to us directly', copy: 'Copy', copied: 'Copied', 'demo.data': 'Sample contact details.',
+    'f.contact': 'Contact', 'f.site': 'Site', 'stub.note': 'This page is not built in this mockup. Home, Artists and Booking are complete.', 'stub.back': 'Back to home',
+    'err.required': 'Fill in this field.', 'err.email': 'Check the email: the @ or the domain is missing (e.g. name@gmail.com).', 'err.services': 'Pick at least one service.', 'err.temas': 'Enter a number between 1 and 30.', 'err.date': 'That date has passed. Pick today or later.',
+    'fl.hero': 'Home', 'fl.artistas': 'Artists', 'fl.historia': 'Story', 'fl.servicios-g': 'Services', 'fl.merchsec': 'Merch',
+  } };
+
+  /* ---- Temas grabados (lista dada por el estudio; roles y años a confirmar) ---- */
+  const TEMAS = [
+    ['TECA RMX', 'Asan', 'teca-rmx'], ['Cinema', 'Bhavi', 'cinema'], ['Debo cambiar', 'Asan x Khea', 'debo-cambiar'], ['Serotonina', 'Khea', 'serotonina'],
+    ['Trapicheo "El Don"', 'Khea', 'trapicheo'], ['Pochoclos', 'Bhavi', 'pochoclos'], ['Neo', 'Neo Pistea', 'neo'],
+  ];
+  function temaCard(t, i) {
+    const li = document.createElement('li');
+    li.className = 'tema';
+    const ph = document.createElement('div');
+    ph.className = 'ph on-dark';
+    const img = document.createElement('img');
+    img.src = `assets/media/${t[2]}.jpg`; img.width = 720; img.height = 720; img.loading = i < 3 ? 'eager' : 'lazy'; img.decoding = 'async';
+    img.alt = `Portada de ${t[0]}, de ${t[1]}`;
+    const st = document.createElement('span'); st.className = 'sticker'; st.dataset.i18n = 'tag.rec'; st.textContent = 'grabado acá';
+    ph.append(img, st);
+    const h = document.createElement('h3'); h.textContent = t[0];
+    const p = document.createElement('p'); p.textContent = t[1];
+    li.append(ph, h, p);
+    return li;
+  }
+  TEMAS.forEach((t, i) => { $('#temas-track').append(temaCard(t, i)); $('#temas-grid').append(temaCard(t, i)); });
+  KH.I18N.en['tag.rec'] = 'recorded here';
+
+  /* ---- Modos con movimiento / sin movimiento ---- */
+  const sceneOk = () => !KH.reduced();
+  const wide = matchMedia('(min-width: 961px)');
+  const wide2 = matchMedia('(min-width: 1001px)');
+  const art = $('#artistas'), artRoll = $('#art-roll'), artNames = $$('#art-roll li'), artWin = $('#art-window');
+  const tWrap = $('#temas-wrap'), tTrack = $('#temas-track'), artSide = $('.art-side');
+  const sesScene = $('.sessions-scene'), track = $('#strip-track');
+  const chainScene = $('#cadena'), chainItems = $$('#chain li');
+
+  function sizeStrip() {
+    const on = sceneOk() && wide.matches;
+    sesScene.classList.toggle('is-pinned', on);
+    if (!on) { sesScene.style.height = ''; track.style.transform = ''; return; }
+    sesScene.style.height = `calc(100svh + ${Math.max(0, track.scrollWidth - innerWidth)}px)`;
+  }
+  function setModes() {
+    const on = sceneOk();
+    root.classList.toggle('scene-ok', on);
+    art.classList.toggle('is-pinned', on && wide.matches);
+    chainScene.classList.toggle('is-pinned', on && wide2.matches);
+    if (!art.classList.contains('is-pinned')) {
+      artRoll.style.transform = ''; tWrap.style.transform = ''; tTrack.style.transform = '';
+    }
+    sizeStrip();
+    KH.refreshScenes();
+  }
+  setModes();
+  matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', setModes);
+  wide.addEventListener('change', setModes);
+  wide2.addEventListener('change', setModes);
+  addEventListener('resize', () => { sizeStrip(); KH.refreshScenes(); });
+  document.addEventListener('kh:route', (e) => { if (e.detail === 'inicio') requestAnimationFrame(() => { sizeStrip(); KH.refreshScenes(); }); });
+
+  /* ---- Artistas: nombres en vertical, al llegar al último los temas se deslizan en horizontal ---- */
+  const clamp01 = (v) => Math.max(0, Math.min(1, v));
+  KH.scene(art, (p) => {
+    if (!art.classList.contains('is-pinned')) {
+      // sin escena fijada: se marca el nombre más cercano al centro de la pantalla
+      let near = null, nd = Infinity;
+      artNames.forEach((n) => { const r = n.getBoundingClientRect(); const d = Math.abs(r.top + r.height / 2 - innerHeight * 0.5); if (d < nd) { nd = d; near = n; } });
+      artNames.forEach((n) => n.classList.toggle('sel', n === near && nd < n.offsetHeight * 1.2));
+      $('.sel-band').style.opacity = '';
+      return;
+    }
+    const win = artWin.getBoundingClientRect();
+    const last = artNames[artNames.length - 1];
+    const start = win.height * 0.55;
+    const end = win.height / 2 - (last.offsetTop + last.offsetHeight / 2);
+    const names = clamp01(p / 0.44);
+    const enter = clamp01((p - 0.52) / 0.1);
+    const pan = clamp01((p - 0.64) / 0.36);
+    const y = start + (end - start) * names - enter * win.height * 0.6;
+    artRoll.style.transform = `translate3d(0, ${y.toFixed(1)}px, 0)`;
+    artRoll.style.opacity = (1 - enter).toFixed(2);
+    artSide.style.opacity = (1 - enter).toFixed(2);
+    $('.sel-band').style.opacity = (1 - enter).toFixed(2);
+    // el nombre que cruza el centro se pone blanco sobre la banda violeta
+    const mid = win.top + win.height / 2;
+    let best = null, bd = Infinity;
+    artNames.forEach((n) => {
+      const r = n.getBoundingClientRect();
+      const d = Math.abs(r.top + r.height / 2 - mid);
+      if (d < bd) { bd = d; best = n; }
+    });
+    artNames.forEach((n) => n.classList.toggle('sel', n === best && bd < best.offsetHeight * 0.55 && enter === 0));
+    tWrap.style.transform = `translate3d(${((1 - enter) * innerWidth).toFixed(1)}px, 0, 0)`;
+    const extra = Math.max(0, tTrack.scrollWidth - innerWidth + (parseFloat(getComputedStyle(tTrack).paddingLeft) || 0));
+    tTrack.style.transform = `translate3d(${(-extra * pan).toFixed(1)}px, 0, 0)`;
+  });
+
+  /* ---- Armá tu sesión (configurador de B) ---- */
+  const conf = { svc: 'grabacion', temas: 3, beat: 'propio' };
+  const SVC_ES = { grabacion: 'Grabación', mezcla: 'Mezcla', mastering: 'Mastering', produccion: 'Producción', sala: 'Alquiler de sala' };
+  const SVC_EN = { grabacion: 'Recording', mezcla: 'Mixing', mastering: 'Mastering', produccion: 'Production', sala: 'Room rental' };
+  function sentence() {
+    const en = KH.lang === 'en', n = conf.temas, name = (en ? SVC_EN : SVC_ES)[conf.svc];
+    if (conf.svc === 'sala') return en ? `Room rental for ${n} ${n === 1 ? 'track' : 'tracks'} with your own crew.` : `Alquiler de sala para ${n} ${n === 1 ? 'tema' : 'temas'}, con tu equipo.`;
+    const base = en ? `${name} of ${n} ${n === 1 ? 'track' : 'tracks'}` : `${name} de ${n} ${n === 1 ? 'tema' : 'temas'}`;
+    if (conf.svc === 'grabacion') return base + (conf.beat === 'propio' ? (en ? ', with your own beat.' : ', con beat propio.') : (en ? ', with production in the studio.' : ', con producción en el estudio.'));
+    return base + '.';
+  }
+  function paintConf() {
+    $$('#seg-svc button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.v === conf.svc)));
+    $$('#seg-beat button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.v === conf.beat)));
+    $('#q-beat-wrap').style.visibility = conf.svc === 'grabacion' ? '' : 'hidden';
+    $('#b-temas').textContent = conf.temas;
+    $('#b-result').textContent = sentence();
+  }
+  $$('#seg-svc button').forEach((b) => b.addEventListener('click', () => { conf.svc = b.dataset.v; paintConf(); }));
+  $$('#seg-beat button').forEach((b) => b.addEventListener('click', () => { conf.beat = b.dataset.v; paintConf(); }));
+  $$('.builder .counter button').forEach((b) => b.addEventListener('click', () => { conf.temas = Math.min(30, Math.max(1, conf.temas + Number(b.dataset.d))); paintConf(); }));
+  $('#b-go').addEventListener('click', () => {
+    KH.state.service = conf.svc;
+    KH.state.temas = conf.temas;
+    KH.state.extra = conf.svc === 'grabacion' && conf.beat === 'produccion' ? 'produccion' : null;
+    KH.state.note = conf.svc === 'grabacion' ? (conf.beat === 'propio' ? 'Traigo el beat.' : 'Necesito producción del beat.') : '';
+  });
+  document.addEventListener('kh:lang', paintConf);
+
+  /* ---- Así es una sesión: se enciende etapa por etapa ---- */
+  KH.scene(chainScene, (p) => {
+    if (!chainScene.classList.contains('is-pinned')) { chainItems.forEach((li) => { li.classList.add('on'); li.querySelector('.node i').style.setProperty('--fill', 1); }); return; }
+    const pos = Math.min(0.999, p / 0.85) * chainItems.length;
+    chainItems.forEach((li, i) => {
+      li.classList.toggle('on', pos >= i);
+      li.querySelector('.node i').style.setProperty('--fill', Math.max(0, Math.min(1, pos - i - 0.15)).toFixed(3));
+    });
+  });
+
+  /* ---- Tira de film ---- */
+  KH.scene(sesScene, (p) => {
+    if (!sesScene.classList.contains('is-pinned')) return;
+    track.style.transform = `translate3d(${(-Math.max(0, track.scrollWidth - innerWidth) * p).toFixed(1)}px, 0, 0)`;
+  });
+
+  /* ---- Mux: faders que suben con cada sección ---- */
+  const faders = $$('[data-fader]');
+  const SECTION_LABEL = { hero: 'Inicio', artistas: 'Artistas', historia: 'Historia', 'servicios-g': 'Servicios', merchsec: 'Merch' };
+  faders.forEach((f) => {
+    const sec = document.getElementById(f.dataset.fader);
+    KH.scene(sec, (p) => {
+      f.style.setProperty('--f', p.toFixed(3));
+      const r = sec.getBoundingClientRect();
+      const on = r.top < innerHeight * 0.5 && r.bottom > innerHeight * 0.5;
+      f.classList.toggle('on', on);
+      if (on && f.closest('.mux-side')) $('#mux-label').textContent = KH.t('fl.' + f.dataset.fader, SECTION_LABEL[f.dataset.fader]);
+    }, { mode: 'view' });
+    f.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation(); // el router de core.js volvería a subir al tope
+      const goScroll = () => {
+        const y = sec.getBoundingClientRect().top + scrollY - 80;
+        scrollTo({ top: Math.max(0, y), behavior: KH.reduced() ? 'auto' : 'smooth' });
+      };
+      if (location.hash.slice(1) && location.hash.slice(1) !== 'inicio') { KH.go('inicio'); setTimeout(goScroll, 120); } else goScroll();
+    });
+  });
+
+  /* ---- Entradas por sección ---- */
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -12% 0px' });
+    $$('[data-reveal]').forEach((el) => io.observe(el));
+  } else {
+    $$('[data-reveal]').forEach((el) => el.classList.add('in'));
+  }
+
+  $$('[data-scroll]').forEach((a) => a.addEventListener('click', (e) => {
+    e.preventDefault();
+    const t = document.getElementById(a.dataset.scroll);
+    scrollTo({ top: t.getBoundingClientRect().top + scrollY - 80, behavior: KH.reduced() ? 'auto' : 'smooth' });
+  }));
+
+  /* ---- Generador de portada ---- */
+  const mkAka = $('#mk-aka'), mkTema = $('#mk-tema'), mkCover = $('#mk-cover');
+  function paintCover() {
+    $('#mk-out-aka').textContent = mkAka.value.trim() || KH.t('mk.aka', 'Tu AKA');
+    $('#mk-out-tema').textContent = (mkTema.value.trim() || KH.t('mk.tema', 'Tu tema')) + ' · Kame House';
+    mkCover.classList.toggle('is-violet', $('#mk-violeta').checked);
+  }
+  [mkAka, mkTema].forEach((i) => i.addEventListener('input', paintCover));
+  $$('input[name="mk-color"]').forEach((i) => i.addEventListener('change', paintCover));
+  document.addEventListener('kh:lang', paintCover);
+  $('#mk-go').addEventListener('click', () => { KH.state.aka = mkAka.value.trim(); if (mkTema.value.trim()) KH.state.note = 'Tema: ' + mkTema.value.trim(); });
+
+  /* ---- Filtro de créditos ---- */
+  $$('#art-filters button').forEach((b) => b.addEventListener('click', () => {
+    const f = b.dataset.f;
+    $$('#art-filters button').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+    $$('#big-list li').forEach((li) => (li.hidden = f !== 'all' && li.dataset.k !== f));
+  }));
+
+  /* ---- Reserva en tres pasos ---- */
+  const form = $('#book-form'), steps = $$('.step', form), dots = $$('#steps li');
+  const prev = $('#prev'), next = $('#next'), send = $('#send');
+  let cur = 1;
+  function goStep(n, focus = true) {
+    cur = n;
+    steps.forEach((s) => (s.hidden = Number(s.dataset.step) !== n));
+    dots.forEach((d, i) => { d.classList.toggle('now', i + 1 === n); d.querySelector('.rombo').classList.toggle('on', i + 1 <= n); });
+    prev.hidden = n === 1; next.hidden = n === 3; send.hidden = n !== 3;
+    if (focus) { const f = steps[n - 1].querySelector('input, textarea'); f && f.focus({ preventScroll: true }); }
+  }
+  function validate(n) {
+    let ok = true;
+    if (n === 1) { ok = KH.fieldError($('#f-servicios'), KH.check.services(form)) && ok; ok = KH.fieldError($('#temas'), KH.check.temas($('#temas').value)) && ok; }
+    if (n === 2) ok = KH.fieldError($('#fecha'), KH.check.date($('#fecha').value)) && ok;
+    if (n === 3) { ok = KH.fieldError($('#aka'), KH.check.required($('#aka').value)) && ok; ok = KH.fieldError($('#mail'), KH.check.email($('#mail').value)) && ok; }
+    if (!ok) { const bad = form.querySelector('[aria-invalid="true"]'); (bad.matches('fieldset') ? bad.querySelector('input') : bad).focus(); }
+    return ok;
+  }
+  next.addEventListener('click', () => { if (validate(cur)) goStep(cur + 1); });
+  prev.addEventListener('click', () => goStep(cur - 1));
+  $$('[data-step-btn]', form).forEach((b) => b.addEventListener('click', () => {
+    const t = $('#temas');
+    t.value = Math.min(30, Math.max(1, (Number(t.value) || 1) + Number(b.dataset.stepBtn)));
+  }));
+  form.addEventListener('change', (e) => {
+    if (e.target.name === 'presupuesto') $('#monto-wrap').hidden = e.target.value !== 'monto';
+    if (e.target.name === 'servicio') KH.fieldError($('#f-servicios'), '');
+  });
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (cur < 3) { if (validate(cur)) goStep(cur + 1); return; }
+    if (!validate(3)) return;
+    const d = KH.formData(form);
+    const rows = [
+      [KH.t('f.svc', 'Servicios'), d.servicios.map(KH.serviceLabel).join(', ')],
+      [KH.t('f.temas', 'Cantidad de temas'), d.temas],
+      [KH.t('f.fecha', 'Fecha tentativa'), (KH.fmtDate(d.fecha) || '—') + (d.flexible ? ' (flexible)' : '')],
+      [KH.t('f.presu', 'Presupuesto'), d.presupuesto === 'monto' ? d.monto || '—' : KH.t('f.presu.a', 'Quiero que me coticen')],
+      [KH.t('f.mail', 'Mail'), d.mail],
+    ];
+    const sum = $('#done-sum');
+    sum.innerHTML = '';
+    rows.forEach(([k, v]) => { const div = document.createElement('div'); const dt = document.createElement('dt'); const dd = document.createElement('dd'); dt.textContent = k; dd.textContent = v; div.append(dt, dd); sum.append(div); });
+    $('#done-h').textContent = (KH.lang === 'en' ? 'Request ready, ' : 'Pedido armado, ') + d.aka.trim() + '.';
+    form.hidden = true; $('#steps').hidden = true; $('#done').hidden = false; $('#done').focus();
+  });
+  $('#again').addEventListener('click', () => {
+    form.reset(); $('#monto-wrap').hidden = true; form.hidden = false; $('#steps').hidden = false; $('#done').hidden = true; goStep(1);
+  });
+  document.addEventListener('kh:route', (e) => {
+    if (e.detail !== 'reservar') return;
+    KH.applyPrefill(form);
+    if (KH.state.extra) { const pr = form.querySelector('input[value="produccion"]'); if (pr) pr.checked = true; }
+    if (KH.state.note && !$('#mensaje').value) $('#mensaje').value = KH.state.note;
+  });
+
+  KH.boot();
+  paintConf();
+  paintCover();
+  goStep(1, false);
+})();

@@ -1,0 +1,15 @@
+# Material de terceros o con licencia sin confirmar: se agrega a mano en local
+assets/fonts/*
+!assets/fonts/README.md
+assets/media/*
+!assets/media/README.md
+
+# Sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Herramientas
+node_modules/
+.taste-skill/
+*.log
