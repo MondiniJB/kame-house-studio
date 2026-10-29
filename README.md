@@ -16,7 +16,7 @@ python -m http.server 8000
 ## Estructura
 
 ```
-index.html            todas las vistas (inicio, artistas, reservar y páginas pendientes)
+index.html            las tres vistas: inicio, artistas y reservar
 css/styles.css        tokens, secciones y componentes
 js/core.js            router por hash, ES/EN, escenas de scroll, menú, formularios
 js/main.js            lógica de la home: artistas, configurador, mux, tira de sesiones, reserva
@@ -25,7 +25,7 @@ assets/fonts/         Gang of Three (go3v2.ttf), tipografía base del logo
 assets/media/         portadas de los temas y capturas de reels del Instagram del estudio
 ```
 
-Las vistas se cambian con el hash (`#inicio`, `#artistas`, `#reservar`). Están construidas Inicio, Artistas y Reservar; Estudio, Servicios, Sesiones y Merch son páginas "en construcción".
+Las vistas se cambian con el hash (`#inicio`, `#artistas`, `#reservar`). `#estudio`, `#servicios`, `#sesiones` y `#merch` no son páginas: llevan a su sección dentro de la home (ver `ALIAS` en `js/core.js`).
 
 ## Sistema visual
 
@@ -43,18 +43,18 @@ Es un proyecto académico de tesis, sin fines comerciales ni publicitarios.
 - **Gang of Three** (`assets/fonts/go3v2.ttf`): tipografía de Vic Fieger (2007), base del logo según el manual de marca.
 - **Identidad visual:** diseño de Rocco Cámpora y Juan Bautista Mondini para la tesis.
 
-## Pendiente de confirmar
+## Datos sin confirmar
 
-Todo lo que no se pudo verificar está marcado en el sitio como `[a confirmar]`:
+El sitio ya no muestra marcas internas. Estos datos siguen sin confirmar y hay que cargarlos cuando se tengan:
 
 - roles y años de cada artista y tema; confirmar si Khea va en la lista de artistas
 - nombre y catálogo del sello discográfico
-- teléfono, mail, dirección y web reales (hoy son de ejemplo); URL del Instagram
-- canal de YouTube, link de la tienda de merch y fecha del próximo drop
-- condiciones del alquiler de sala y flujo de una sesión
+- teléfono, mail, dirección y web reales (hoy son de ejemplo)
+- canal de YouTube y clips de las sesiones, link de la tienda de merch y fotos de los productos
+- foto de Mariano Bilinkis
+- condiciones del alquiler de sala y el flujo exacto de una sesión (hoy es genérico)
 - URL de la firma "Diseñado por Rocco Cámpora y Juan Bautista Mondini" (hoy `URL_A_DEFINIR`)
-- clips de YouTube de las sesiones, foto de Mariano Bilinkis, merch y mapa (siguen como placeholder)
-- traducciones al inglés de los textos largos (marcados `[EN pendiente]`)
+- el formulario de reserva todavía no envía datos a ningún lado
 
 ## Bocetos anteriores
 

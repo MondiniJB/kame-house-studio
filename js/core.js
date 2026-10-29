@@ -1,4 +1,4 @@
-/* Núcleo compartido por los tres bocetos: router por hash, ES/EN, escenas de scroll,
+/* Núcleo compartido: router por hash, ES/EN, escenas de scroll,
    foco por scroll en pantallas táctiles, menú, formularios y copiar al portapapeles. */
 (function () {
   const KH = (window.KH = window.KH || {});
@@ -15,7 +15,26 @@
   const views = $$('[data-view]');
   const ROUTES = views.map((v) => v.dataset.view);
 
+  /* Estudio, Servicios, Sesiones y Merch no son páginas: llevan a su sección de la home. */
+  const ALIAS = { estudio: 'historia', servicios: 'servicios-g', sesiones: 'sesiones-home', merch: 'merchsec' };
+  function goAlias(name, smooth) {
+    const el = document.getElementById(ALIAS[name]);
+    if (!el) return;
+    const y = el.getBoundingClientRect().top + scrollY - 80;
+    scrollTo({ top: Math.max(0, y), behavior: smooth && !KH.reduced() ? 'smooth' : 'auto' });
+  }
   function show(route, opts = {}) {
+    if (ALIAS[route]) {
+      const wasHome = document.documentElement.dataset.route === 'inicio';
+      show('inicio', { keepScroll: true });
+      $$('[data-nav]').forEach((a) => {
+        const on = a.getAttribute('href') === '#' + route;
+        a.classList.toggle('is-current', on);
+        if (on) a.setAttribute('aria-current', 'location'); else if (a.getAttribute('href') !== '#inicio') a.removeAttribute('aria-current');
+      });
+      setTimeout(() => goAlias(route, wasHome), wasHome ? 0 : 120);
+      return;
+    }
     if (!ROUTES.includes(route)) route = 'inicio';
     views.forEach((v) => (v.hidden = v.dataset.view !== route));
     document.documentElement.dataset.route = route;
@@ -41,6 +60,7 @@
       }
     }
     document.dispatchEvent(new CustomEvent('kh:route', { detail: route }));
+    KH.resetScenes && KH.resetScenes();
     KH.refreshScenes && KH.refreshScenes();
   }
   KH.go = (route) => {
@@ -134,6 +154,7 @@
   function runScenes() {
     ticking = false;
     const vh = innerHeight;
+    let busy = false;
     for (const s of scenes) {
       if (s.el.offsetParent === null && !s.opts.always) continue;
       const r = s.el.getBoundingClientRect();
@@ -144,9 +165,23 @@
         const span = r.height - vh;
         p = span > 0 ? -r.top / span : r.top < 0 ? 1 : 0;
       }
-      s.fn(Math.min(1, Math.max(0, p)), r);
+      p = Math.min(1, Math.max(0, p));
+      // Las escenas fijadas siguen al scroll con una inercia corta: el movimiento no tironea
+      // cuando el scroll llega a saltos (rueda del mouse). Con movimiento reducido, directo.
+      const smooth = s.opts.smooth !== undefined ? s.opts.smooth : s.opts.mode !== 'view' && !s.opts.always;
+      if (smooth && !reducedQuery.matches) {
+        if (s.cur == null) s.cur = p;
+        const d = p - s.cur;
+        if (Math.abs(d) > 0.0004) { s.cur += d * 0.18; busy = true; } else s.cur = p;
+        s.fn(s.cur, r);
+      } else {
+        s.cur = p;
+        s.fn(p, r);
+      }
     }
+    if (busy) KH.refreshScenes();
   }
+  KH.resetScenes = () => scenes.forEach((s) => (s.cur = null));
   KH.refreshScenes = () => {
     if (!ticking) {
       ticking = true;

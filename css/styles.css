@@ -2,7 +2,7 @@
 /* Gang of Three solo en títulos. El archivo no se versiona (ver assets/fonts/README.md): sin él cae a Archivo. */
 /* Base mínima */
 :root { padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
-html { -webkit-text-size-adjust: 100%; }
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: calc(var(--nav-h, 88px) + 16px); }
 body { margin: 0; }
 [hidden] { display: none !important; }
 img { max-width: 100%; }
@@ -84,7 +84,6 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .prose { max-width: 58ch; display: grid; gap: 1em; }
 .cut { clip-path: polygon(0 0, calc(100% - var(--cut)) 0, 100% var(--cut), 100% 100%, 0 100%); }
 .section { padding-block: var(--section); }
-html[lang="en"] [data-en-pending]::after { content: " [EN pendiente]"; font-size: var(--fs-xs); color: var(--fg-soft); white-space: nowrap; }
 
 /* Firma de calle: Sedgwick, siempre blanco sobre cinta violeta */
 .sticker { display: inline-block; font-family: var(--tag); font-size: 1.7rem; line-height: 1; background: var(--k-violet); color: var(--k-white); padding: 6px 12px 9px; transform: rotate(-4deg); white-space: nowrap; }
@@ -166,7 +165,7 @@ html:not([data-route="inicio"]) .mux-nav { visibility: hidden; }
 }
 @media (min-width: 961px) { .menu { display: none; } }
 
-/* ---------- Placeholders ---------- */
+/* ---------- Marcos de imagen ---------- */
 .ph { position: relative; background: var(--surface); overflow: hidden; max-width: 100%; display: grid; place-items: center; }
 .ph-label { position: absolute; left: 14px; top: 12px; right: 14px; font-size: var(--fs-xs); color: var(--fg-soft); line-height: 1.35; z-index: 1; }
 .ph.on-dark { background: var(--k-black-up); }
@@ -236,7 +235,7 @@ html:not([data-route="inicio"]) .mux-nav { visibility: hidden; }
 .tema h3 { font-family: var(--gang); font-weight: 400; text-transform: uppercase; font-size: clamp(1.3rem, 1.9vw, 1.8rem); line-height: 1.05; overflow-wrap: anywhere; }
 .tema p { font-family: var(--display); font-weight: 600; color: var(--fg-soft); font-size: var(--fs-s); }
 /* Escena fijada (solo desktop con movimiento) */
-.artists.is-pinned { height: 560vh; }
+.artists.is-pinned { height: 480vh; }
 .artists.is-pinned .art-stage { position: sticky; top: calc(var(--nav-h) + env(safe-area-inset-top, 0px)); height: calc(100svh - var(--nav-h) - env(safe-area-inset-top, 0px)); overflow: hidden; padding-block: 0; }
 .artists.is-pinned .sel-band { display: block; }
 .artists.is-pinned .art-grid { position: relative; z-index: 1; height: 100%; grid-template-rows: minmax(0, 1fr); }
@@ -254,7 +253,7 @@ html:not([data-route="inicio"]) .mux-nav { visibility: hidden; }
 .field-grid h2 { margin-bottom: 32px; }
 .field-grid .prose { margin-bottom: 36px; }
 .field-v .ph { background: var(--k-black); }
-.field-v .ph-label { color: rgba(255,255,255,.76); }
+.field-v .ph img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .field-v .ghost { font-size: clamp(7rem, 20vw, 19rem); right: var(--gutter-r); bottom: -1.5rem; }
 
 /* ---------- Así es una sesión ---------- */
@@ -276,15 +275,16 @@ html:not([data-route="inicio"]) .mux-nav { visibility: hidden; }
 .extras a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; background: var(--surface); text-decoration: none; font-weight: 600; transition: background-color .2s, color .2s; }
 .extras a:hover { background: var(--k-violet); color: var(--k-white); }
 @media (min-width: 1001px) {
-  .chain-scene.is-pinned { height: 200vh; }
+  .chain-scene.is-pinned { height: 170vh; }
   .chain-scene.is-pinned .chain-stage { position: sticky; top: calc(var(--nav-h) + env(safe-area-inset-top, 0px)); min-height: calc(100svh - var(--nav-h)); display: flex; flex-direction: column; justify-content: center; padding-block: 40px; }
 }
 
 /* ---------- Servicios ---------- */
 .svc-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 20px 40px; margin-bottom: 48px; }
 .slabs { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }
-.slab a { height: 100%; display: grid; gap: 14px; align-content: start; padding: 28px 22px 24px; min-height: 270px; background: var(--surface); text-decoration: none; transition: background-color .25s var(--ease); clip-path: polygon(0 0, calc(100% - 28px) 0, 100% 28px, 100% 100%, 0 100%); }
-.slab h3 { font-family: var(--display); font-weight: 900; font-stretch: 108%; font-size: clamp(1.25rem, 1.7vw, 1.8rem); line-height: 1.02; text-transform: uppercase; }
+/* cada tarjeta es su propio contenedor: el título se achica según el ancho de la placa y la columna no se ensancha con la palabra más larga */
+.slab a { container-type: inline-size; height: 100%; display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; align-content: start; padding: 34px 22px 24px; min-height: 270px; background: var(--surface); text-decoration: none; transition: background-color .25s var(--ease); clip-path: polygon(0 0, calc(100% - 28px) 0, 100% 28px, 100% 100%, 0 100%); }
+.slab h3 { font-family: var(--display); font-weight: 900; font-stretch: 108%; font-size: clamp(1rem, 11.4cqi, 2rem); line-height: 1.04; text-transform: uppercase; overflow-wrap: anywhere; }
 .slab p { color: var(--fg-soft); font-size: var(--fs-s); }
 .slab .go { margin-top: auto; font-weight: 600; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 6px; }
 .slab a:hover, .slab a:focus-visible, .slab.in-focus a { background: var(--k-violet); }
@@ -294,7 +294,7 @@ html:not([data-route="inicio"]) .mux-nav { visibility: hidden; }
 .sessions-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; align-items: end; margin-bottom: 48px; }
 .strip { overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--edge); scrollbar-width: none; }
 .strip::-webkit-scrollbar { display: none; }
-.strip-track { --h: clamp(210px, 22vw, 300px); display: flex; align-items: flex-start; gap: 16px; padding-left: var(--edge); padding-right: var(--edge); width: max-content; }
+.strip-track { --h: clamp(300px, 48vh, 520px); display: flex; align-items: flex-start; gap: 16px; padding-left: var(--edge); padding-right: var(--edge); width: max-content; }
 .clip { margin: 0; flex: none; scroll-snap-align: start; }
 .clip-yt { width: calc(var(--h) * 16 / 9); }
 .clip-reel { width: calc(var(--h) * 9 / 16); }
@@ -340,14 +340,12 @@ html:not([data-route="inicio"]) .mux-nav { visibility: hidden; }
 /* ---------- Merch: productos grandes que se ponen violeta ---------- */
 .merch-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 20px 40px; margin-bottom: 48px; }
 .products { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(14px, 1.6vw, 24px); }
-.product a { position: relative; display: block; aspect-ratio: 1; background: var(--k-black); color: var(--k-white); text-decoration: none; overflow: hidden; transition: background-color .35s var(--ease); clip-path: polygon(0 0, calc(100% - 36px) 0, 100% 36px, 100% 100%, 0 100%); }
-.product .ph { position: absolute; inset: 0; background: transparent; transition: transform .5s var(--ease); }
-.product .ph-label { color: rgba(255,255,255,.76); }
+.product .tile { position: relative; display: block; aspect-ratio: 1; background: var(--k-black); color: var(--k-white); text-decoration: none; overflow: hidden; transition: background-color .35s var(--ease); clip-path: polygon(0 0, calc(100% - 36px) 0, 100% 36px, 100% 100%, 0 100%); }
 .product .meta { position: absolute; left: clamp(18px, 2.4vw, 32px); right: clamp(18px, 2.4vw, 32px); bottom: clamp(18px, 2.4vw, 32px); z-index: 2; display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 8px 20px; }
 .product .meta b { font-family: var(--gang); font-weight: 400; text-transform: uppercase; font-size: clamp(1.8rem, 3.6vw, 3.2rem); line-height: 1; }
-.product .meta span { font-weight: 600; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 6px; }
-.product a:hover, .product a:focus-visible, .product.in-focus a { background: var(--k-violet); }
-.product a:hover .ph, .product a:focus-visible .ph, .product.in-focus .ph { transform: translateY(-10px) scale(1.03); }
+.product .tile:hover, .product.in-focus .tile { background: var(--k-violet); }
+.product .tile .meta { transition: transform .5s var(--ease); }
+.product .tile:hover .meta, .product.in-focus .tile .meta { transform: translateY(-10px); }
 
 /* ---------- Despedida ---------- */
 .closer { position: relative; overflow: hidden; padding-block: clamp(80px, 11vw, 150px); }
@@ -435,9 +433,6 @@ textarea.input { min-height: 120px; resize: vertical; }
 .summary dt { color: var(--fg-soft); }
 .summary dd { margin: 0; overflow-wrap: anywhere; }
 
-.stub { padding-block: clamp(80px, 12vw, 180px); display: grid; gap: 24px; max-width: 900px; }
-.stub h1 { font-family: var(--gang); font-weight: 400; text-transform: uppercase; line-height: .98; font-size: var(--step-4); }
-.stub .row-btns { display: flex; flex-wrap: wrap; gap: 16px 28px; align-items: center; margin-top: 12px; }
 
 .mbar { display: none; }
 @media (max-width: 960px) {
@@ -491,3 +486,9 @@ textarea.input { min-height: 120px; resize: vertical; }
   @keyframes in-up { from { opacity: 0; transform: translateY(12px); } }
   .slab a, .btn, .link, .big-list li, .product a, .product .ph, .chain .cn, .seg button { transition-duration: .01s; }
 }
+
+/* Tarjeta final de la tira de sesiones */
+.clip-more .ph.more { background: var(--k-violet); color: var(--k-white); text-decoration: none; align-content: end; justify-items: start; padding: 20px; gap: 14px; transition: background-color .25s var(--ease), color .25s; }
+.clip-more .ph.more span { font-family: var(--gang); text-transform: uppercase; font-size: clamp(1.3rem, 1.8vw, 1.7rem); line-height: 1.05; }
+.clip-more .ph.more svg { width: 26px; height: 26px; }
+.clip-more .ph.more:hover, .clip-more .ph.more:focus-visible { background: var(--k-black); }
