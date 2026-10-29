@@ -21,8 +21,8 @@ css/styles.css        tokens, secciones y componentes
 js/core.js            router por hash, ES/EN, escenas de scroll, menú, formularios
 js/main.js            lógica de la home: artistas, configurador, mux, tira de sesiones, reserva
 assets/brand/         isotipo, imagotipos, favicon y patrón de isotipos (SVG)
-assets/fonts/         Gang of Three (no versionada, ver abajo)
-assets/media/         portadas y capturas de reels (no versionadas, ver abajo)
+assets/fonts/         Gang of Three (go3v2.ttf), tipografía base del logo
+assets/media/         portadas de los temas y capturas de reels del Instagram del estudio
 ```
 
 Las vistas se cambian con el hash (`#inicio`, `#artistas`, `#reservar`). Están construidas Inicio, Artistas y Reservar; Estudio, Servicios, Sesiones y Merch son páginas "en construcción".
@@ -35,12 +35,13 @@ Las vistas se cambian con el hash (`#inicio`, `#artistas`, `#reservar`). Están 
 - **Marca:** el logo no se deforma, recolorea ni rota. El patrón de isotipos aparece solo en la banda del footer.
 - **Movimiento:** escenas ligadas al scroll solo en pantallas anchas y sin `prefers-reduced-motion`; en mobile y con movimiento reducido pasan a listas y tiras con swipe.
 
-## Archivos que no están en el repo
+## Alcance y créditos del material
 
-Se agregan a mano en local; el sitio funciona sin ellos, con peores resultados visuales:
+Es un proyecto académico de tesis, sin fines comerciales ni publicitarios.
 
-- `assets/fonts/go3v2.ttf`: Gang of Three (Vic Fieger, 2007). La licencia no está confirmada, por eso no se versiona. Sin el archivo, los títulos caen a Archivo.
-- `assets/media/*.jpg`: portadas de los temas y capturas de reels del Instagram del estudio. Son material de terceros (artistas, All Santoz) y aparecen personas. Sin los archivos, las imágenes se ven rotas. La lista de nombres esperados está en `assets/media/README.md`.
+- **Portadas y reels** (`assets/media/`): las portadas pertenecen a sus artistas y las capturas de reels provienen del Instagram del estudio (`@estudiokamehouse`) y de All Santoz. Se usan solo para ilustrar el boceto. El detalle está en `assets/media/README.md`.
+- **Gang of Three** (`assets/fonts/go3v2.ttf`): tipografía de Vic Fieger (2007), base del logo según el manual de marca.
+- **Identidad visual:** diseño de Rocco Cámpora y Juan Bautista Mondini para la tesis.
 
 ## Pendiente de confirmar
 

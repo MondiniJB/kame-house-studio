@@ -1,8 +1,8 @@
-# Imágenes locales
+# Imágenes
 
-Estas imágenes no se versionan: son portadas de artistas y capturas de reels del Instagram del estudio (`@estudiokamehouse`), es decir, material de terceros. Antes de subirlas al repo hay que confirmar los permisos con el estudio, los artistas y All Santoz.
+Imágenes que usa el sitio. Son portadas de artistas y capturas de reels del Instagram del estudio (`@estudiokamehouse`): material de terceros usado con fines académicos en un proyecto de tesis, sin fines comerciales. Los derechos pertenecen a sus autores.
 
-Archivos que espera el sitio (JPG; portadas cuadradas de 720 px, reels de unos 454×723 px):
+Archivos (JPG; portadas cuadradas de 720 px, reels de unos 454×723 px):
 
 | Archivo | Qué es |
 |---|---|
