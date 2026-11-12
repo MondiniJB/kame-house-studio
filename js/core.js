@@ -36,7 +36,10 @@
   }
 
   /* ---------- Navegación ----------
-     Cada página es un HTML propio. Servicios, Sesiones y Merch son secciones del inicio (index.html#...). */
+     Cada página es un HTML propio, servido con direcciones limpias (vercel.json: /estudio sirve estudio.html).
+     Servicios, Sesiones y Merch son secciones del inicio (/#servicios, /#sesiones, /#merch). */
+  // "/", "/index.html", "/estudio" y "/estudio.html" se comparan como la misma página
+  const samePage = (path) => path.replace(/(index)?\.html$/, '').replace(/\/$/, '') || '/';
   $$('[data-nav]').forEach((a) => {
     if (a.dataset.nav === KH.page) { a.classList.add('is-current'); a.setAttribute('aria-current', 'page'); }
   });
@@ -45,7 +48,7 @@
     const a = e.target.closest('a[href*="#"]');
     if (!a || e.defaultPrevented || e.metaKey || e.ctrlKey || e.shiftKey) return;
     const url = new URL(a.href, location.href);
-    if (url.pathname !== location.pathname || !url.hash) return;
+    if (samePage(url.pathname) !== samePage(location.pathname) || !url.hash) return;
     const el = document.getElementById(decodeURIComponent(url.hash.slice(1)));
     if (!el) return;
     e.preventDefault();
@@ -242,12 +245,12 @@
     const d = new Date(v + 'T00:00');
     return d.toLocaleDateString(KH.lang === 'en' ? 'en-GB' : 'es-AR', { day: 'numeric', month: 'long', year: 'numeric' });
   };
-  // link a reservar.html con lo que la persona ya eligió en otra sección
+  // link a /reservar con lo que la persona ya eligió en otra sección
   KH.bookUrl = (params) => {
     const q = new URLSearchParams();
     Object.entries(params).forEach(([k, v]) => { if (v != null && v !== '') q.set(k, v); });
     const s = q.toString();
-    return 'reservar.html' + (s ? '?' + s : '');
+    return '/reservar' + (s ? '?' + s : '');
   };
 
   /* ---------- Copiar datos de contacto ---------- */
@@ -287,7 +290,7 @@
     KH.refreshScenes();
     const y = document.getElementById('kh-year');
     if (y) y.textContent = new Date().getFullYear();
-    // si se llegó con un ancla (index.html#servicios), se va a la sección una vez armado el layout
+    // si se llegó con un ancla (/#servicios), se va a la sección una vez armado el layout
     if (location.hash) {
       const el = document.getElementById(decodeURIComponent(location.hash.slice(1)));
       if (el) requestAnimationFrame(() => KH.scrollToEl(el, { immediate: true }));

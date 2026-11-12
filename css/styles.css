@@ -429,7 +429,7 @@ html.lenis, html.lenis body { height: auto; }
 .footer-base { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 32px; margin-top: 36px; padding-block: 18px 20px; position: relative; color: var(--fg-soft); font-size: var(--fs-xs); }
 .footer-base::before { content: ""; position: absolute; top: 0; left: var(--gutter); right: var(--gutter-r); height: 1px; background: rgba(255,255,255,.1); }
 .footer-base a { color: var(--fg); }
-.pattern-band { height: 120px; background-color: var(--k-black); background-image: url("../assets/brand/pattern.svg"); background-size: 240px 240px; }
+.pattern-band { height: 72px; background-color: var(--k-black); background-image: url("../assets/brand/pattern.svg"); background-size: 144px 144px; }
 
 /* ---------- Artistas (página interna) ---------- */
 .page-head { padding-block: clamp(56px, 8vw, 120px) 40px; display: grid; gap: 22px; }

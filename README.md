@@ -4,29 +4,50 @@ Web institucional de **Kame House Estudio**, estudio de grabación, mezcla y mas
 
 Esta es la **opción E** de los bocetos: la base de D con la estructura de C, la paleta de B y los detalles tipográficos tipo grafiti. Es un sitio estático, sin framework ni paso de build.
 
-## Cómo verlo
+## Publicación y direcciones
 
-Abrí `index.html` en el navegador, o levantá un servidor local:
+El sitio se publica en **Vercel**. `vercel.json` activa las direcciones limpias: cada página es un archivo `.html`, pero se navega sin la extensión.
+
+| Dirección | Archivo |
+|---|---|
+| `/` | `index.html` |
+| `/estudio` | `estudio.html` |
+| `/artistas` | `artistas.html` |
+| `/reservar` | `reservar.html` (acepta `?servicio=`, `?temas=`, `?beat=`, `?aka=`, `?tema=`) |
+
+Servicios, Sesiones y Merch no son páginas: son secciones del inicio (`/#servicios`, `/#sesiones`, `/#merch`).
+
+## Cómo verlo en la compu
+
+Con direcciones limpias, abrir `index.html` con doble clic no alcanza (los links no encuentran los archivos). Levantá un servidor local desde esta carpeta:
 
 ```bash
-python -m http.server 8000
-# http://localhost:8000
+npx serve
+# http://localhost:3000
 ```
+
+`serve` resuelve las direcciones limpias igual que Vercel. También sirve `vercel dev` si está instalada la CLI de Vercel.
+
+Los CSS y JS se cargan con una versión (`?v=…`) en `index.html`: subila en cada cambio para que el navegador no use archivos viejos.
 
 ## Estructura
 
 ```
-index.html            las tres vistas: inicio, artistas y reservar
+index.html            inicio
+vercel.json           direcciones limpias (cleanUrls)
 css/styles.css        tokens, secciones y componentes
-js/core.js            router por hash, ES/EN, scroll con Lenis, escenas de scroll, menú, formularios
-js/main.js            lógica de la home: artistas, configurador, mux, tira de sesiones, reserva
-assets/brand/         isotipo, imagotipos, favicon y patrón de isotipos (SVG)
+js/core.js            compartido: ES/EN, scroll con Lenis, escenas de scroll, nav, menú, anclas, formularios
+js/i18n.js            textos en inglés
+js/data.js            temas grabados y la tarjeta de vinilo de cada uno
+js/coverflow.js       carrusel coverflow invertido de los temas (scroll, arrastre, flechas, teclado)
+js/home.js            lógica del inicio: artistas, coverflow, servicios, configurador, sesiones, portada, mux
+assets/brand/         isotipo, isologotipos, favicon y patrón de isotipos (SVG)
 assets/js/            Lenis 1.3.27 (scroll con inercia), copia local
 assets/fonts/         Gang of Three (go3v2.ttf), tipografía base del logo
-assets/media/         portadas de los temas y capturas de reels del Instagram del estudio
+assets/media/         portadas, capturas de reels y fotos de stock (créditos en assets/media/README.md)
 ```
 
-Las vistas se cambian con el hash (`#inicio`, `#artistas`, `#reservar`). `#estudio`, `#servicios`, `#sesiones` y `#merch` no son páginas: llevan a su sección dentro de la home (ver `ALIAS` en `js/core.js`).
+`js/main.js` es de la versión anterior (una sola página con vistas por hash) y no se carga: se borra al terminar Artistas y Reservar.
 
 ## Sistema visual
 

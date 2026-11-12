@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,100..900&family=Instrument+Sans:wght@400;500;600&family=Sedgwick+Ave+Display&display=swap">
-<link rel="stylesheet" href="css/styles.css?v=20261112d">
+<link rel="stylesheet" href="css/styles.css?v=20261112f">
 </head>
 <body>
 
@@ -35,15 +35,15 @@
 
 <header class="nav s-black">
   <div class="wrap nav-in">
-    <a class="brand" href="index.html" aria-label="Kame House Estudio, inicio">
+    <a class="brand" href="/" aria-label="Kame House Estudio, inicio">
       <svg viewBox="0 0 401.32 132.18" aria-hidden="true"><use href="#kh-hor"/></svg>
     </a>
     <ul class="nav-links">
-      <li><a data-nav="estudio" href="estudio.html" data-i18n="nav.estudio">Estudio</a></li>
-      <li><a data-nav="artistas" href="artistas.html" data-i18n="nav.artistas">Artistas</a></li>
-      <li><a data-nav="servicios" href="index.html#servicios" data-i18n="nav.servicios">Servicios</a></li>
-      <li><a data-nav="sesiones" href="index.html#sesiones" data-i18n="nav.sesiones">Sesiones</a></li>
-      <li><a data-nav="merch" href="index.html#merch" data-i18n="nav.merch">Merch</a></li>
+      <li><a data-nav="estudio" href="/estudio" data-i18n="nav.estudio">Estudio</a></li>
+      <li><a data-nav="artistas" href="/artistas" data-i18n="nav.artistas">Artistas</a></li>
+      <li><a data-nav="servicios" href="/#servicios" data-i18n="nav.servicios">Servicios</a></li>
+      <li><a data-nav="sesiones" href="/#sesiones" data-i18n="nav.sesiones">Sesiones</a></li>
+      <li><a data-nav="merch" href="/#merch" data-i18n="nav.merch">Merch</a></li>
     </ul>
     <nav class="mux mux-nav" aria-label="Secciones del inicio">
       <a href="#hero" data-fader="hero" aria-label="Ir al inicio" title="Inicio"><i></i><b></b></a>
@@ -56,7 +56,7 @@
       <button type="button" data-lang="es" aria-pressed="true">ES</button>
       <button type="button" data-lang="en" aria-pressed="false">EN</button>
     </div>
-    <a class="btn btn-primary" href="reservar.html" data-i18n="cta.reservar">Reservar sesión</a>
+    <a class="btn btn-primary" href="/reservar" data-i18n="cta.reservar">Reservar sesión</a>
     <button class="menu-btn" type="button" data-menu-toggle aria-expanded="false" aria-controls="menu">
       <span></span><b class="visually-hidden" data-i18n="menu">Menú</b>
     </button>
@@ -65,14 +65,14 @@
 
 <div class="menu s-black" id="menu" data-menu data-lenis-prevent>
   <ul>
-    <li><a href="index.html" data-i18n="nav.inicio">Inicio</a></li>
-    <li><a href="estudio.html" data-i18n="nav.estudio">Estudio</a></li>
-    <li><a href="artistas.html" data-i18n="nav.artistas">Artistas</a></li>
-    <li><a href="index.html#servicios" data-i18n="nav.servicios">Servicios</a></li>
-    <li><a href="index.html#sesiones" data-i18n="nav.sesiones">Sesiones</a></li>
-    <li><a href="index.html#merch" data-i18n="nav.merch">Merch</a></li>
+    <li><a href="/" data-i18n="nav.inicio">Inicio</a></li>
+    <li><a href="/estudio" data-i18n="nav.estudio">Estudio</a></li>
+    <li><a href="/artistas" data-i18n="nav.artistas">Artistas</a></li>
+    <li><a href="/#servicios" data-i18n="nav.servicios">Servicios</a></li>
+    <li><a href="/#sesiones" data-i18n="nav.sesiones">Sesiones</a></li>
+    <li><a href="/#merch" data-i18n="nav.merch">Merch</a></li>
   </ul>
-  <a class="btn btn-primary" href="reservar.html" data-i18n="cta.reservar">Reservar sesión</a>
+  <a class="btn btn-primary" href="/reservar" data-i18n="cta.reservar">Reservar sesión</a>
   <div class="lang" role="group" aria-label="Idioma">
     <button type="button" data-lang="es" aria-pressed="true">ES</button>
     <button type="button" data-lang="en" aria-pressed="false">EN</button>
@@ -104,7 +104,7 @@
       <h1 class="hero-title" id="hero-h"><span data-i18n="hero.l1">Activá</span> <span data-i18n="hero.l2">los poderes.</span></h1>
       <p class="lead" data-i18n="hero.sub">Más de seis años grabando música urbana, con Mariano Bilinkis al frente de cada sesión.</p>
       <div class="hero-actions">
-        <a class="btn btn-primary" href="reservar.html" data-i18n="cta.reservar">Reservar sesión</a>
+        <a class="btn btn-primary" href="/reservar" data-i18n="cta.reservar">Reservar sesión</a>
         <a class="btn btn-line" href="#sesiones" data-i18n="hero.ses">Ver sesiones</a>
       </div>
     </div>
@@ -122,7 +122,7 @@
         <div class="art-side">
           <h2 class="title title-s" id="art-h" data-i18n="art.h">Pasaron por la sala</h2>
           <p class="soft" data-i18n="art.p">Algunos de los artistas y productores que grabaron con nosotros.</p>
-          <a class="link" href="artistas.html" data-i18n="art.all">Ver todos los créditos</a>
+          <a class="link" href="/artistas" data-i18n="art.all">Ver todos los créditos</a>
         </div>
         <div class="roll-window" id="art-window">
           <ul class="roll" id="art-roll">
@@ -157,7 +157,7 @@
           <p data-i18n="field.p2">Las sesiones las dirige Mariano Bilinkis, que participó en proyectos nominados y premiados en los Grammy. En la sala conviven equipos analógicos de alta fidelidad y herramientas digitales, y la grabación, la mezcla y el mastering se hacen en el mismo lugar.</p>
           <p data-i18n="field.p3">El estudio tiene además su propio sello discográfico. Por la sala pasaron Bhavi, Khea, Asan, Neo Pistea, YSY A y Feid, entre otros.</p>
         </div>
-        <a class="btn btn-black" href="estudio.html" data-i18n="field.go">Conocé el estudio</a>
+        <a class="btn btn-black" href="/estudio" data-i18n="field.go">Conocé el estudio</a>
       </div>
       <div class="ph cut" data-reveal style="--i:2;aspect-ratio:4/5"><img src="assets/media/historia-sala.jpg" alt="La sala de grabación de Kame House, con luces violetas, consola y monitores" width="460" height="575" loading="lazy" decoding="async"></div>
     </div>
@@ -171,11 +171,11 @@
           <p class="soft" data-i18n="svc.price">Cotizamos cada proyecto por separado. Contanos qué tenés y te pasamos un presupuesto.</p>
         </div>
         <ul class="slabs">
-          <li class="slab" data-focus style="--g:1.35"><a href="reservar.html?servicio=grabacion"><span class="slab-img"><img src="assets/media/svc-grabacion.jpg" alt="" width="1000" height="667" loading="lazy" decoding="async"></span><span class="slab-body"><h3 data-i18n="svc.grabacion">Grabación</h3><p data-i18n="svc.grabacion.p">Voces e instrumentos en la sala, con el equipo del estudio.</p><span class="go" data-i18n="svc.go">Consultar</span></span></a></li>
-          <li class="slab" data-focus style="--g:1"><a href="reservar.html?servicio=mezcla"><span class="slab-img"><img src="assets/media/svc-mezcla.jpg" alt="" width="1000" height="667" loading="lazy" decoding="async"></span><span class="slab-body"><h3 data-i18n="svc.mezcla">Mezcla</h3><p data-i18n="svc.mezcla.p">Tus pistas ordenadas y balanceadas según lo que pide el tema.</p><span class="go" data-i18n="svc.go">Consultar</span></span></a></li>
-          <li class="slab" data-focus style="--g:1.15"><a href="reservar.html?servicio=mastering"><span class="slab-img"><img src="assets/media/svc-mastering.jpg" alt="" width="1000" height="680" loading="lazy" decoding="async"></span><span class="slab-body"><h3>Mastering</h3><p data-i18n="svc.mastering.p">El último ajuste, para que el tema suene parejo en todas las plataformas.</p><span class="go" data-i18n="svc.go">Consultar</span></span></a></li>
-          <li class="slab" data-focus style="--g:0.95"><a href="reservar.html?servicio=produccion"><span class="slab-img"><img src="assets/media/svc-produccion.jpg" alt="" width="1000" height="667" loading="lazy" decoding="async"></span><span class="slab-body"><h3 data-i18n="svc.produccion">Producción</h3><p data-i18n="svc.produccion.p">Si llegás con una idea y sin beat, lo armamos con vos.</p><span class="go" data-i18n="svc.go">Consultar</span></span></a></li>
-          <li class="slab" data-focus style="--g:1.05"><a href="reservar.html?servicio=sala"><span class="slab-img"><img src="assets/media/svc-sala.jpg" alt="" width="1000" height="667" loading="lazy" decoding="async"></span><span class="slab-body"><h3 data-i18n="svc.sala.short">Sala</h3><p data-i18n="svc.sala.p">La sala por hora, para vos y tu equipo.</p><span class="go" data-i18n="svc.go">Consultar</span></span></a></li>
+          <li class="slab" data-focus style="--g:1.35"><a href="/reservar?servicio=grabacion"><span class="slab-img"><img src="assets/media/svc-grabacion.jpg" alt="" width="1000" height="667" loading="lazy" decoding="async"></span><span class="slab-body"><h3 data-i18n="svc.grabacion">Grabación</h3><p data-i18n="svc.grabacion.p">Voces e instrumentos en la sala, con el equipo del estudio.</p><span class="go" data-i18n="svc.go">Consultar</span></span></a></li>
+          <li class="slab" data-focus style="--g:1"><a href="/reservar?servicio=mezcla"><span class="slab-img"><img src="assets/media/svc-mezcla.jpg" alt="" width="1000" height="667" loading="lazy" decoding="async"></span><span class="slab-body"><h3 data-i18n="svc.mezcla">Mezcla</h3><p data-i18n="svc.mezcla.p">Tus pistas ordenadas y balanceadas según lo que pide el tema.</p><span class="go" data-i18n="svc.go">Consultar</span></span></a></li>
+          <li class="slab" data-focus style="--g:1.15"><a href="/reservar?servicio=mastering"><span class="slab-img"><img src="assets/media/svc-mastering.jpg" alt="" width="1000" height="680" loading="lazy" decoding="async"></span><span class="slab-body"><h3>Mastering</h3><p data-i18n="svc.mastering.p">El último ajuste, para que el tema suene parejo en todas las plataformas.</p><span class="go" data-i18n="svc.go">Consultar</span></span></a></li>
+          <li class="slab" data-focus style="--g:0.95"><a href="/reservar?servicio=produccion"><span class="slab-img"><img src="assets/media/svc-produccion.jpg" alt="" width="1000" height="667" loading="lazy" decoding="async"></span><span class="slab-body"><h3 data-i18n="svc.produccion">Producción</h3><p data-i18n="svc.produccion.p">Si llegás con una idea y sin beat, lo armamos con vos.</p><span class="go" data-i18n="svc.go">Consultar</span></span></a></li>
+          <li class="slab" data-focus style="--g:1.05"><a href="/reservar?servicio=sala"><span class="slab-img"><img src="assets/media/svc-sala.jpg" alt="" width="1000" height="667" loading="lazy" decoding="async"></span><span class="slab-body"><h3 data-i18n="svc.sala.short">Sala</h3><p data-i18n="svc.sala.p">La sala por hora, para vos y tu equipo.</p><span class="go" data-i18n="svc.go">Consultar</span></span></a></li>
         </ul>
       </div>
     </section>
@@ -216,7 +216,7 @@
             </div>
           </div>
           <div class="builder-foot">
-            <a class="btn btn-primary" href="reservar.html" id="b-go" data-i18n="b.go">Seguir con la reserva</a>
+            <a class="btn btn-primary" href="/reservar" id="b-go" data-i18n="b.go">Seguir con la reserva</a>
           </div>
         </div>
       </div>
@@ -259,7 +259,7 @@
             <label class="swatch" style="--sw:#181818"><input type="radio" name="mk-color" value="negro" id="mk-negro" checked><span data-i18n="mk.negro">Negra</span></label>
             <label class="swatch" style="--sw:#73378c"><input type="radio" name="mk-color" value="violeta" id="mk-violeta"><span data-i18n="mk.violeta">Violeta</span></label>
           </fieldset>
-          <div><a class="btn btn-primary" href="reservar.html" id="mk-go" data-i18n="mk.go">Reservar para grabarlo</a></div>
+          <div><a class="btn btn-primary" href="/reservar" id="mk-go" data-i18n="mk.go">Reservar para grabarlo</a></div>
         </div>
         <figure class="cover" id="mk-cover" aria-live="polite" data-reveal style="--i:2"><span class="ph-label">Tu foto</span><span class="sticker">KH Session</span><figcaption class="cover-plate"><strong id="mk-out-aka">Tu AKA</strong><span id="mk-out-tema">Tu tema · Kame House</span></figcaption></figure>
       </div>
@@ -293,7 +293,7 @@
         <li><svg class="ico" aria-hidden="true"><use href="#i-mail"/></svg><a href="mailto:EstudioKameHouse@gmail.com">EstudioKameHouse@gmail.com</a></li>
         <li><svg class="ico" aria-hidden="true"><use href="#i-ig"/></svg><a href="https://www.instagram.com/estudiokamehouse/" target="_blank" rel="noopener noreferrer">@estudiokamehouse</a></li>
       </ul>
-      <a class="btn btn-primary" href="reservar.html" data-i18n="cta.reservar">Reservar sesión</a>
+      <a class="btn btn-primary" href="/reservar" data-i18n="cta.reservar">Reservar sesión</a>
     </div>
   </section>
 
@@ -301,15 +301,15 @@
 
 <footer class="footer s-black">
   <div class="wrap footer-in">
-    <a class="footer-brand" href="index.html" aria-label="Kame House Estudio, inicio"><svg viewBox="0 0 328.97 358.14" aria-hidden="true"><use href="#kh-ver"/></svg></a>
+    <a class="footer-brand" href="/" aria-label="Kame House Estudio, inicio"><svg viewBox="0 0 328.97 358.14" aria-hidden="true"><use href="#kh-ver"/></svg></a>
     <nav class="footer-nav" aria-label="Pie de página">
       <ul>
-        <li><a href="estudio.html" data-i18n="nav.estudio">Estudio</a></li>
-        <li><a href="artistas.html" data-i18n="nav.artistas">Artistas</a></li>
-        <li><a href="index.html#servicios" data-i18n="nav.servicios">Servicios</a></li>
-        <li><a href="index.html#sesiones" data-i18n="nav.sesiones">Sesiones</a></li>
-        <li><a href="index.html#merch" data-i18n="nav.merch">Merch</a></li>
-        <li><a href="reservar.html" data-i18n="cta.reservar">Reservar sesión</a></li>
+        <li><a href="/estudio" data-i18n="nav.estudio">Estudio</a></li>
+        <li><a href="/artistas" data-i18n="nav.artistas">Artistas</a></li>
+        <li><a href="/#servicios" data-i18n="nav.servicios">Servicios</a></li>
+        <li><a href="/#sesiones" data-i18n="nav.sesiones">Sesiones</a></li>
+        <li><a href="/#merch" data-i18n="nav.merch">Merch</a></li>
+        <li><a href="/reservar" data-i18n="cta.reservar">Reservar sesión</a></li>
       </ul>
     </nav>
     <a class="footer-ig" href="https://www.instagram.com/estudiokamehouse/" target="_blank" rel="noopener noreferrer"><svg class="ico" aria-hidden="true"><use href="#i-ig"/></svg>@estudiokamehouse</a>
@@ -321,13 +321,13 @@
   <div class="pattern-band" aria-hidden="true"></div>
 </footer>
 
-<div class="mbar"><a class="btn btn-primary" href="reservar.html" data-i18n="cta.reservar">Reservar sesión</a></div>
+<div class="mbar"><a class="btn btn-primary" href="/reservar" data-i18n="cta.reservar">Reservar sesión</a></div>
 
-<script src="assets/js/lenis.min.js?v=20261112d"></script>
-<script src="js/i18n.js?v=20261112d"></script>
-<script src="js/data.js?v=20261112d"></script>
-<script src="js/coverflow.js?v=20261112d"></script>
-<script src="js/core.js?v=20261112d"></script>
-<script src="js/home.js?v=20261112d"></script>
+<script src="assets/js/lenis.min.js?v=20261112f"></script>
+<script src="js/i18n.js?v=20261112f"></script>
+<script src="js/data.js?v=20261112f"></script>
+<script src="js/coverflow.js?v=20261112f"></script>
+<script src="js/core.js?v=20261112f"></script>
+<script src="js/home.js?v=20261112f"></script>
 </body>
 </html>
