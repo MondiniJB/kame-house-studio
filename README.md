@@ -19,14 +19,14 @@ Servicios, Sesiones y Merch no son páginas: son secciones del inicio (`/#servic
 
 ## Cómo verlo en la compu
 
-Con direcciones limpias, abrir `index.html` con doble clic no alcanza (los links no encuentran los archivos). Levantá un servidor local desde esta carpeta:
+Con direcciones limpias, abrir `index.html` con doble clic no alcanza (los links no encuentran los archivos), y `python -m http.server` tampoco (no sabe que `/reservar` es `reservar.html`). Usá el servidor del repo, que resuelve las direcciones igual que Vercel y no guarda caché:
 
 ```bash
-npx serve
-# http://localhost:3000
+python dev-server.py
+# http://localhost:4250   (otro puerto: python dev-server.py 8000)
 ```
 
-`serve` resuelve las direcciones limpias igual que Vercel. También sirve `vercel dev` si está instalada la CLI de Vercel.
+Alternativas: `npx serve` o `vercel dev`. `dev-server.py` no se publica (está en `.vercelignore`).
 
 Los CSS y JS se cargan con una versión (`?v=…`) en `index.html`: subila en cada cambio para que el navegador no use archivos viejos.
 

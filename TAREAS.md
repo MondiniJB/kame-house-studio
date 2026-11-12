@@ -13,6 +13,14 @@ Lista de trabajo de la web. Se trabaja por fases: propuesta → boceto ASCII →
 
 - [x] Propuestas en artifact (canvas con mesas de trabajo). Aprobado y pasado al HTML (2026-11-12): botones con barrido y presión, links con subrayado animado, servicios en tarjetas pegadas de anchos distintos, cierre con el contacto en filas gigantes, temas como vinilos (scroll + hover). Se sacó "Cómo trabajamos". Hero, La casa y footer quedan como estaban.
 
+- [x] Direcciones limpias en Vercel (`vercel.json`). Isotipo del hero más chico. Patrón del footer más chico. (2026-11-12)
+- [x] Página `/reservar`: tres bloques (qué, cuándo, quién), resumen en vivo y envío por WhatsApp o mail con el pedido escrito. Toma lo elegido en el inicio (`?servicio=`, `?temas=`, `?beat=`, `?aka=`, `?tema=`). (2026-11-12)
+
+## Pendiente
+
+- [ ] Páginas `/estudio` y `/artistas` (artistas reusa `js/coverflow.js`).
+- [ ] Borrar `js/main.js` cuando estén las tres páginas.
+
 ## En propuesta (esperan aprobación del boceto ASCII)
 
 ### Estructura

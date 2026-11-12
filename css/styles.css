@@ -198,7 +198,7 @@ html.lenis, html.lenis body { height: auto; }
 .hero-media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(24,24,24,.9) 0%, rgba(24,24,24,.78) 38%, rgba(24,24,24,.58) 70%, rgba(24,24,24,.5) 100%), linear-gradient(0deg, rgba(24,24,24,.85) 0%, rgba(24,24,24,0) 30%); }
 @keyframes media-in { from { opacity: 0; transform: scale(1.1); } to { opacity: 1; transform: scale(1.04); } }
 .bigk { position: absolute; z-index: 0; height: auto; pointer-events: none; }
-.hero .bigk { z-index: 1; width: max(700px, 70vw); left: max(64vw, 640px); top: 50%; transform: translateY(-46%); }
+.hero .bigk { z-index: 1; width: clamp(420px, 44vw, 700px); left: auto; right: -5vw; top: 50%; transform: translateY(-46%); }
 .hero-in { position: relative; z-index: 2; width: 100%; padding-block: 64px 48px; display: grid; gap: 26px; }
 .kicker { font-family: var(--display); font-weight: 700; font-stretch: 110%; font-size: var(--fs-s); letter-spacing: .08em; text-transform: uppercase; color: var(--fg-soft); }
 .hero-foot { position: relative; z-index: 2; width: 100%; padding-bottom: 28px; }
@@ -449,7 +449,22 @@ html.lenis, html.lenis body { height: auto; }
 .temas-grid .tema { width: auto; }
 
 /* ---------- Reservar ---------- */
-.book { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: clamp(28px, 5vw, 64px); align-items: start; padding-bottom: var(--section); }
+.book-head .page-head { padding-block: clamp(56px, 7vw, 104px) clamp(48px, 5vw, 72px); }
+.book-head .lead { max-width: 52ch; }
+.book-sec { padding-block: clamp(56px, 6vw, 96px) var(--section); }
+.book { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: clamp(28px, 5vw, 72px); align-items: start; }
+.book-form { display: grid; gap: clamp(48px, 5vw, 72px); }
+/* cada bloque: número en un cuadrado violeta y el título; es una secuencia real (qué, cuándo, quién) */
+.bk-step { display: grid; gap: 28px; }
+.bk-step > legend { display: flex; align-items: center; gap: 16px; padding: 0; margin-bottom: 4px; font-family: var(--gang); font-weight: 400; text-transform: uppercase; font-size: clamp(1.9rem, 3.2vw, 2.8rem); line-height: 1; }
+.bk-n { display: grid; place-items: center; width: 1.25em; height: 1.25em; flex: none; background: var(--k-violet); color: var(--k-white); font-family: var(--display); font-weight: 800; font-size: .7em; }
+.input-short { max-width: 340px; }
+.book-aside .summary { gap: 10px; }
+.book-aside .summary div { grid-template-columns: 112px minmax(0, 1fr); }
+.book-aside .summary dd { font-weight: 600; }
+.send { display: grid; gap: 10px; }
+.send .btn { width: 100%; }
+.send-note { font-size: var(--fs-s); color: var(--fg-soft); }
 .steps { list-style: none; margin: 0 0 36px; padding: 0; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
 .steps li { display: flex; align-items: center; gap: 10px; color: var(--fg-soft); font-weight: 600; }
 .steps li + li::before { content: ""; width: 32px; height: 3px; background: var(--surface-2); }
@@ -519,7 +534,7 @@ textarea.input { min-height: 120px; resize: vertical; }
   .hero { min-height: 0; align-items: start; }
   .hero-in { order: 1; padding-block: 40px 0; }
   .hero { grid-template-rows: auto; }
-  .hero .bigk { order: 3; position: relative; display: block; width: 112vw; left: 30vw; top: auto; margin-top: 8px; margin-bottom: -30vw; transform: none; }
+  .hero .bigk { order: 3; position: relative; display: block; width: 78vw; left: 34vw; right: auto; top: auto; margin-top: 8px; margin-bottom: -18vw; transform: none; }
   .hero-svc li + li::before { padding-inline: 10px; }
   .hero-foot { order: 2; padding-bottom: 0; }
   .hero-in { padding-bottom: 28px; }

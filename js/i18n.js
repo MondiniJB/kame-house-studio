@@ -33,6 +33,16 @@
     'mk.h': 'Make your cover', 'mk.note': 'Try the template the studio uses for every session: add your AKA and your track name.', 'mk.aka': 'Your AKA', 'mk.tema': 'Your track', 'mk.color': 'Plate', 'mk.negro': 'Black', 'mk.violeta': 'Violet', 'mk.go': 'Book to record it',
     'merch.h': 'Official merch', 'merch.p': 'Hoodies, caps, polos and lanyards with the studio’s brand.', 'm.1': 'Hoodie', 'm.2': 'Cap', 'm.3': 'Polo',
     'closer.h': 'Come to the house.',
+    /* reservar */
+    'book.h1': 'Book your session', 'book.lead': 'Tell us what you want to do and we’ll reply with a date and a quote. The request goes out by WhatsApp or email, whichever you prefer.',
+    'st.1.l': 'What you’re here for', 'st.2.l': 'When', 'st.3.l': 'Who you are',
+    'f.svc': 'Services', 'f.svc.h': 'You can pick more than one.', 'f.temas': 'Number of tracks', 'f.ref': 'References', 'f.ref.h': 'Links to your demos or to tracks whose sound you like. Optional.',
+    'f.fecha': 'Preferred date', 'f.flex': 'My dates are flexible', 'f.presu': 'Budget', 'f.presu.a': 'Send me a quote', 'f.presu.b': 'I have an amount in mind', 'f.monto': 'How much do you have in mind?',
+    'f.aka': 'Artist name or AKA', 'f.mail': 'Email', 'f.msg': 'Anything else you want to tell us', opt: '(optional)',
+    'sum.h': 'Your request', 'sum.temas': 'Tracks', 'sum.fecha': 'Date', 'sum.nombre': 'Name', 'sum.tbd': 'To be agreed', 'sum.flex': 'flexible', 'sum.monto': 'I have in mind',
+    'send.wa': 'Send by WhatsApp', 'send.mail': 'Send by email', 'send.note': 'WhatsApp or your email opens with the request already written. You check it and send it.',
+    'send.ok.wa': 'Done: WhatsApp opened with your request. If it didn’t, write to +54 9 11 1234-5678.', 'send.ok.mail': 'Done: your email opened with the request. If it didn’t, write to EstudioKameHouse@gmail.com.',
+    'msg.hi': 'Hi, Kame House. I’d like to book a session.', 'msg.subject': 'Session booking', 'pre.tema': 'Track',
     'fl.hero': 'Home', 'fl.artistas-home': 'Artists', 'fl.historia': 'The house', 'fl.servicios-g': 'Services', 'fl.merch': 'Merch',
   } };
 })();
