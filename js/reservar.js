@@ -5,11 +5,10 @@
   const STUDIO = { wa: '5491112345678', mail: 'EstudioKameHouse@gmail.com', tel: '+54 9 11 1234-5678' };
   const form = $('#book-form'), sum = $('#live-sum'), status = $('#send-status'), temas = $('#temas');
 
-  /* ---- Lo que viene elegido desde el inicio: /reservar?servicio=mezcla&temas=3&beat=produccion&aka=...&tema=... ---- */
+  /* ---- Lo que viene elegido desde el inicio: /reservar?servicio=grabacion&servicio=mezcla&temas=3&aka=...&tema=... ---- */
   const q = new URLSearchParams(location.search);
-  const mark = (v) => { const box = form.querySelector(`input[name="servicio"][value="${v}"]`); if (box) box.checked = true; };
-  if (q.get('servicio')) mark(q.get('servicio'));
-  if (q.get('beat') === 'produccion') mark('produccion');
+  const mark = (v) => { const box = form.querySelector(`input[name="servicio"][value="${CSS.escape(v)}"]`); if (box) box.checked = true; };
+  q.getAll('servicio').forEach(mark);
   const n = parseInt(q.get('temas'), 10);
   if (n >= 1 && n <= 30) temas.value = n;
   if (q.get('aka')) $('#aka').value = q.get('aka').slice(0, 40);

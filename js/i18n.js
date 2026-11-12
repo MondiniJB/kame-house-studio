@@ -23,9 +23,10 @@
     'field.go': 'About the studio',
     'svc.h': 'Services', 'svc.price': 'We quote every project separately. Tell us what you have and we send you a price.', 'svc.go': 'Ask',
     'svc.grabacion.p': 'Vocals and instruments in the room, with the studio’s gear.', 'svc.mezcla.p': 'Your tracks sorted and balanced to what the song needs.', 'svc.mastering.p': 'The final pass, so the track sounds even on every platform.', 'svc.produccion.p': 'If you come with an idea and no beat, we build it with you.', 'svc.sala.p': 'The room by the hour, for you and your crew.',
-    'b.h': 'Build your session', 'b.svc': 'What do you need?', 'b.temas': 'How many tracks?', 'b.beat': 'And the beat?', 'b.beat.a': 'I bring my own', 'b.beat.b': 'I need production', 'b.res': 'Your session', 'b.go': 'Continue to booking',
+    'b.h': 'Build your session', 'b.p': 'Pick the services and the number of tracks. You add the date and your details when booking.', 'b.res': 'Your session', 'b.go': 'Continue to booking',
     'ses.h': 'Sessions', 'ses.p': 'Session footage and production tips. We post them on our Instagram.', 'more.ig': 'More sessions on Instagram',
-    'mk.h': 'Make your cover', 'mk.note': 'Try the template the studio uses for every session: add your AKA and your track name.', 'mk.aka': 'Your AKA', 'mk.tema': 'Your track', 'mk.color': 'Plate', 'mk.negro': 'Black', 'mk.violeta': 'Violet', 'mk.go': 'Book to record it',
+    'mk.h': 'Make your cover', 'mk.note': 'Try the template the studio uses for every session: upload a photo, add your AKA and your track name, and download it.',
+    'mk.foto': 'Your photo', 'mk.subir': 'Upload photo', 'mk.cambiar': 'Change photo', 'mk.quitar': 'Remove photo', 'mk.privado': 'Your photo stays on your device: it isn’t uploaded anywhere.', 'mk.dl': 'Download cover', 'mk.aka': 'Your AKA', 'mk.tema': 'Your track', 'mk.color': 'Plate', 'mk.negro': 'Black', 'mk.violeta': 'Violet', 'mk.go': 'Book to record it',
     'merch.h': 'Official merch', 'merch.p': 'Hoodies, caps, polos and lanyards with the studio’s brand.', 'm.1': 'Hoodie', 'm.2': 'Cap', 'm.3': 'Polo',
     'closer.h': 'Come to the house.',
     /* estudio */
@@ -41,7 +42,7 @@
     'temas.p2': 'Drag the covers or use the arrows.',
     /* reservar */
     'book.h1': 'Book your session', 'book.lead': 'Tell us what you want to do and we’ll reply with a date and a quote. The request goes out by WhatsApp or email, whichever you prefer.',
-    'st.1.l': 'What you’re here for', 'st.2.l': 'When', 'st.3.l': 'Who you are',
+    'st.1.l': 'What you’re here for', 'st.2.l': 'When', 'st.3.l': 'Your details',
     'f.svc': 'Services', 'f.svc.h': 'You can pick more than one.', 'f.temas': 'Number of tracks', 'f.ref': 'References', 'f.ref.h': 'Links to your demos or to tracks whose sound you like. Optional.',
     'f.fecha': 'Preferred date', 'f.flex': 'My dates are flexible', 'f.presu': 'Budget', 'f.presu.a': 'Send me a quote', 'f.presu.b': 'I have an amount in mind', 'f.monto': 'How much do you have in mind?',
     'f.aka': 'Artist name or AKA', 'f.mail': 'Email', 'f.msg': 'Anything else you want to tell us', opt: '(optional)',
@@ -49,6 +50,8 @@
     'send.wa': 'Send by WhatsApp', 'send.mail': 'Send by email', 'send.note': 'WhatsApp or your email opens with the request already written. You check it and send it.',
     'send.ok.wa': 'Done: WhatsApp opened with your request. If it didn’t, write to +54 9 11 1234-5678.', 'send.ok.mail': 'Done: your email opened with the request. If it didn’t, write to EstudioKameHouse@gmail.com.',
     'msg.hi': 'Hi, Kame House. I’d like to book a session.', 'msg.subject': 'Session booking', 'pre.tema': 'Track',
+    /* 404 */
+    'nf.h1': 'This page doesn’t exist', 'nf.lead': 'The link may be misspelled or the page may be gone. You can reach the whole site from the home page.', 'nf.home': 'Back to home',
     'fl.hero': 'Home', 'fl.artistas-home': 'Artists', 'fl.historia': 'The house', 'fl.servicios-g': 'Services', 'fl.merch': 'Merch',
   } };
 })();

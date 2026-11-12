@@ -30,7 +30,7 @@
       panel.hidden = true;
       temas.forEach(([t]) => {
         const f = document.createElement('figure');
-        f.innerHTML = `<img src="assets/media/${t[2]}.jpg" alt="" width="720" height="720" loading="lazy" decoding="async"><figcaption></figcaption>`;
+        f.innerHTML = `<img src="${KH.cover(t[2], 360)}" alt="" width="360" height="360" loading="lazy" decoding="async"><figcaption></figcaption>`;
         f.querySelector('img').alt = `Portada de ${t[0]}, de ${t[1]}`;
         f.querySelector('figcaption').textContent = t[0];
         panel.append(f);
@@ -71,6 +71,11 @@
     if (r.temas.length) {
       const card = KH.temaCard(r.temas[0][0], 0, 'div');
       card.classList.add('pv-vinyl');
+      // en la vista previa el título no es un encabezado (va antes del h2 de la página)
+      const h = card.querySelector('h3'), tt = document.createElement('strong');
+      tt.className = 'tema-t';
+      tt.textContent = h.textContent;
+      h.replaceWith(tt);
       card.style.setProperty('--peek', '46%');
       preview.append(card);
       if (r.temas.length > 1) {
@@ -78,7 +83,7 @@
         more.className = 'pv-more';
         r.temas.slice(1).forEach(([t]) => {
           const li = document.createElement('li');
-          li.innerHTML = `<img src="assets/media/${t[2]}.jpg" alt="" width="720" height="720" loading="lazy"><span></span>`;
+          li.innerHTML = `<img src="${KH.cover(t[2], 240)}" alt="" width="240" height="240" loading="lazy" decoding="async"><span></span>`;
           li.querySelector('span').textContent = t[0];
           more.append(li);
         });

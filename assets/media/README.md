@@ -2,7 +2,9 @@
 
 Imágenes que usa el sitio. Son portadas de artistas y capturas de reels del Instagram del estudio (`@estudiokamehouse`): material de terceros usado con fines académicos en un proyecto de tesis, sin fines comerciales. Los derechos pertenecen a sus autores.
 
-Archivos (JPG; portadas cuadradas de 720 px, reels de unos 454×723 px):
+Los originales en JPG están en `originales/` y no se publican. El sitio usa versiones WebP generadas con `python tools/imagenes.py`, en varios anchos para que cada pantalla baje solo el tamaño que necesita (`nombre-800.webp`, `nombre-1280.webp`...). Si se cambia o se suma una foto, se pone el JPG en `originales/` y se vuelve a correr el script.
+
+Originales (portadas cuadradas de 720 px, reels de unos 454×723 px):
 
 | Archivo | Qué es |
 |---|---|
@@ -37,4 +39,3 @@ Fotos de [Pexels](https://www.pexels.com) bajo la licencia de Pexels (uso libre,
 | `merch-lanyard.jpg` | https://www.pexels.com/photo/109361/ |
 | `estudio-sala.jpg` | https://www.pexels.com/photo/12622097/ |
 
-`furgoneta-neon.jpg` es un mockup de la camioneta del estudio hecho para la tesis.

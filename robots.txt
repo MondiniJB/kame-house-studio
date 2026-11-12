@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kame-house-studio.vercel.app/sitemap.xml

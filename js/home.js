@@ -1,4 +1,4 @@
-/* Inicio: artistas, cadena de trabajo, tira de sesiones, configurador, portada y mux. */
+/* Inicio: artistas, tira de sesiones, Armá tu sesión y mux. La portada está en portada.js. */
 (function () {
   const { $, $$ } = KH;
   const root = document.documentElement;
@@ -146,28 +146,39 @@
     }, 200);
   }, { passive: true });
 
-  /* ---- Armá tu sesión ---- */
-  const conf = { svc: 'grabacion', temas: 3, beat: 'propio' };
-  const SVC_ES = { grabacion: 'Grabación', mezcla: 'Mezcla', mastering: 'Mastering', produccion: 'Producción', sala: 'Alquiler de sala' };
-  const SVC_EN = { grabacion: 'Recording', mezcla: 'Mixing', mastering: 'Mastering', produccion: 'Production', sala: 'Room rental' };
-  function sentence() {
-    const en = KH.lang === 'en', n = conf.temas, name = (en ? SVC_EN : SVC_ES)[conf.svc];
-    if (conf.svc === 'sala') return en ? `Room rental for ${n} ${n === 1 ? 'track' : 'tracks'} with your own crew.` : `Alquiler de sala para ${n} ${n === 1 ? 'tema' : 'temas'}, con tu equipo.`;
-    const base = en ? `${name} of ${n} ${n === 1 ? 'track' : 'tracks'}` : `${name} de ${n} ${n === 1 ? 'tema' : 'temas'}`;
-    if (conf.svc === 'grabacion') return base + (conf.beat === 'propio' ? (en ? ', with your own beat.' : ', con beat propio.') : (en ? ', with production in the studio.' : ', con producción en el estudio.'));
-    return base + '.';
-  }
+  /* ---- Armá tu sesión: los mismos controles que el paso 1 de /reservar ----
+     Al enviar sigue en /reservar con los servicios y los temas ya marcados. Sin JS, el form hace lo mismo por GET. */
+  const bForm = $('#builder'), bTemas = $('#b-temas'), bSvc = $('#b-servicios');
+  const bData = () => ({
+    servicios: $$('input[name="servicio"]:checked', bForm).map((i) => i.value),
+    temas: Math.min(30, Math.max(1, parseInt(bTemas.value, 10) || 1)),
+  });
+  const joinList = (w) => (w.length < 2 ? w.join('') : w.slice(0, -1).join(', ') + (KH.lang === 'en' ? ' and ' : ' y ') + w[w.length - 1]);
   function paintConf() {
-    $$('#seg-svc button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.v === conf.svc)));
-    $$('#seg-beat button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.v === conf.beat)));
-    $('#q-beat-wrap').style.visibility = conf.svc === 'grabacion' ? '' : 'hidden';
-    $('#b-temas').textContent = conf.temas;
-    $('#b-result').textContent = sentence();
-    $('#b-go').href = KH.bookUrl({ servicio: conf.svc, temas: conf.temas, beat: conf.svc === 'grabacion' ? conf.beat : '' });
+    const d = bData();
+    const names = d.servicios.map((k, i) => (i ? KH.serviceLabel(k).toLowerCase() : KH.serviceLabel(k)));
+    const n = d.temas;
+    const temasTxt = KH.lang === 'en' ? `${n} ${n === 1 ? 'track' : 'tracks'}` : `${n} ${n === 1 ? 'tema' : 'temas'}`;
+    $('#b-result').textContent = names.length ? `${joinList(names)} · ${temasTxt}` : '—';
   }
-  $$('#seg-svc button').forEach((b) => b.addEventListener('click', () => { conf.svc = b.dataset.v; paintConf(); }));
-  $$('#seg-beat button').forEach((b) => b.addEventListener('click', () => { conf.beat = b.dataset.v; paintConf(); }));
-  $$('.builder .counter button').forEach((b) => b.addEventListener('click', () => { conf.temas = Math.min(30, Math.max(1, conf.temas + Number(b.dataset.d))); paintConf(); }));
+  $$('[data-step-btn]', bForm).forEach((b) => b.addEventListener('click', () => {
+    bTemas.value = Math.min(30, Math.max(1, (Number(bTemas.value) || 1) + Number(b.dataset.stepBtn)));
+    paintConf();
+  }));
+  bForm.addEventListener('input', paintConf);
+  bForm.addEventListener('change', (e) => {
+    if (e.target.name === 'servicio') KH.fieldError(bSvc, '');
+    paintConf();
+  });
+  bForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const d = bData();
+    if (!KH.fieldError(bSvc, d.servicios.length ? '' : KH.t('err.services', 'Elegí al menos un servicio.'))) {
+      bSvc.querySelector('input').focus();
+      return;
+    }
+    location.href = KH.bookUrl({ servicio: d.servicios, temas: d.temas });
+  });
   document.addEventListener('kh:lang', paintConf);
 
   /* ---- Tira de sesiones ---- */
@@ -189,19 +200,6 @@
     }, { mode: 'view' });
   });
 
-  /* ---- Generador de portada ---- */
-  const mkAka = $('#mk-aka'), mkTema = $('#mk-tema'), mkCover = $('#mk-cover');
-  function paintCover() {
-    $('#mk-out-aka').textContent = mkAka.value.trim() || KH.t('mk.aka', 'Tu AKA');
-    $('#mk-out-tema').textContent = (mkTema.value.trim() || KH.t('mk.tema', 'Tu tema')) + ' · Kame House';
-    mkCover.classList.toggle('is-violet', $('#mk-violeta').checked);
-    $('#mk-go').href = KH.bookUrl({ servicio: 'grabacion', aka: mkAka.value.trim(), tema: mkTema.value.trim() });
-  }
-  [mkAka, mkTema].forEach((i) => i.addEventListener('input', paintCover));
-  $$('input[name="mk-color"]').forEach((i) => i.addEventListener('change', paintCover));
-  document.addEventListener('kh:lang', paintCover);
-
   KH.boot();
   paintConf();
-  paintCover();
 })();

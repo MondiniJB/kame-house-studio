@@ -58,7 +58,10 @@
         li.style.setProperty('--peek', (4 + (1 - a) * PEEK).toFixed(1) + '%');   // el vinilo del activo sale hacia la derecha
         li.style.setProperty('--cap', Math.max(0, 1 - Math.abs(d) * 2.2).toFixed(3));
         li.classList.toggle('is-active', Math.abs(d) < 0.5);
-        li.setAttribute('aria-hidden', String(Math.abs(d) > 5.5));
+        // los que no se ven (muy lejos o ya pasados) quedan inertes: fuera del Tab y del lector de pantalla
+        const off = Math.abs(d) > 5.5 || op < 0.05;
+        li.setAttribute('aria-hidden', String(off));
+        li.inert = off;
       });
       list.style.setProperty('--spin', ((window.scrollY + pos * 260) * 0.35).toFixed(1) + 'deg');
       const now = Math.round(pos);

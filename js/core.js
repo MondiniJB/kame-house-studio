@@ -248,7 +248,8 @@
   // link a /reservar con lo que la persona ya eligió en otra sección
   KH.bookUrl = (params) => {
     const q = new URLSearchParams();
-    Object.entries(params).forEach(([k, v]) => { if (v != null && v !== '') q.set(k, v); });
+    // una lista (varios servicios) se manda como ?servicio=a&servicio=b, igual que un form por GET
+    Object.entries(params).forEach(([k, v]) => [].concat(v).forEach((x) => { if (x != null && x !== '') q.append(k, x); }));
     const s = q.toString();
     return '/reservar' + (s ? '?' + s : '');
   };

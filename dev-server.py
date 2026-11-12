@@ -26,6 +26,16 @@ class CleanUrls(http.server.SimpleHTTPRequestHandler):
             candidate = os.path.join(ROOT, path.strip('/').replace('/', os.sep) + '.html')
             if os.path.isfile(candidate):
                 self.path = path.rstrip('/') + '.html' + ('?' + parts.query if parts.query else '')
+        # lo que no existe muestra 404.html, como en Vercel
+        if not os.path.exists(self.translate_path(self.path)):
+            page = os.path.join(ROOT, '404.html')
+            body = open(page, 'rb').read()
+            self.send_response(404)
+            self.send_header('Content-Type', 'text/html; charset=utf-8')
+            self.send_header('Content-Length', str(len(body)))
+            self.end_headers()
+            from io import BytesIO
+            return BytesIO(body)
         return super().send_head()
 
     def end_headers(self):
