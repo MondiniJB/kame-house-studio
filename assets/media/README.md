@@ -35,5 +35,6 @@ Fotos de [Pexels](https://www.pexels.com) bajo la licencia de Pexels (uso libre,
 | `merch-gorra.jpg` | https://www.pexels.com/photo/26447865/ |
 | `merch-chomba.jpg` | https://www.pexels.com/photo/18708554/ |
 | `merch-lanyard.jpg` | https://www.pexels.com/photo/109361/ |
+| `estudio-sala.jpg` | https://www.pexels.com/photo/12622097/ |
 
 `furgoneta-neon.jpg` es un mockup de la camioneta del estudio hecho para la tesis.

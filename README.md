@@ -34,20 +34,27 @@ Los CSS y JS se cargan con una versión (`?v=…`) en `index.html`: subila en ca
 
 ```
 index.html            inicio
+estudio.html          la casa, Mariano, la sala y el sello
+artistas.html         créditos con filtros y vista previa, carrusel de vinilos
+reservar.html         pedido de sesión: se envía por WhatsApp o mail
 vercel.json           direcciones limpias (cleanUrls)
+dev-server.py         servidor local con direcciones limpias (no se publica)
 css/styles.css        tokens, secciones y componentes
 js/core.js            compartido: ES/EN, scroll con Lenis, escenas de scroll, nav, menú, anclas, formularios
 js/i18n.js            textos en inglés
 js/data.js            temas grabados y la tarjeta de vinilo de cada uno
 js/coverflow.js       carrusel coverflow invertido de los temas (scroll, arrastre, flechas, teclado)
-js/home.js            lógica del inicio: artistas, coverflow, servicios, configurador, sesiones, portada, mux
+js/home.js            lógica del inicio: artistas, coverflow, configurador, sesiones, portada, mux
+js/artistas.js        créditos: lista, filtros, vista previa y carrusel
+js/reservar.js        reserva: datos que llegan del inicio, resumen en vivo, validación y envío
+js/pagina.js          arranque para páginas sin lógica propia (Estudio)
 assets/brand/         isotipo, isologotipos, favicon y patrón de isotipos (SVG)
 assets/js/            Lenis 1.3.27 (scroll con inercia), copia local
 assets/fonts/         Gang of Three (go3v2.ttf), tipografía base del logo
 assets/media/         portadas, capturas de reels y fotos de stock (créditos en assets/media/README.md)
 ```
 
-`js/main.js` es de la versión anterior (una sola página con vistas por hash) y no se carga: se borra al terminar Artistas y Reservar.
+Nav, menú, footer y el sprite de íconos están copiados en cada HTML: si se cambian, hay que cambiarlos en los cuatro.
 
 ## Sistema visual
 
@@ -77,7 +84,7 @@ El sitio ya no muestra marcas internas. Estos datos siguen sin confirmar y hay q
 - foto de Mariano Bilinkis
 - condiciones del alquiler de sala y el flujo exacto de una sesión (hoy es genérico)
 - URL de la firma "Diseñado por Rocco Cámpora y Juan Bautista Mondini" (hoy `URL_A_DEFINIR`)
-- el formulario de reserva todavía no envía datos a ningún lado
+- el número de WhatsApp y el mail de la reserva (en `js/reservar.js`) son de ejemplo
 
 ## Bocetos anteriores
 

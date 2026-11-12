@@ -11,6 +11,14 @@
     ['Pochoclos', 'Bhavi', 'pochoclos', ['Bhavi']],
     ['Neo', 'Neo Pistea', 'neo', ['Neo Pistea']],
   ];
+  // Créditos: [nombre, tipo]. Los temas de cada uno salen de KH.TEMAS (cuarto campo).
+  KH.ARTISTS = [
+    ['Skrillex', 'artista'], ['Feid', 'artista'], ['YSY A', 'artista'], ['Bhavi', 'artista'], ['Asan', 'artista'],
+    ['Khea', 'artista'], ['Midel', 'artista'], ['J Rei', 'artista'], ['Neo Pistea', 'artista'], ['Taichu', 'artista'],
+    ['Zecca', 'productor'],
+  ];
+  KH.temasDe = (name) => KH.TEMAS.map((t, i) => [t, i]).filter(([t]) => t[3].includes(name));
+
   // Cada tema es un vinilo: la portada es la funda y el disco (con la portada como etiqueta) asoma detrás.
   KH.temaCard = (t, i, tag = 'li') => {
     const li = document.createElement(tag);
