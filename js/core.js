@@ -56,9 +56,18 @@
   // nav del inicio: transparente sobre el hero, con fondo apenas se scrollea
   const nav = $('.nav');
   if (nav && KH.page === 'inicio') {
-    const paintNav = () => nav.classList.toggle('is-solid', scrollY > 24);
-    addEventListener('scroll', paintNav, { passive: true });
-    paintNav();
+    // transparente solo en el tope: un marcador de 12px arriba de todo dice si se está ahí,
+    // sin depender de los eventos de scroll (con Lenis o sin él). El scroll lo refuerza.
+    KH.paintNav = () => root.classList.toggle('at-top', scrollY <= 8);
+    const sentinel = document.createElement('div');
+    sentinel.className = 'top-sentinel';
+    sentinel.setAttribute('aria-hidden', 'true');
+    document.body.prepend(sentinel);
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(([e]) => root.classList.toggle('at-top', e.isIntersecting)).observe(sentinel);
+    }
+    addEventListener('scroll', KH.paintNav, { passive: true });
+    KH.paintNav();
   }
   // saltar al contenido: foco en el h1 de la página
   const skip = $('[data-skip]');
@@ -135,6 +144,7 @@
   let ticking = false;
   function runScenes() {
     ticking = false;
+    KH.paintNav && KH.paintNav();
     const vh = innerHeight;
     for (const s of scenes) {
       if (s.el.offsetParent === null && !s.opts.always) continue;

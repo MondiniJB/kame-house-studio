@@ -11,6 +11,8 @@ Lista de trabajo de la web. Se trabaja por fases: propuesta → boceto ASCII →
 - [x] JS dividido: `core.js` (compartido, sin router), `i18n.js`, `data.js`, `home.js`. `main.js` queda hasta pasar Artistas y Reservar.
 - [x] Fotos de stock CC0 (StockSnap y Rawpixel, vía Openverse) en `assets/media/` (`hero-*`, `svc-*`, `merch-*`, `estudio-*`).
 
+- [x] Propuestas en artifact (canvas con mesas de trabajo). Aprobado y pasado al HTML (2026-11-12): botones con barrido y presión, links con subrayado animado, servicios en tarjetas pegadas de anchos distintos, cierre con el contacto en filas gigantes, temas como vinilos (scroll + hover). Se sacó "Cómo trabajamos". Hero, La casa y footer quedan como estaban.
+
 ## En propuesta (esperan aprobación del boceto ASCII)
 
 ### Estructura

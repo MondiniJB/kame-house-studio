@@ -14,6 +14,7 @@
     /* inicio */
     'hero.k': 'Recording studio · Chacarita, Buenos Aires', 'hero.l1': 'Power', 'hero.l2': 'up.',
     'hero.sub': 'Over six years recording urban music, with Mariano Bilinkis leading every session.', 'hero.ses': 'See sessions',
+    'foot.city': 'Chacarita, Buenos Aires', 'c.call': 'Call or WhatsApp', 'c.book': 'Book your session',
     'art.h': 'Through the room', 'art.p': 'Some of the artists and producers who recorded with us.', 'art.all': 'See all credits',
     'temas.h': 'Made at Kame House', 'temas.p': 'Tracks that went through the studio.',
     'field.h': 'The house',

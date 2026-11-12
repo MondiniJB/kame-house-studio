@@ -3,16 +3,25 @@
   const { $, $$ } = KH;
   const root = document.documentElement;
 
-  KH.TEMAS.forEach((t, i) => $('#temas-track').append(KH.temaCard(t, i)));
-
   /* ---- Modos con movimiento / sin movimiento ---- */
   const sceneOk = () => !KH.reduced();
   const wide = matchMedia('(min-width: 961px)');
-  const wide2 = matchMedia('(min-width: 1001px)');
   const art = $('#artistas-home'), artRoll = $('#art-roll'), artNames = $$('#art-roll li'), artWin = $('#art-window');
-  const tWrap = $('#temas-wrap'), tTrack = $('#temas-track'), artSide = $('.art-side');
+  const tWrap = $('#temas-wrap'), artSide = $('.art-side');
+
+  /* ---- Hecho en Kame House: coverflow invertido con el destacado a la izquierda ----
+     En escritorio lo maneja el scroll de la escena fijada (un clic scrollea hasta ese tema);
+     en mobile o con movimiento reducido, swipe, flechas y teclado. */
+  const PAN_START = 0.64, PAN_LEN = 0.36;
+  const cf = KH.coverflow($('#temas-cf'), {
+    items: KH.TEMAS,
+    isPinned: () => art.classList.contains('is-pinned'),
+    onPick: (i) => {
+      const top = art.getBoundingClientRect().top + scrollY;
+      KH.scrollTo(top + (PAN_START + PAN_LEN * (i / (KH.TEMAS.length - 1))) * (art.offsetHeight - innerHeight), { duration: 0.9 });
+    },
+  });
   const sesScene = $('.sessions-scene'), track = $('#strip-track');
-  const chainScene = $('#cadena'), chainItems = $$('#chain li');
 
   function sizeStrip() {
     const on = sceneOk() && wide.matches;
@@ -24,9 +33,8 @@
     const on = sceneOk();
     root.classList.toggle('scene-ok', on);
     art.classList.toggle('is-pinned', on && wide.matches);
-    chainScene.classList.toggle('is-pinned', on && wide2.matches);
     if (!art.classList.contains('is-pinned')) {
-      artRoll.style.transform = ''; tWrap.style.transform = ''; tTrack.style.transform = '';
+      artRoll.style.transform = ''; tWrap.style.transform = '';
     }
     sizeStrip();
     KH.refreshScenes();
@@ -34,7 +42,6 @@
   setModes();
   matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', setModes);
   wide.addEventListener('change', setModes);
-  wide2.addEventListener('change', setModes);
   addEventListener('resize', () => { sizeStrip(); KH.refreshScenes(); });
 
   /* ---- Artistas: nombres en vertical, al llegar al último los temas se deslizan en horizontal ---- */
@@ -47,6 +54,7 @@
       artNames.forEach((n) => { const r = n.getBoundingClientRect(); const d = Math.abs(r.top + r.height / 2 - innerHeight * 0.5); if (d < nd) { nd = d; near = n; } });
       artNames.forEach((n) => n.classList.toggle('sel', n === near && nd < n.offsetHeight * 1.2));
       $('.sel-band').style.opacity = '';
+      cf.layout(); // el disco sigue girando con el scroll de la página
       return;
     }
     const win = artWin.getBoundingClientRect();
@@ -56,7 +64,7 @@
     const end = win.height / 2 - (last.offsetTop + last.offsetHeight / 2);
     const names = clamp01(p / NAMES_END);
     const enter = clamp01((p - 0.52) / 0.1);
-    const pan = clamp01((p - 0.64) / 0.36);
+    const pan = clamp01((p - PAN_START) / PAN_LEN);
     const y = start + (end - start) * names - enter * win.height * 0.6;
     artRoll.style.transform = `translate3d(0, ${y.toFixed(1)}px, 0)`;
     artRoll.style.opacity = (1 - enter).toFixed(2);
@@ -72,9 +80,22 @@
     });
     artNames.forEach((n) => n.classList.toggle('sel', n === best && bd < best.offsetHeight * 0.55 && enter === 0));
     tWrap.style.transform = `translate3d(${((1 - enter) * innerWidth).toFixed(1)}px, 0, 0)`;
-    const extra = Math.max(0, tTrack.scrollWidth - innerWidth + (parseFloat(getComputedStyle(tTrack).paddingLeft) || 0));
-    tTrack.style.transform = `translate3d(${(-extra * pan).toFixed(1)}px, 0, 0)`;
+    // el carrusel sigue el scroll de forma continua (mientras no se lo esté arrastrando)
+    if (!cf.dragging()) cf.set(pan * (cf.count - 1));
   });
+  // imán: si el scroll se frena entre dos temas, se acomoda en el más cercano
+  let cfSnap = 0;
+  addEventListener('scroll', () => {
+    clearTimeout(cfSnap);
+    if (!art.classList.contains('is-pinned') || cf.dragging()) return;
+    cfSnap = setTimeout(() => {
+      const top = art.getBoundingClientRect().top + scrollY;
+      const p = (scrollY - top) / (art.offsetHeight - innerHeight);
+      if (p <= PAN_START || p >= 1) return;
+      const f = ((p - PAN_START) / PAN_LEN) * (cf.count - 1);
+      if (Math.abs(f - Math.round(f)) > 0.02) KH.scrollTo(top + (PAN_START + PAN_LEN * (Math.round(f) / (cf.count - 1))) * (art.offsetHeight - innerHeight), { duration: 0.5, easing: KH.ease.outCubic });
+    }, 220);
+  }, { passive: true });
 
   /* ---- Artistas por escalones: cada gesto de rueda (o tecla) corre un nombre ---- */
   const N = artNames.length;
@@ -124,16 +145,6 @@
       if (f > -EPS && f < N - 1 + EPS && Math.abs(f - Math.round(f)) > EPS) KH.scrollTo(posOf(Math.round(f)), { duration: 0.3, easing: KH.ease.outCubic });
     }, 200);
   }, { passive: true });
-
-  /* ---- Cómo trabajamos: se enciende etapa por etapa ---- */
-  KH.scene(chainScene, (p) => {
-    if (!chainScene.classList.contains('is-pinned')) { chainItems.forEach((li) => { li.classList.add('on'); li.querySelector('.node i').style.setProperty('--fill', 1); }); return; }
-    const pos = Math.min(0.999, p / 0.85) * chainItems.length;
-    chainItems.forEach((li, i) => {
-      li.classList.toggle('on', pos >= i);
-      li.querySelector('.node i').style.setProperty('--fill', Math.max(0, Math.min(1, pos - i - 0.15)).toFixed(3));
-    });
-  });
 
   /* ---- Armá tu sesión ---- */
   const conf = { svc: 'grabacion', temas: 3, beat: 'propio' };

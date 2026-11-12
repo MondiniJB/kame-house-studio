@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,100..900&family=Instrument+Sans:wght@400;500;600&family=Sedgwick+Ave+Display&display=swap">
-<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/styles.css?v=20261112d">
 </head>
 <body>
 
@@ -135,7 +135,14 @@
           <h3 class="title title-s" data-i18n="temas.h">Hecho en Kame House</h3>
           <p class="soft" data-i18n="temas.p">Temas que pasaron por el estudio.</p>
         </div>
-        <div class="temas-scroll" tabindex="0" aria-label="Temas grabados en el estudio"><ul class="temas-track" id="temas-track"></ul></div>
+        <div class="cf" id="temas-cf" tabindex="0" role="region" aria-roledescription="carrusel" aria-label="Temas grabados en el estudio">
+          <ul class="cf-track" id="temas-track"></ul>
+          <div class="wrap cf-ui">
+            <button class="cf-btn cf-prev" type="button" aria-label="Tema anterior"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square"/></svg></button>
+            <button class="cf-btn cf-next" type="button" aria-label="Tema siguiente"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square"/></svg></button>
+            <p class="visually-hidden cf-live" aria-live="polite"></p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -157,35 +164,6 @@
   </section>
 
   <div id="servicios-g">
-    <section class="chain-scene s-white" id="cadena" aria-labelledby="chain-h">
-      <div class="chain-stage section">
-        <div class="wrap">
-          <div class="chain-head">
-            <h2 class="title" id="chain-h" data-i18n="chain.h">Cómo trabajamos</h2>
-            <p class="soft" data-i18n="chain.p">De la primera toma al archivo final, todo en la misma sala.</p>
-          </div>
-          <ol class="chain" id="chain">
-            <li data-focus><div class="node"><span class="cn"></span><i></i></div><h3><small>1</small><span data-i18n="ch.1">Grabación</span></h3><p data-i18n="ch.1.p">Voces e instrumentos en la sala, con equipos analógicos y digitales.</p></li>
-            <li data-focus><div class="node"><span class="cn"></span><i></i></div><h3><small>2</small><span data-i18n="ch.2">Edición</span></h3><p data-i18n="ch.2.p">Elegimos las mejores tomas y ajustamos tiempos y afinación.</p></li>
-            <li data-focus><div class="node"><span class="cn"></span><i></i></div><h3><small>3</small><span data-i18n="ch.3">Mezcla</span></h3><p data-i18n="ch.3.p">Equilibramos las pistas: niveles, espacio y carácter del tema.</p></li>
-            <li data-focus><div class="node"><span class="cn"></span><i></i></div><h3><small>4</small><span data-i18n="ch.4">Mastering</span></h3><p data-i18n="ch.4.p">Dejamos el tema listo para que suene parejo en cualquier plataforma.</p></li>
-            <li data-focus><div class="node"><span class="cn"></span><i></i></div><h3><small>5</small><span data-i18n="ch.5">Entrega</span></h3><p data-i18n="ch.5.p">Te llevás los archivos finales, listos para publicar.</p></li>
-          </ol>
-          <div class="chain-foot">
-            <div class="chain-also">
-              <p data-i18n="chain.also">También podés pedir una sola etapa, sumar producción o alquilar la sala:</p>
-              <div class="extras">
-                <a href="reservar.html?servicio=produccion" data-i18n="svc.produccion">Producción</a>
-                <a href="reservar.html?servicio=sala" data-i18n="svc.sala">Alquiler de sala</a>
-                <a href="reservar.html?servicio=mezcla" data-i18n="chain.only">Solo mezcla o mastering</a>
-              </div>
-            </div>
-            <a class="btn btn-primary" href="reservar.html" data-i18n="chain.quote">Pedir presupuesto</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <section class="s-black section" id="servicios" aria-labelledby="svc-h">
       <div class="wrap">
         <div class="svc-head">
@@ -193,11 +171,11 @@
           <p class="soft" data-i18n="svc.price">Cotizamos cada proyecto por separado. Contanos qué tenés y te pasamos un presupuesto.</p>
         </div>
         <ul class="slabs">
-          <li class="slab" data-focus data-reveal style="--i:1"><a href="reservar.html?servicio=grabacion"><span class="slab-img"><img src="assets/media/svc-grabacion.jpg" alt="" width="1000" height="667" loading="lazy" decoding="async"></span><span class="slab-body"><h3 data-i18n="svc.grabacion">Grabación</h3><p data-i18n="svc.grabacion.p">Voces e instrumentos en la sala, con el equipo del estudio.</p><span class="go" data-i18n="svc.go">Consultar</span></span></a></li>
-          <li class="slab" data-focus data-reveal style="--i:2"><a href="reservar.html?servicio=mezcla"><span class="slab-img"><img src="assets/media/svc-mezcla.jpg" alt="" width="1000" height="667" loading="lazy" decoding="async"></span><span class="slab-body"><h3 data-i18n="svc.mezcla">Mezcla</h3><p data-i18n="svc.mezcla.p">Tus pistas ordenadas y balanceadas según lo que pide el tema.</p><span class="go" data-i18n="svc.go">Consultar</span></span></a></li>
-          <li class="slab" data-focus data-reveal style="--i:3"><a href="reservar.html?servicio=mastering"><span class="slab-img"><img src="assets/media/svc-mastering.jpg" alt="" width="1000" height="680" loading="lazy" decoding="async"></span><span class="slab-body"><h3>Mastering</h3><p data-i18n="svc.mastering.p">El último ajuste, para que el tema suene parejo en todas las plataformas.</p><span class="go" data-i18n="svc.go">Consultar</span></span></a></li>
-          <li class="slab" data-focus data-reveal style="--i:4"><a href="reservar.html?servicio=produccion"><span class="slab-img"><img src="assets/media/svc-produccion.jpg" alt="" width="1000" height="667" loading="lazy" decoding="async"></span><span class="slab-body"><h3 data-i18n="svc.produccion">Producción</h3><p data-i18n="svc.produccion.p">Si llegás con una idea y sin beat, lo armamos con vos.</p><span class="go" data-i18n="svc.go">Consultar</span></span></a></li>
-          <li class="slab" data-focus data-reveal style="--i:5"><a href="reservar.html?servicio=sala"><span class="slab-img"><img src="assets/media/svc-sala.jpg" alt="" width="1000" height="667" loading="lazy" decoding="async"></span><span class="slab-body"><h3 data-i18n="svc.sala.short">Sala</h3><p data-i18n="svc.sala.p">La sala por hora, para vos y tu equipo.</p><span class="go" data-i18n="svc.go">Consultar</span></span></a></li>
+          <li class="slab" data-focus style="--g:1.35"><a href="reservar.html?servicio=grabacion"><span class="slab-img"><img src="assets/media/svc-grabacion.jpg" alt="" width="1000" height="667" loading="lazy" decoding="async"></span><span class="slab-body"><h3 data-i18n="svc.grabacion">Grabación</h3><p data-i18n="svc.grabacion.p">Voces e instrumentos en la sala, con el equipo del estudio.</p><span class="go" data-i18n="svc.go">Consultar</span></span></a></li>
+          <li class="slab" data-focus style="--g:1"><a href="reservar.html?servicio=mezcla"><span class="slab-img"><img src="assets/media/svc-mezcla.jpg" alt="" width="1000" height="667" loading="lazy" decoding="async"></span><span class="slab-body"><h3 data-i18n="svc.mezcla">Mezcla</h3><p data-i18n="svc.mezcla.p">Tus pistas ordenadas y balanceadas según lo que pide el tema.</p><span class="go" data-i18n="svc.go">Consultar</span></span></a></li>
+          <li class="slab" data-focus style="--g:1.15"><a href="reservar.html?servicio=mastering"><span class="slab-img"><img src="assets/media/svc-mastering.jpg" alt="" width="1000" height="680" loading="lazy" decoding="async"></span><span class="slab-body"><h3>Mastering</h3><p data-i18n="svc.mastering.p">El último ajuste, para que el tema suene parejo en todas las plataformas.</p><span class="go" data-i18n="svc.go">Consultar</span></span></a></li>
+          <li class="slab" data-focus style="--g:0.95"><a href="reservar.html?servicio=produccion"><span class="slab-img"><img src="assets/media/svc-produccion.jpg" alt="" width="1000" height="667" loading="lazy" decoding="async"></span><span class="slab-body"><h3 data-i18n="svc.produccion">Producción</h3><p data-i18n="svc.produccion.p">Si llegás con una idea y sin beat, lo armamos con vos.</p><span class="go" data-i18n="svc.go">Consultar</span></span></a></li>
+          <li class="slab" data-focus style="--g:1.05"><a href="reservar.html?servicio=sala"><span class="slab-img"><img src="assets/media/svc-sala.jpg" alt="" width="1000" height="667" loading="lazy" decoding="async"></span><span class="slab-body"><h3 data-i18n="svc.sala.short">Sala</h3><p data-i18n="svc.sala.p">La sala por hora, para vos y tu equipo.</p><span class="go" data-i18n="svc.go">Consultar</span></span></a></li>
         </ul>
       </div>
     </section>
@@ -345,10 +323,11 @@
 
 <div class="mbar"><a class="btn btn-primary" href="reservar.html" data-i18n="cta.reservar">Reservar sesión</a></div>
 
-<script src="assets/js/lenis.min.js"></script>
-<script src="js/i18n.js"></script>
-<script src="js/data.js"></script>
-<script src="js/core.js"></script>
-<script src="js/home.js"></script>
+<script src="assets/js/lenis.min.js?v=20261112d"></script>
+<script src="js/i18n.js?v=20261112d"></script>
+<script src="js/data.js?v=20261112d"></script>
+<script src="js/coverflow.js?v=20261112d"></script>
+<script src="js/core.js?v=20261112d"></script>
+<script src="js/home.js?v=20261112d"></script>
 </body>
 </html>
