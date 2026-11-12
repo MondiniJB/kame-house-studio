@@ -30,7 +30,7 @@ Las vistas se cambian con el hash (`#inicio`, `#artistas`, `#reservar`). `#estud
 
 ## Sistema visual
 
-- **Colores:** negro `#1d1d1b`, violeta `#73378c`, blanco, y papel `#f4f2f6` como segundo claro. Las secciones alternan negro, blanco, papel y violeta.
+- **Colores:** negro `#181818`, violeta `#73378c`, blanco, y papel `#f4f2f6` como segundo claro. Las secciones alternan negro, blanco, papel y violeta.
 - **Contraste:** el violeta nunca es texto sobre negro (2,1:1). Sobre oscuro el texto es blanco; el violeta se usa en campos, bandas y botones con texto blanco. El violeta como texto solo va sobre blanco o papel (7,9:1).
 - **Tipografías:** Gang of Three en títulos de sección, Archivo en UI y subtítulos, Instrument Sans en texto, Sedgwick Ave Display como firma de calle (stickers). Archivo, Instrument Sans y Sedgwick se cargan desde Google Fonts.
 - **Marca:** el logo no se deforma, recolorea ni rota. El patrón de isotipos aparece solo en la banda del footer.

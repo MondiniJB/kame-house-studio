@@ -1,12 +1,14 @@
-/* Núcleo compartido: router por hash, ES/EN, escenas de scroll,
-   foco por scroll en pantallas táctiles, menú, formularios y copiar al portapapeles. */
+/* Núcleo compartido por todas las páginas: scroll con Lenis, ES/EN, menú, escenas de scroll,
+   foco por scroll en pantallas táctiles, anclas internas, entradas por sección, formularios y copiar. */
 (function () {
   const KH = (window.KH = window.KH || {});
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
   KH.$ = $;
   KH.$$ = $$;
-  KH.state = { service: null, aka: '' };
+  const root = document.documentElement;
+  root.classList.add('js');
+  KH.page = root.dataset.page || 'inicio';
 
   const reducedQuery = matchMedia('(prefers-reduced-motion: reduce)');
   KH.reduced = () => reducedQuery.matches;
@@ -14,12 +16,14 @@
   /* ---------- Scroll con inercia (Lenis) ----------
      Con movimiento reducido no se crea: el scroll queda nativo. */
   KH.lenis = null;
-  KH.ease = { inOutCubic: (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2), outCubic: (t) => 1 - Math.pow(1 - t, 3), outExpo: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)) };
+  KH.ease = { outCubic: (t) => 1 - Math.pow(1 - t, 3), outExpo: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)) };
   KH.scrollTo = (y, o = {}) => {
     y = Math.max(0, y);
     if (KH.lenis) return KH.lenis.scrollTo(y, { duration: 1.2, easing: KH.ease.outExpo, force: true, ...o });
     window.scrollTo({ top: y, behavior: o.immediate || KH.reduced() ? 'auto' : 'smooth' });
   };
+  const navH = () => ($('.nav') ? $('.nav').offsetHeight : 0);
+  KH.scrollToEl = (el, o) => el && KH.scrollTo(el.getBoundingClientRect().top + scrollY - navH() - 8, o);
   function startLenis() {
     if (KH.lenis || KH.reduced() || typeof Lenis === 'undefined') return;
     const l = (KH.lenis = new Lenis({ lerp: 0.09, wheelMultiplier: 1, autoRaf: false }));
@@ -31,89 +35,44 @@
     if (KH.lenis) { KH.lenis.destroy(); KH.lenis = null; }
   }
 
-  /* ---------- Router ---------- */
-  const views = $$('[data-view]');
-  const ROUTES = views.map((v) => v.dataset.view);
-
-  /* Estudio, Servicios, Sesiones y Merch no son páginas: llevan a su sección de la home. */
-  const ALIAS = { estudio: 'historia', servicios: 'servicios-g', sesiones: 'sesiones-home', merch: 'merchsec' };
-  function goAlias(name, smooth) {
-    const el = document.getElementById(ALIAS[name]);
-    if (!el) return;
-    const y = el.getBoundingClientRect().top + scrollY - 80;
-    KH.scrollTo(y, { immediate: !smooth });
-  }
-  function show(route, opts = {}) {
-    if (ALIAS[route]) {
-      const wasHome = document.documentElement.dataset.route === 'inicio';
-      show('inicio', { keepScroll: true });
-      $$('[data-nav]').forEach((a) => {
-        const on = a.getAttribute('href') === '#' + route;
-        a.classList.toggle('is-current', on);
-        if (on) a.setAttribute('aria-current', 'location'); else if (a.getAttribute('href') !== '#inicio') a.removeAttribute('aria-current');
-      });
-      setTimeout(() => goAlias(route, wasHome), wasHome ? 0 : 120);
-      return;
-    }
-    if (!ROUTES.includes(route)) route = 'inicio';
-    views.forEach((v) => (v.hidden = v.dataset.view !== route));
-    KH.lenis && KH.lenis.resize(); // el largo de la página cambió con la vista
-    document.documentElement.dataset.route = route;
-    const meta = (KH.META || {})[route];
-    if (meta) {
-      document.title = meta.title;
-      const d = $('meta[name="description"]');
-      if (d) d.setAttribute('content', meta.description);
-    }
-    $$('[data-nav]').forEach((a) => {
-      const on = a.getAttribute('href') === '#' + route;
-      a.classList.toggle('is-current', on);
-      if (on) a.setAttribute('aria-current', 'page');
-      else a.removeAttribute('aria-current');
-    });
-    KH.closeMenu && KH.closeMenu();
-    if (!opts.keepScroll) KH.scrollTo(0, { immediate: true });
-    if (opts.focus) {
-      const h1 = $(`[data-view="${route}"] h1`);
-      if (h1) {
-        h1.setAttribute('tabindex', '-1');
-        h1.focus({ preventScroll: true });
-      }
-    }
-    document.dispatchEvent(new CustomEvent('kh:route', { detail: route }));
-    KH.refreshScenes && KH.refreshScenes();
-  }
-  KH.go = (route) => {
-    if (location.hash === '#' + route) show(route, { focus: true });
-    else location.hash = route;
-  };
-  window.addEventListener('hashchange', () => show(location.hash.slice(1), { focus: true }));
+  /* ---------- Navegación ----------
+     Cada página es un HTML propio. Servicios, Sesiones y Merch son secciones del inicio (index.html#...). */
+  $$('[data-nav]').forEach((a) => {
+    if (a.dataset.nav === KH.page) { a.classList.add('is-current'); a.setAttribute('aria-current', 'page'); }
+  });
+  // anclas dentro de la misma página: scroll suave que respeta la altura de la nav
   document.addEventListener('click', (e) => {
-    const a = e.target.closest('a[href^="#"]');
-    if (!a) return;
-    if (a.hasAttribute('data-skip')) {
-      e.preventDefault();
-      const h1 = $(`[data-view="${document.documentElement.dataset.route}"] h1`);
-      if (h1) {
-        h1.setAttribute('tabindex', '-1');
-        h1.focus();
-      }
-      return;
-    }
-    const svc = a.dataset.service;
-    if (svc) KH.state.service = svc;
-    const route = a.getAttribute('href').slice(1);
-    if (route === location.hash.slice(1)) {
-      e.preventDefault();
-      show(route, { focus: true });
-    }
+    const a = e.target.closest('a[href*="#"]');
+    if (!a || e.defaultPrevented || e.metaKey || e.ctrlKey || e.shiftKey) return;
+    const url = new URL(a.href, location.href);
+    if (url.pathname !== location.pathname || !url.hash) return;
+    const el = document.getElementById(decodeURIComponent(url.hash.slice(1)));
+    if (!el) return;
+    e.preventDefault();
+    KH.closeMenu();
+    history.replaceState(null, '', url.hash);
+    KH.scrollToEl(el);
+  });
+  // nav del inicio: transparente sobre el hero, con fondo apenas se scrollea
+  const nav = $('.nav');
+  if (nav && KH.page === 'inicio') {
+    const paintNav = () => nav.classList.toggle('is-solid', scrollY > 24);
+    addEventListener('scroll', paintNav, { passive: true });
+    paintNav();
+  }
+  // saltar al contenido: foco en el h1 de la página
+  const skip = $('[data-skip]');
+  if (skip) skip.addEventListener('click', (e) => {
+    e.preventDefault();
+    const h1 = $('main h1');
+    if (h1) { h1.setAttribute('tabindex', '-1'); h1.focus(); }
   });
 
   /* ---------- ES / EN ---------- */
   const originals = new Map();
   function setLang(lang) {
     const dict = (KH.I18N && KH.I18N[lang]) || {};
-    document.documentElement.lang = lang === 'en' ? 'en' : 'es-AR';
+    root.lang = lang === 'en' ? 'en' : 'es-AR';
     $$('[data-i18n]').forEach((el) => {
       const key = el.dataset.i18n;
       if (!originals.has(el)) originals.set(el, el.innerHTML);
@@ -129,6 +88,7 @@
     try { localStorage.setItem('kh-lang', lang); } catch (_) {}
     document.dispatchEvent(new CustomEvent('kh:lang', { detail: lang }));
   }
+  KH.lang = 'es';
   KH.t = (key, es) => (KH.lang === 'en' && KH.I18N && KH.I18N.en[key]) || es;
   document.addEventListener('click', (e) => {
     const b = e.target.closest('[data-lang]');
@@ -139,9 +99,9 @@
   const menu = $('[data-menu]');
   const menuBtn = $('[data-menu-toggle]');
   KH.closeMenu = () => {
-    if (!menu) return;
+    if (!menu || !menu.classList.contains('is-open')) return;
     menu.classList.remove('is-open');
-    document.documentElement.classList.remove('menu-open');
+    root.classList.remove('menu-open');
     KH.lenis && KH.lenis.start();
     menuBtn && menuBtn.setAttribute('aria-expanded', 'false');
   };
@@ -149,7 +109,7 @@
     menuBtn.addEventListener('click', () => {
       const open = !menu.classList.contains('is-open');
       menu.classList.toggle('is-open', open);
-      document.documentElement.classList.toggle('menu-open', open);
+      root.classList.toggle('menu-open', open);
       menuBtn.setAttribute('aria-expanded', String(open));
       if (KH.lenis) open ? KH.lenis.stop() : KH.lenis.start();
       if (open) {
@@ -199,12 +159,14 @@
   addEventListener('scroll', KH.refreshScenes, { passive: true });
   addEventListener('resize', KH.refreshScenes);
   reducedQuery.addEventListener('change', () => {
-    document.documentElement.classList.toggle('rm', KH.reduced());
+    root.classList.toggle('rm', KH.reduced());
     KH.reduced() ? stopLenis() : startLenis();
+    $$('video[autoplay]').forEach((v) => (KH.reduced() ? v.pause() : v.play().catch(() => {})));
     KH.refreshScenes();
   });
-  document.documentElement.classList.toggle('rm', KH.reduced());
+  root.classList.toggle('rm', KH.reduced());
   startLenis();
+  if (KH.reduced()) $$('video[autoplay]').forEach((v) => { v.removeAttribute('autoplay'); v.pause(); });
 
   /* ---------- Foco por scroll en táctil (hover que funciona en mobile) ---------- */
   function setupFocusBand() {
@@ -214,6 +176,16 @@
       { rootMargin: '-43% 0px -43% 0px', threshold: 0 }
     );
     $$('[data-focus]').forEach((el) => io.observe(el));
+  }
+
+  /* ---------- Entradas por sección ---------- */
+  function setupReveal() {
+    const els = $$('[data-reveal]');
+    if (!('IntersectionObserver' in window)) return els.forEach((el) => el.classList.add('in'));
+    const io = new IntersectionObserver((entries) => entries.forEach((e) => {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    }), { rootMargin: '0px 0px -12% 0px' });
+    els.forEach((el) => io.observe(el));
   }
 
   /* ---------- Formularios ---------- */
@@ -239,16 +211,8 @@
   const MAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
   KH.check = {
     required: (v) => (v && v.trim() ? '' : KH.t('err.required', 'Completá este campo.')),
-    email: (v) =>
-      !v || !v.trim()
-        ? KH.t('err.required', 'Completá este campo.')
-        : MAIL.test(v.trim())
-        ? ''
-        : KH.t('err.email', 'Revisá el mail: falta la @ o el dominio (ej. nombre@gmail.com).'),
-    services: (form) =>
-      $$('input[name="servicio"]:checked', form).length
-        ? ''
-        : KH.t('err.services', 'Elegí al menos un servicio.'),
+    emailOptional: (v) =>
+      !v || !v.trim() || MAIL.test(v.trim()) ? '' : KH.t('err.email', 'Revisá el mail: falta la @ o el dominio (ej. nombre@gmail.com).'),
     temas: (v) => {
       const n = Number(v);
       return Number.isInteger(n) && n >= 1 && n <= 30 ? '' : KH.t('err.temas', 'Poné una cantidad entre 1 y 30.');
@@ -261,51 +225,19 @@
       return d >= today ? '' : KH.t('err.date', 'Esa fecha ya pasó. Elegí una de hoy en adelante.');
     },
   };
-  KH.formData = (form) => {
-    const fd = new FormData(form);
-    return {
-      servicios: fd.getAll('servicio'),
-      temas: fd.get('temas'),
-      fecha: fd.get('fecha'),
-      flexible: fd.get('flexible') === 'on',
-      referencias: fd.get('referencias') || '',
-      presupuesto: fd.get('presupuesto'),
-      monto: fd.get('monto') || '',
-      aka: fd.get('aka') || '',
-      mail: fd.get('mail') || '',
-      whatsapp: fd.get('whatsapp') || '',
-      instagram: fd.get('instagram') || '',
-      mensaje: fd.get('mensaje') || '',
-    };
-  };
-  KH.SERVICE_LABEL = {
-    grabacion: 'Grabación',
-    mezcla: 'Mezcla',
-    mastering: 'Mastering',
-    produccion: 'Producción',
-    sala: 'Alquiler de sala',
-  };
+  KH.SERVICE_LABEL = { grabacion: 'Grabación', mezcla: 'Mezcla', mastering: 'Mastering', produccion: 'Producción', sala: 'Alquiler de sala' };
   KH.serviceLabel = (k) => KH.t('svc.' + k, KH.SERVICE_LABEL[k] || k);
-  KH.applyPrefill = (form) => {
-    if (!form) return;
-    if (KH.state.service) {
-      const box = form.querySelector(`input[name="servicio"][value="${KH.state.service}"]`);
-      if (box) box.checked = true;
-    }
-    if (KH.state.temas) {
-      const t = form.querySelector('[name="temas"]');
-      if (t) t.value = KH.state.temas;
-    }
-    if (KH.state.aka) {
-      const a = form.querySelector('[name="aka"]');
-      if (a && !a.value) a.value = KH.state.aka;
-    }
-    form.dispatchEvent(new Event('input', { bubbles: true }));
-  };
   KH.fmtDate = (v) => {
     if (!v) return '';
     const d = new Date(v + 'T00:00');
     return d.toLocaleDateString(KH.lang === 'en' ? 'en-GB' : 'es-AR', { day: 'numeric', month: 'long', year: 'numeric' });
+  };
+  // link a reservar.html con lo que la persona ya eligió en otra sección
+  KH.bookUrl = (params) => {
+    const q = new URLSearchParams();
+    Object.entries(params).forEach(([k, v]) => { if (v != null && v !== '') q.set(k, v); });
+    const s = q.toString();
+    return 'reservar.html' + (s ? '?' + s : '');
   };
 
   /* ---------- Copiar datos de contacto ---------- */
@@ -335,15 +267,20 @@
     }
   });
 
-  /* ---------- Arranque ---------- */
+  /* ---------- Arranque: cada página lo llama al final de su script ---------- */
   KH.boot = () => {
     let lang = 'es';
     try { lang = localStorage.getItem('kh-lang') || 'es'; } catch (_) {}
     setLang(lang);
-    show(location.hash.slice(1) || 'inicio', { keepScroll: true });
     setupFocusBand();
+    setupReveal();
     KH.refreshScenes();
     const y = document.getElementById('kh-year');
     if (y) y.textContent = new Date().getFullYear();
+    // si se llegó con un ancla (index.html#servicios), se va a la sección una vez armado el layout
+    if (location.hash) {
+      const el = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+      if (el) requestAnimationFrame(() => KH.scrollToEl(el, { immediate: true }));
+    }
   };
 })();
