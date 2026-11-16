@@ -1,7 +1,7 @@
 # Tareas
 
 Lista de trabajo de la web. Se trabaja por fases: propuesta → boceto (ASCII o artifact) → aprobación → construcción.
-Publicación en Vercel con direcciones limpias; local con `python dev-server.py` (puerto 4250).
+Hecho con Astro y publicado en Vercel con direcciones limpias; local con `npm run dev` (puerto 4321).
 
 ## Hecho
 
@@ -49,11 +49,14 @@ Publicación en Vercel con direcciones limpias; local con `python dev-server.py`
 - [x] ~~Gang of Three en WOFF2 y precargada; Google Fonts sin bloquear el primer pintado.~~
 - [x] ~~Lighthouse en las cuatro páginas (mobile / desktop): rendimiento 96-99 / 99-100, accesibilidad, buenas prácticas y SEO 100.~~
 - [x] ~~Se borró `furgoneta-neon.jpg`.~~
+- [x] ~~Paso a Astro: `<head>`, nav, menú, footer y sprite se escriben una sola vez (`src/layouts`, `src/components`); versión de CSS/JS automática en cada build.~~
+- [x] ~~Títulos estandarizados: un estilo por nivel (h1, h2, subtítulo, tarjeta) y sin punto final.~~
+- [x] ~~Se sacó la palabra grafiti "poderes" del fondo de La casa (no quedan palabras grafiti en el sitio).~~
 
 ## Pendiente
 
 ### Datos que tiene que pasar el estudio (hoy son de ejemplo)
-- [ ] Teléfono, WhatsApp, mail y dirección reales (en los cuatro HTML y en `js/reservar.js`).
+- [ ] Teléfono, WhatsApp, mail y dirección reales (en `src/pages/index.astro`, `src/pages/reservar.astro` y `public/js/reservar.js`).
 - [ ] URL de la firma "Diseñado por Rocco Cámpora y Juan Bautista Mondini" (hoy `URL_A_DEFINIR`).
 - [ ] Link de cada reel de Sesiones (hoy las cuatro tarjetas llevan al perfil de Instagram, no al post).
 - [ ] Link de la tienda de merch (hoy las tarjetas no hacen nada).
@@ -68,7 +71,6 @@ Publicación en Vercel con direcciones limpias; local con `python dev-server.py`
 - [ ] Galería "La sala" en `/estudio`: cambiar la foto que se repite (`historia-sala` está en La casa y en la galería) por otra de la sala.
 
 ### Diseño y contenido
-- [ ] Palabras grafiti: decidir si se suman (hoy solo "poderes") y cuáles.
 - [ ] Escena de nombres de artistas en el inicio: probarla con el trackpad de una notebook (el paso por gesto puede sentirse a saltos).
 - [ ] Revisar el inglés con alguien que lo hable.
 
@@ -76,5 +78,4 @@ Publicación en Vercel con direcciones limpias; local con `python dev-server.py`
 - [ ] Si el sitio pasa a otro dominio, cambiar `https://kame-house-studio.vercel.app` en los `<head>`, `robots.txt` y `sitemap.xml`.
 - [ ] Probar en Safari, Firefox y un celular real (hasta ahora, solo Chrome).
 - [ ] Accesibilidad: recorrer con teclado las escenas fijadas (artistas, sesiones) y el carrusel; revisar contraste de los grises.
-- [ ] Nav, menú, footer y sprite están copiados en los cuatro HTML: si se vuelven a cambiar seguido, evaluar Astro para escribirlos una sola vez.
-- [ ] Confirmar en Vercel que `/estudio`, `/artistas` y `/reservar` abren sin `.html` y que `/reservar.html` redirige.
+- [ ] Después del primer deploy con Astro: confirmar en Vercel que el build pasa, que `/estudio`, `/artistas` y `/reservar` abren sin `.html` y que una dirección inventada muestra la 404.

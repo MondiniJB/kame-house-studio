@@ -1,0 +1,57 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base
+  page="artistas"
+  title="Créditos | Kame House Estudio"
+  description="Artistas y productores que grabaron en Kame House: Bhavi, Khea, Asan, Neo Pistea, YSY A, Feid y más."
+  path="/artistas"
+  scripts={["/assets/js/lenis.min.js", "/js/i18n.js", "/js/data.js", "/js/coverflow.js", "/js/core.js", "/js/artistas.js"]}
+>
+<main id="main">
+
+  <section class="s-black book-head" aria-labelledby="cr-h">
+    <div class="wrap page-head">
+      <h1 class="page-title" id="cr-h" data-i18n="cr.h1">Créditos</h1>
+      <p class="lead" data-i18n="cr.lead">Artistas y productores que grabaron en Kame House.</p>
+      <div class="filters" role="group" aria-label="Filtrar créditos" id="cr-filters">
+        <button type="button" data-f="all" aria-pressed="true" data-i18n="f.all">Todos</button>
+        <button type="button" data-f="artista" aria-pressed="false" data-i18n="f.art">Artistas</button>
+        <button type="button" data-f="productor" aria-pressed="false" data-i18n="f.prod">Productores</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="s-white credits-sec" aria-label="Lista de créditos">
+    <div class="wrap credits">
+      <ul class="credit-list" id="credit-list"></ul>
+      <aside class="credit-preview" id="credit-preview" aria-live="polite"></aside>
+    </div>
+  </section>
+
+  <section class="s-black section" id="temas" aria-labelledby="temas2-h">
+    <div class="wrap temas-head">
+      <h2 class="title" id="temas2-h" data-i18n="temas.h">Hecho en Kame House</h2>
+      <p class="soft" data-i18n="temas.p2">Arrastrá las tapas o usá las flechas.</p>
+    </div>
+    <div class="cf" id="temas-cf" tabindex="0" role="region" aria-roledescription="carrusel" aria-label="Temas grabados en el estudio">
+      <ul class="cf-track"></ul>
+      <div class="wrap cf-ui">
+        <button class="cf-btn cf-prev" type="button" aria-label="Tema anterior"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square"/></svg></button>
+        <button class="cf-btn cf-next" type="button" aria-label="Tema siguiente"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square"/></svg></button>
+        <p class="visually-hidden cf-live" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="closer closer-simple s-violet" aria-labelledby="c2-h">
+    <div class="wrap">
+      <div class="closer-box">
+        <h2 class="title" id="c2-h" data-i18n="closer2.h">¿Tenés un tema para grabar?</h2>
+        <a class="btn btn-black" href="/reservar" data-i18n="cta.reservar">Reservar sesión</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+</Base>

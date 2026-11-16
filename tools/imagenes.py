@@ -2,18 +2,18 @@
 
     python tools/imagenes.py
 
-Lee assets/media/originales/*.jpg y escribe en assets/media/ un WebP por cada ancho
+Lee originales/*.jpg y escribe en public/assets/media/ un WebP por cada ancho
 de ANCHOS (nombre-800.webp, nombre-1280.webp...). Las que se muestran a un solo tamaño
 salen como nombre.webp. Nunca agranda: si el original es más chico, se omite ese ancho.
-Los originales no se publican (ver .vercelignore).
+Los originales no se publican: Vercel solo sirve lo que Astro genera en dist/.
 """
 import os
 import sys
 from PIL import Image, ImageOps
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SRC = os.path.join(ROOT, 'assets', 'media', 'originales')
-OUT = os.path.join(ROOT, 'assets', 'media')
+SRC = os.path.join(ROOT, 'originales')
+OUT = os.path.join(ROOT, 'public', 'assets', 'media')
 CALIDAD = 86  # WebP con pérdida: a 86 no se notan diferencias con el JPG original
 
 # anchos por imagen; None = un solo archivo al tamaño original

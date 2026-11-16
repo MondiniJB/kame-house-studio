@@ -1,4 +1,4 @@
-"""Genera assets/brand/og.jpg (1200 x 630) a partir de tools/og.html con Chrome sin ventana.
+"""Genera public/assets/brand/og.jpg (1200 x 630) a partir de tools/og.html con Chrome sin ventana.
 
     python tools/og.py
 """
@@ -20,6 +20,6 @@ png = Path(tempfile.gettempdir()) / 'kh-og.png'
 subprocess.run([chrome, '--headless=new', '--hide-scrollbars', '--force-device-scale-factor=1',
                 '--window-size=1200,630', '--virtual-time-budget=6000', f'--screenshot={png}',
                 (ROOT / 'tools' / 'og.html').as_uri()], check=True, capture_output=True)
-out = ROOT / 'assets' / 'brand' / 'og.jpg'
+out = ROOT / 'public' / 'assets' / 'brand' / 'og.jpg'
 Image.open(png).convert('RGB').crop((0, 0, 1200, 630)).save(out, 'JPEG', quality=90, optimize=True, progressive=True)
 print(out, out.stat().st_size // 1024, 'KB')

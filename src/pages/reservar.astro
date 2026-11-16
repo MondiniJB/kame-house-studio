@@ -1,0 +1,105 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base
+  page="reservar"
+  title="Reservá tu sesión | Kame House Estudio"
+  description="Pedí fecha y presupuesto para grabar, mezclar o masterizar en Kame House, Chacarita. El pedido sale por WhatsApp o por mail."
+  ogTitle="Reservá tu sesión · Kame House Estudio"
+  path="/reservar"
+  scripts={["/assets/js/lenis.min.js", "/js/i18n.js", "/js/core.js", "/js/reservar.js"]}
+>
+<main id="main">
+
+  <section class="s-black book-head" aria-labelledby="book-h">
+    <div class="wrap page-head">
+      <h1 class="page-title" id="book-h" data-i18n="book.h1">Reservá tu sesión</h1>
+      <p class="lead" data-i18n="book.lead">Contanos qué querés hacer y te respondemos con fecha y presupuesto. El pedido sale por WhatsApp o por mail, como prefieras.</p>
+    </div>
+  </section>
+
+  <section class="s-white book-sec">
+    <div class="wrap book">
+      <form id="book-form" class="book-form" novalidate>
+
+        <fieldset class="bk-step">
+          <legend><span class="bk-n" aria-hidden="true">1</span><span data-i18n="st.1.l">Qué venís a hacer</span></legend>
+          <fieldset class="field" data-field id="f-servicios">
+            <legend class="lbl" data-i18n="f.svc">Servicios</legend>
+            <p class="hint" data-i18n="f.svc.h">Podés marcar más de uno.</p>
+            <div class="chips">
+              <label class="chip"><input type="checkbox" name="servicio" value="grabacion"><span data-i18n="svc.grabacion">Grabación</span></label>
+              <label class="chip"><input type="checkbox" name="servicio" value="mezcla"><span data-i18n="svc.mezcla">Mezcla</span></label>
+              <label class="chip"><input type="checkbox" name="servicio" value="mastering"><span>Mastering</span></label>
+              <label class="chip"><input type="checkbox" name="servicio" value="produccion"><span data-i18n="svc.produccion">Producción</span></label>
+              <label class="chip"><input type="checkbox" name="servicio" value="sala"><span data-i18n="svc.sala">Alquiler de sala</span></label>
+            </div>
+          </fieldset>
+          <div class="field" data-field>
+            <label for="temas" data-i18n="f.temas">Cantidad de temas</label>
+            <div class="counter-f">
+              <button type="button" data-step-btn="-1" aria-label="Uno menos">−</button>
+              <input class="input" id="temas" name="temas" type="number" inputmode="numeric" min="1" max="30" value="1">
+              <button type="button" data-step-btn="1" aria-label="Uno más">+</button>
+            </div>
+          </div>
+          <div class="field" data-field>
+            <label for="referencias" data-i18n="f.ref">Referencias</label>
+            <p class="hint" id="ref-hint" data-i18n="f.ref.h">Links a tus demos o a temas que te gusten cómo suenan. Opcional.</p>
+            <textarea data-lenis-prevent class="input" id="referencias" name="referencias" aria-describedby="ref-hint" placeholder="https://..."></textarea>
+          </div>
+        </fieldset>
+
+        <fieldset class="bk-step">
+          <legend><span class="bk-n" aria-hidden="true">2</span><span data-i18n="st.2.l">Cuándo</span></legend>
+          <div class="field" data-field>
+            <label for="fecha" data-i18n="f.fecha">Fecha tentativa</label>
+            <input class="input input-short" id="fecha" name="fecha" type="date">
+          </div>
+          <label class="check"><input type="checkbox" name="flexible" id="flexible"><span data-i18n="f.flex">Tengo flexibilidad de fechas</span></label>
+          <fieldset class="field" data-field>
+            <legend class="lbl" data-i18n="f.presu">Presupuesto</legend>
+            <div class="chips">
+              <label class="chip"><input type="radio" name="presupuesto" value="cotizar" checked><span data-i18n="f.presu.a">Quiero que me coticen</span></label>
+              <label class="chip"><input type="radio" name="presupuesto" value="monto"><span data-i18n="f.presu.b">Tengo un monto pensado</span></label>
+            </div>
+          </fieldset>
+          <div class="field" data-field id="monto-wrap" hidden>
+            <label for="monto" data-i18n="f.monto">¿Cuánto tenés pensado?</label>
+            <input class="input input-short" id="monto" name="monto" type="text" inputmode="numeric">
+          </div>
+        </fieldset>
+
+        <fieldset class="bk-step">
+          <legend><span class="bk-n" aria-hidden="true">3</span><span data-i18n="st.3.l">Tus datos</span></legend>
+          <div class="two-cols">
+            <div class="field" data-field><label for="aka" data-i18n="f.aka">Nombre artístico o AKA</label><input class="input" id="aka" name="aka" type="text" autocomplete="nickname" required></div>
+            <div class="field" data-field><label for="whatsapp">WhatsApp <span class="soft" data-i18n="opt">(opcional)</span></label><input class="input" id="whatsapp" name="whatsapp" type="tel" autocomplete="tel" placeholder="+54 9 11 ..."></div>
+            <div class="field" data-field><label for="instagram">Instagram <span class="soft" data-i18n="opt">(opcional)</span></label><input class="input" id="instagram" name="instagram" type="text" placeholder="@"></div>
+            <div class="field" data-field><label for="mail"><span data-i18n="f.mail">Mail</span> <span class="soft" data-i18n="opt">(opcional)</span></label><input class="input" id="mail" name="mail" type="email" autocomplete="email"></div>
+          </div>
+          <div class="field" data-field><label for="mensaje" data-i18n="f.msg">Algo más que quieras contarnos</label><textarea data-lenis-prevent class="input" id="mensaje" name="mensaje"></textarea></div>
+        </fieldset>
+
+      </form>
+
+      <aside class="aside s-black cut book-aside" aria-labelledby="sum-h">
+        <h2 id="sum-h" data-i18n="sum.h">Tu pedido</h2>
+        <dl class="summary" id="live-sum" aria-live="polite"></dl>
+        <div class="send">
+          <button class="btn btn-primary" type="submit" form="book-form" value="wa" data-i18n="send.wa">Enviar por WhatsApp</button>
+          <button class="btn btn-line" type="submit" form="book-form" value="mail" data-i18n="send.mail">Enviar por mail</button>
+        </div>
+        <p class="send-note" id="send-status" aria-live="polite" data-i18n="send.note">Se abre WhatsApp o tu mail con el pedido ya escrito. Lo revisás y lo mandás vos.</p>
+        <ul class="contact">
+          <li><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg><span id="c-tel">+54 9 11 1234-5678</span><button class="copy" type="button" data-copy="+54 9 11 1234-5678" aria-controls="c-tel" data-i18n="copy">Copiar</button></li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-mail"/></svg><span id="c-mail">EstudioKameHouse@gmail.com</span><button class="copy" type="button" data-copy="EstudioKameHouse@gmail.com" aria-controls="c-mail" data-i18n="copy">Copiar</button></li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg><a href="https://www.google.com/maps/search/?api=1&amp;query=Av.+Corrientes+3231,+Chacarita,+Buenos+Aires" target="_blank" rel="noopener noreferrer">Av. Corrientes 3231, Chacarita</a></li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-ig"/></svg><a href="https://www.instagram.com/estudiokamehouse/" target="_blank" rel="noopener noreferrer">@estudiokamehouse</a></li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+</main>
+</Base>

@@ -1,0 +1,76 @@
+---
+// Estructura común de todas las páginas: <head>, sprite, nav, menú, footer y scripts.
+// Cada página le pasa sus datos (título, descripción, dirección, foto principal, scripts) y su <main>.
+import Sprite from '../components/Sprite.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  page: string;          // data-page del <html>: lo usa js/core.js
+  title: string;
+  description?: string;
+  ogTitle?: string;      // título al compartir, si es distinto del <title>
+  path?: string;         // dirección pública (/estudio); sin path la página no se indexa (404)
+  noindex?: boolean;
+  hero?: string;         // foto principal a precargar (nombre en assets/media, sin el ancho)
+  scripts: string[];     // en orden: core.js necesita que i18n.js y data.js ya estén cargados
+  mux?: boolean;         // mux de secciones (solo el inicio)
+}
+const { page, title, description, ogTitle = title, path, noindex = false, hero, scripts, mux = false } = Astro.props;
+
+const SITE = 'https://kame-house-studio.vercel.app';
+// Versión de CSS y JS: cambia sola en cada build, así el navegador nunca usa archivos viejos.
+const v = new Date().toISOString().replace(/\D/g, '').slice(0, 12);
+const fonts = 'https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..110,600..900&family=Instrument+Sans:wght@400;500;600&family=Sedgwick+Ave+Display&display=swap';
+const heroSet = hero && [800, 1280, 2000].map((w) => `/assets/media/${hero}-${w}.webp ${w}w`).join(', ');
+---
+<!doctype html>
+<html lang="es-AR" data-page={page}>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#181818">
+<title>{title}</title>
+{description && <meta name="description" content={description}>}
+{noindex && <meta name="robots" content="noindex">}
+{path != null && (
+  <Fragment>
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="es_AR">
+    <meta property="og:title" content={ogTitle}>
+    <meta property="og:description" content="Estudio de grabación de música urbana en Chacarita, CABA.">
+    <meta property="og:site_name" content="Kame House Estudio">
+    <meta property="og:url" content={SITE + path}>
+    <meta property="og:image" content={SITE + '/assets/brand/og.jpg'}>
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Logo de Kame House Estudio sobre fondo negro">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href={SITE + path}>
+  </Fragment>
+)}
+<link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Google Fonts sin bloquear el primer pintado -->
+<link rel="stylesheet" href={fonts} media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href={fonts}></noscript>
+<link rel="preload" href="/assets/fonts/go3v2.woff2" as="font" type="font/woff2" crossorigin>
+{hero && <link rel="preload" as="image" href={`/assets/media/${hero}-1280.webp`} imagesrcset={heroSet} imagesizes="100vw" fetchpriority="high">}
+<link rel="stylesheet" href={`/css/styles.css?v=${v}`}>
+</head>
+<body>
+
+<Sprite />
+
+<a class="skip" href="#main" data-skip data-i18n="skip">Saltar al contenido</a>
+
+<Nav mux={mux} />
+
+<slot />
+
+<Footer />
+
+{scripts.map((s) => <script is:inline src={`${s}?v=${v}`}></script>)}
+</body>
+</html>

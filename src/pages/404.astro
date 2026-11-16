@@ -1,0 +1,26 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base
+  page="404"
+  title="Página no encontrada | Kame House Estudio"
+  noindex
+  scripts={["/assets/js/lenis.min.js", "/js/i18n.js", "/js/core.js", "/js/pagina.js"]}
+>
+<main id="main">
+
+  <section class="s-black nf" aria-labelledby="nf-h">
+    <svg class="bigk" viewBox="0 0 263.96 215.49" aria-hidden="true"><use href="#kh-iso"/></svg>
+    <div class="wrap nf-in">
+      <p class="nf-code" aria-hidden="true">404</p>
+      <h1 class="page-title" id="nf-h" data-i18n="nf.h1">Esta página no existe</h1>
+      <p class="lead" data-i18n="nf.lead">Puede que el link esté mal escrito o que la página ya no esté. Desde el inicio llegás a todo el sitio.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="/" data-i18n="nf.home">Volver al inicio</a>
+        <a class="btn btn-line" href="/reservar" data-i18n="cta.reservar">Reservar sesión</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+</Base>

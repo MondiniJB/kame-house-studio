@@ -187,6 +187,27 @@
     track.style.transform = `translate3d(${(-Math.max(0, track.scrollWidth - innerWidth) * p).toFixed(1)}px, 0, 0)`;
   });
 
+  /* ---- Niebla: mientras los artistas tapan el hero fijo, el hero se desenfoca y oscurece ---- */
+  const fog = $('#fog'), hero = $('.hero'), heroMark = $('#hero');
+  const sizeMark = () => {
+    heroMark.style.height = hero.offsetHeight + 'px';
+    // si el hero es más alto que la pantalla, se fija recién cuando se ve su borde de abajo
+    hero.style.top = Math.min(0, innerHeight - hero.offsetHeight) + 'px';
+  };
+  sizeMark();
+  addEventListener('resize', sizeMark);
+  KH.scene(fog, (_, r) => {
+    if (!root.classList.contains('scene-ok')) { hero.style.filter = hero.style.opacity = ''; return; }
+    // cuánto del hero visible ya tapó la sección de artistas (0 a 1)
+    const vis = Math.min(hero.offsetHeight, innerHeight), artTop = r.top + hero.offsetHeight;
+    const p = clamp01((vis - artTop) / vis);
+    // tapado del todo: se apaga, así no se dibuja debajo del resto de la escena
+    hero.style.opacity = p >= 1 ? '0' : '';
+    // el desenfoque llega rápido (curva de salida) para que el título del hero no compita con el de artistas
+    const b = 1 - (1 - p) ** 2.4;
+    hero.style.filter = p > 0 && p < 1 ? `blur(${(b * 18).toFixed(1)}px) brightness(${(1 - b * 0.62).toFixed(3)})` : '';
+  });
+
   /* ---- Mux: faders que suben con cada sección ---- */
   const SECTION_LABEL = { hero: 'Inicio', 'artistas-home': 'Artistas', historia: 'La casa', 'servicios-g': 'Servicios', merch: 'Merch' };
   $$('[data-fader]').forEach((f) => {

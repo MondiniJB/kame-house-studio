@@ -1,0 +1,65 @@
+---
+// Nav de escritorio, menú del celular y (solo en el inicio) el mux de secciones.
+interface Props { mux?: boolean }
+const { mux = false } = Astro.props;
+---
+<header class="nav s-black">
+  <div class="wrap nav-in">
+    <a class="brand" href="/" aria-label="Kame House Estudio, inicio">
+      <svg viewBox="0 0 401.32 132.18" aria-hidden="true"><use href="#kh-hor"/></svg>
+    </a>
+    <ul class="nav-links">
+      <li><a data-nav="estudio" href="/estudio" data-i18n="nav.estudio">Estudio</a></li>
+      <li><a data-nav="artistas" href="/artistas" data-i18n="nav.artistas">Artistas</a></li>
+      <li><a data-nav="servicios" href="/#servicios" data-i18n="nav.servicios">Servicios</a></li>
+      <li><a data-nav="sesiones" href="/#sesiones" data-i18n="nav.sesiones">Sesiones</a></li>
+      <li><a data-nav="merch" href="/#merch" data-i18n="nav.merch">Merch</a></li>
+    </ul>
+    {mux && (
+      <nav class="mux mux-nav" aria-label="Secciones del inicio">
+        <a href="#hero" data-fader="hero" aria-label="Ir al inicio" title="Inicio"><i></i><b></b></a>
+        <a href="#artistas-home" data-fader="artistas-home" aria-label="Ir a artistas" title="Artistas"><i></i><b></b></a>
+        <a href="#historia" data-fader="historia" aria-label="Ir a la historia del estudio" title="La casa"><i></i><b></b></a>
+        <a href="#servicios" data-fader="servicios-g" aria-label="Ir a servicios" title="Servicios"><i></i><b></b></a>
+        <a href="#merch" data-fader="merch" aria-label="Ir a merch" title="Merch"><i></i><b></b></a>
+      </nav>
+    )}
+    <div class="lang" role="group" aria-label="Idioma">
+      <button type="button" data-lang="es" aria-pressed="true">ES</button>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+    <a class="btn btn-primary" href="/reservar" data-i18n="cta.reservar">Reservar sesión</a>
+    <button class="menu-btn" type="button" data-menu-toggle aria-expanded="false" aria-controls="menu">
+      <span></span><b class="visually-hidden" data-i18n="menu">Menú</b>
+    </button>
+  </div>
+</header>
+
+<div class="menu s-black" id="menu" data-menu data-lenis-prevent>
+  <ul>
+    <li><a href="/" data-i18n="nav.inicio">Inicio</a></li>
+    <li><a href="/estudio" data-i18n="nav.estudio">Estudio</a></li>
+    <li><a href="/artistas" data-i18n="nav.artistas">Artistas</a></li>
+    <li><a href="/#servicios" data-i18n="nav.servicios">Servicios</a></li>
+    <li><a href="/#sesiones" data-i18n="nav.sesiones">Sesiones</a></li>
+    <li><a href="/#merch" data-i18n="nav.merch">Merch</a></li>
+  </ul>
+  <a class="btn btn-primary" href="/reservar" data-i18n="cta.reservar">Reservar sesión</a>
+  <div class="lang" role="group" aria-label="Idioma">
+    <button type="button" data-lang="es" aria-pressed="true">ES</button>
+    <button type="button" data-lang="en" aria-pressed="false">EN</button>
+  </div>
+</div>
+
+{mux && (
+<nav class="mux mux-side" aria-label="Secciones del inicio (lateral)">
+  <p class="mux-label" id="mux-label" aria-hidden="true">Inicio</p>
+  <div class="mux-faders">
+    <a href="#hero" data-fader="hero" aria-label="Ir al inicio" title="Inicio"><i></i><b></b></a>
+    <a href="#artistas-home" data-fader="artistas-home" aria-label="Ir a artistas" title="Artistas"><i></i><b></b></a>
+    <a href="#historia" data-fader="historia" aria-label="Ir a la historia del estudio" title="La casa"><i></i><b></b></a>
+    <a href="#servicios" data-fader="servicios-g" aria-label="Ir a servicios" title="Servicios"><i></i><b></b></a>
+    <a href="#merch" data-fader="merch" aria-label="Ir a merch" title="Merch"><i></i><b></b></a>
+  </div>
+</nav>
+)}

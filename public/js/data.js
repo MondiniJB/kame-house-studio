@@ -18,7 +18,7 @@
     ['Zecca', 'productor'],
   ];
   // portada en WebP (tools/imagenes.py genera 240, 360, 540 y 720 px): chicas para miniaturas y la etiqueta del disco
-  KH.cover = (file, w = 720) => `assets/media/${file}-${w}.webp`;
+  KH.cover = (file, w = 720) => `/assets/media/${file}-${w}.webp`;
   KH.temasDe = (name) => KH.TEMAS.map((t, i) => [t, i]).filter(([t]) => t[3].includes(name));
 
   // Cada tema es un vinilo: la portada es la funda y el disco (con la portada como etiqueta) asoma detrás.

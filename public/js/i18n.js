@@ -12,7 +12,7 @@
     'err.required': 'Fill in this field.', 'err.email': 'Check the email: the @ or the domain is missing (e.g. name@gmail.com).', 'err.services': 'Pick at least one service.', 'err.temas': 'Enter a number between 1 and 30.', 'err.date': 'That date has passed. Pick today or later.',
 
     /* inicio */
-    'hero.k': 'Recording studio · Chacarita, Buenos Aires', 'hero.l1': 'Power', 'hero.l2': 'up.',
+    'hero.k': 'Recording studio · Chacarita, Buenos Aires', 'hero.l1': 'Power', 'hero.l2': 'up',
     'hero.sub': 'Over six years recording urban music, with Mariano Bilinkis leading every session.', 'hero.ses': 'See sessions',
     'art.h': 'Through the room', 'art.p': 'Some of the artists and producers who recorded with us.', 'art.all': 'See all credits',
     'temas.h': 'Made at Kame House', 'temas.p': 'Tracks that went through the studio.',
@@ -28,7 +28,7 @@
     'mk.h': 'Make your cover', 'mk.note': 'Try the template the studio uses for every session: upload a photo, add your AKA and your track name, and download it.',
     'mk.foto': 'Your photo', 'mk.subir': 'Upload photo', 'mk.cambiar': 'Change photo', 'mk.quitar': 'Remove photo', 'mk.privado': 'Your photo stays on your device: it isn’t uploaded anywhere.', 'mk.dl': 'Download cover', 'mk.aka': 'Your AKA', 'mk.tema': 'Your track', 'mk.color': 'Plate', 'mk.negro': 'Black', 'mk.violeta': 'Violet', 'mk.go': 'Book to record it',
     'merch.h': 'Official merch', 'merch.p': 'Hoodies, caps, polos and lanyards with the studio’s brand.', 'm.1': 'Hoodie', 'm.2': 'Cap', 'm.3': 'Polo',
-    'closer.h': 'Come to the house.',
+    'closer.h': 'Come to the house',
     /* estudio */
     'est.h1': 'Studio', 'est.lead': 'A room in Chacarita to record, mix and master urban music.',
     'mb.h': 'Mariano Bilinkis', 'mb.p1': 'He leads the studio’s sessions. He took part in Grammy-nominated and Grammy-winning projects.',

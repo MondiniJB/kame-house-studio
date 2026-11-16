@@ -1,0 +1,87 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base
+  page="estudio"
+  title="Estudio | Kame House Estudio"
+  description="Kame House: la sala, Mariano Bilinkis y el sello. Grabación, mezcla y mastering de música urbana en Chacarita."
+  path="/estudio"
+  hero="estudio-sala"
+  scripts={["/assets/js/lenis.min.js", "/js/i18n.js", "/js/core.js", "/js/pagina.js"]}
+>
+<main id="main">
+
+  <section class="s-black page-photo" aria-labelledby="est-h">
+    <div class="hero-media" aria-hidden="true">
+      <img src="/assets/media/estudio-sala-1280.webp" srcset="/assets/media/estudio-sala-800.webp 800w, /assets/media/estudio-sala-1280.webp 1280w, /assets/media/estudio-sala-2000.webp 2000w" sizes="100vw" alt="" width="2000" height="1332" fetchpriority="high" decoding="async">
+    </div>
+    <div class="wrap page-photo-in">
+      <h1 class="page-title" id="est-h" data-i18n="est.h1">Estudio</h1>
+      <p class="lead" data-i18n="est.lead">Una sala en Chacarita para grabar, mezclar y masterizar música urbana.</p>
+    </div>
+  </section>
+
+  <section class="s-white section" aria-labelledby="casa-h">
+    <div class="wrap split">
+      <div class="split-copy">
+        <h2 class="title" id="casa-h" data-reveal data-i18n="field.h">La casa</h2>
+        <div class="prose">
+          <p data-i18n="field.p1">Kame House graba música urbana en Chacarita desde hace más de seis años. El nombre sale de Dragon Ball: es la casa del Maestro Roshi, donde Goku y Krilin entrenan de chicos. Acá la idea es parecida: un lugar tranquilo para trabajar el tema hasta que esté listo.</p>
+          <p data-i18n="field.p2">Las sesiones las dirige Mariano Bilinkis, que participó en proyectos nominados y premiados en los Grammy. En la sala conviven equipos analógicos de alta fidelidad y herramientas digitales, y la grabación, la mezcla y el mastering se hacen en el mismo lugar.</p>
+        </div>
+      </div>
+      <div class="ph cut split-photo" data-reveal style="--i:2"><img src="/assets/media/historia-sala.webp" alt="La sala de grabación de Kame House, con luces violetas, consola y monitores" width="460" height="575" loading="lazy" decoding="async"></div>
+    </div>
+  </section>
+
+  <section class="s-violet section mariano" aria-labelledby="mb-h">
+    <div class="wrap split split-rev">
+      <div class="ph cut split-photo split-photo-tall" data-reveal><img src="/assets/media/reel-consejo.webp" alt="Mariano Bilinkis frente a cámara en la sala del estudio" width="454" height="723" loading="lazy" decoding="async"></div>
+      <div class="split-copy">
+        <h2 class="title" id="mb-h" data-reveal data-i18n="mb.h">Mariano Bilinkis</h2>
+        <div class="prose">
+          <p data-i18n="mb.p1">Dirige las sesiones del estudio. Participó en proyectos nominados y premiados en los Grammy.</p>
+          <p data-i18n="mb.p2">Trabaja con equipos analógicos de alta fidelidad y herramientas digitales, y está en la sala desde la primera toma hasta el archivo final.</p>
+          <p data-i18n="mb.p3">En el Instagram del estudio comparte consejos de producción y cuenta cómo se hicieron algunos temas.</p>
+        </div>
+        <a class="btn btn-black" href="https://www.instagram.com/estudiokamehouse/" target="_blank" rel="noopener noreferrer" data-i18n="mb.ig">Ver los consejos en Instagram</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="s-black section" aria-labelledby="sala-h">
+    <div class="wrap">
+      <div class="svc-head">
+        <h2 class="title" id="sala-h" data-reveal data-i18n="sala.h">La sala</h2>
+        <p class="soft" data-i18n="sala.p">Imágenes de sesiones publicadas en el Instagram del estudio.</p>
+      </div>
+      <ul class="gal">
+        <li data-reveal style="--i:1"><img src="/assets/media/reel-sala.webp" alt="La sala de grabación con luces violetas, consola, monitores y sillones" width="454" height="723" loading="lazy" decoding="async"></li>
+        <li data-reveal style="--i:2"><img src="/assets/media/reel-sesion.webp" alt="Cuatro personas posando en la sala de grabación, con luces violetas y una pantalla con un dragón" width="454" height="723" loading="lazy" decoding="async"></li>
+        <li data-reveal style="--i:3"><img src="/assets/media/historia-sala.webp" alt="La sala vista desde la entrada, con la consola, los monitores y el techo con luz violeta" width="460" height="575" loading="lazy" decoding="async"></li>
+        <li data-reveal style="--i:4"><img src="/assets/media/reel-teca.webp" alt="Mariano Bilinkis en el sillón de la sala hablando sobre TECA RMX" width="454" height="723" loading="lazy" decoding="async"></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="s-paper section" aria-labelledby="sello-h">
+    <div class="wrap sello">
+      <h2 class="title" id="sello-h" data-reveal data-i18n="sello.h">El sello</h2>
+      <div class="prose">
+        <p data-i18n="sello.p">Además de grabar, mezclar y masterizar, Kame House tiene su propio sello discográfico. Las novedades salen en nuestro Instagram.</p>
+        <a class="link" href="https://www.instagram.com/estudiokamehouse/" target="_blank" rel="noopener noreferrer">@estudiokamehouse</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="closer closer-simple s-violet" aria-labelledby="c2-h">
+    <div class="wrap">
+      <div class="closer-box">
+        <h2 class="title" id="c2-h" data-i18n="closer2.h">¿Tenés un tema para grabar?</h2>
+        <a class="btn btn-black" href="/reservar" data-i18n="cta.reservar">Reservar sesión</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+</Base>

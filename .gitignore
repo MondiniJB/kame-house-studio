@@ -8,3 +8,7 @@ node_modules/
 .taste-skill/
 *.log
 .vercel
+
+# Astro
+dist/
+.astro/

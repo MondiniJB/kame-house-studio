@@ -1,0 +1,244 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base
+  page="inicio"
+  title="Kame House Estudio | Grabación, mezcla y mastering en Chacarita"
+  description="Kame House Estudio: grabación, mezcla y mastering de música urbana en Chacarita, Buenos Aires. Armá tu sesión y reservá."
+  ogTitle="Kame House Estudio"
+  path="/"
+  hero="hero-estudio"
+  scripts={["/assets/js/lenis.min.js", "/js/i18n.js", "/js/data.js", "/js/coverflow.js", "/js/core.js", "/js/home.js", "/js/portada.js"]}
+  mux
+>
+<main id="main">
+
+  <!-- Niebla: el hero queda quieto y los artistas se le enciman; mientras lo tapan, se desenfoca (home.js).
+       #hero es una marca con la posición real del hero, para el ancla y el mux: el hero fijado no la tiene. -->
+  <div class="fog" id="fog">
+  <div class="hero-mark" id="hero" aria-hidden="true"></div>
+  <section class="hero s-black" aria-labelledby="hero-h">
+    <!-- Fondo: foto o video. Para usar video, reemplazar el <img> por:
+         <video autoplay muted loop playsinline poster="assets/media/hero-estudio-1280.webp"><source src="/assets/media/hero.mp4" type="video/mp4"></video> -->
+    <div class="hero-media" aria-hidden="true">
+      <img src="/assets/media/hero-estudio-1280.webp" srcset="/assets/media/hero-estudio-800.webp 800w, /assets/media/hero-estudio-1280.webp 1280w, /assets/media/hero-estudio-2000.webp 2000w" sizes="100vw" alt="" width="2000" height="1211" fetchpriority="high" decoding="async">
+    </div>
+    <svg class="bigk" viewBox="0 0 263.96 215.49" aria-hidden="true"><use href="#kh-iso"/></svg>
+    <div class="wrap hero-in">
+      <p class="kicker" data-i18n="hero.k">Estudio de grabación · Chacarita, CABA</p>
+      <h1 class="page-title hero-title" id="hero-h"><span data-i18n="hero.l1">Activá</span> <span data-i18n="hero.l2">los poderes</span></h1>
+      <p class="lead" data-i18n="hero.sub">Más de seis años grabando música urbana, con Mariano Bilinkis al frente de cada sesión.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="/reservar" data-i18n="cta.reservar">Reservar sesión</a>
+        <a class="btn btn-line" href="#sesiones" data-i18n="hero.ses">Ver sesiones</a>
+      </div>
+    </div>
+    <div class="wrap hero-foot">
+      <ul class="hero-svc">
+        <li data-i18n="svc.grabacion">Grabación</li><li data-i18n="svc.mezcla">Mezcla</li><li>Mastering</li><li data-i18n="svc.produccion">Producción</li><li data-i18n="svc.sala.short">Sala</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="artists s-black" id="artistas-home" aria-labelledby="art-h">
+    <div class="art-stage">
+      <div class="sel-band" aria-hidden="true"></div>
+      <div class="wrap art-grid">
+        <div class="art-side">
+          <h2 class="title" id="art-h" data-i18n="art.h">Pasaron por la sala</h2>
+          <p class="soft" data-i18n="art.p">Algunos de los artistas y productores que grabaron con nosotros.</p>
+          <a class="link" href="/artistas" data-i18n="art.all">Ver todos los créditos</a>
+        </div>
+        <div class="roll-window" id="art-window">
+          <ul class="roll" id="art-roll">
+            <li>Skrillex</li><li>Feid</li><li>YSY A</li><li>Bhavi</li><li>Asan</li><li>Khea</li><li>Midel</li><li>J Rei</li><li>Neo Pistea</li><li>Taichu</li><li>Zecca</li>
+          </ul>
+        </div>
+      </div>
+      <div class="temas-wrap" id="temas-wrap">
+        <div class="wrap temas-head">
+          <h3 class="title title-s" data-i18n="temas.h">Hecho en Kame House</h3>
+          <p class="soft" data-i18n="temas.p">Temas que pasaron por el estudio.</p>
+        </div>
+        <div class="cf" id="temas-cf" tabindex="0" role="region" aria-roledescription="carrusel" aria-label="Temas grabados en el estudio">
+          <ul class="cf-track" id="temas-track"></ul>
+          <div class="wrap cf-ui">
+            <button class="cf-btn cf-prev" type="button" aria-label="Tema anterior"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square"/></svg></button>
+            <button class="cf-btn cf-next" type="button" aria-label="Tema siguiente"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square"/></svg></button>
+            <p class="visually-hidden cf-live" aria-live="polite"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  </div>
+
+  <!-- Cintas de consola sobre el corte entre los temas y La casa: corren solas, en sentidos opuestos -->
+  <div class="tapes" aria-hidden="true">
+    <div class="tape tape-b"><div class="tape-track">{[0, 1].map(() => <span>{Array(8).fill('Vox · Adlib · Kick · Snare · Hats · 808 · Bass · Keys · Gtr · FX').join(' · ')} ·</span>)}</div></div>
+    <div class="tape tape-a"><div class="tape-track">{[0, 1].map(() => <span>{Array(6).fill('Kame House Estudio · Chacarita').join(' · ')} ·</span>)}</div></div>
+  </div>
+
+  <section class="s-violet field-v" id="historia" aria-labelledby="field-h">
+    <div class="wrap field-grid">
+      <div>
+        <h2 class="title" id="field-h" data-reveal data-i18n="field.h">La casa</h2>
+        <div class="prose">
+          <p data-i18n="field.p1">Kame House graba música urbana en Chacarita desde hace más de seis años. El nombre sale de Dragon Ball: es la casa del Maestro Roshi, donde Goku y Krilin entrenan de chicos. Acá la idea es parecida: un lugar tranquilo para trabajar el tema hasta que esté listo.</p>
+          <p data-i18n="field.p2">Las sesiones las dirige Mariano Bilinkis, que participó en proyectos nominados y premiados en los Grammy. En la sala conviven equipos analógicos de alta fidelidad y herramientas digitales, y la grabación, la mezcla y el mastering se hacen en el mismo lugar.</p>
+          <p data-i18n="field.p3">El estudio tiene además su propio sello discográfico. Por la sala pasaron Bhavi, Khea, Asan, Neo Pistea, YSY A y Feid, entre otros.</p>
+        </div>
+        <a class="btn btn-black" href="/estudio" data-i18n="field.go">Conocé el estudio</a>
+      </div>
+      <div class="ph cut" data-reveal style="--i:2;aspect-ratio:4/5"><img src="/assets/media/historia-sala.webp" alt="La sala de grabación de Kame House, con luces violetas, consola y monitores" width="460" height="575" loading="lazy" decoding="async"></div>
+    </div>
+  </section>
+
+  <div id="servicios-g">
+    <section class="s-black section" id="servicios" aria-labelledby="svc-h">
+      <div class="wrap">
+        <div class="svc-head">
+          <h2 class="title" id="svc-h" data-reveal data-i18n="svc.h">Servicios</h2>
+          <p class="soft" data-i18n="svc.price">Cotizamos cada proyecto por separado. Contanos qué tenés y te pasamos un presupuesto.</p>
+        </div>
+        <ul class="slabs">
+          <li class="slab" data-focus style="--g:1.35"><a href="/reservar?servicio=grabacion"><span class="slab-img"><img src="/assets/media/svc-grabacion-500.webp" srcset="/assets/media/svc-grabacion-500.webp 500w, /assets/media/svc-grabacion-1000.webp 1000w" sizes="(max-width: 1100px) 50vw, 30vw" alt="" width="1000" height="667" loading="lazy" decoding="async"></span><span class="slab-body"><h3 data-i18n="svc.grabacion">Grabación</h3><p data-i18n="svc.grabacion.p">Voces e instrumentos en la sala, con el equipo del estudio.</p><span class="go" data-i18n="svc.go">Consultar</span></span></a></li>
+          <li class="slab" data-focus style="--g:1"><a href="/reservar?servicio=mezcla"><span class="slab-img"><img src="/assets/media/svc-mezcla-500.webp" srcset="/assets/media/svc-mezcla-500.webp 500w, /assets/media/svc-mezcla-1000.webp 1000w" sizes="(max-width: 1100px) 50vw, 30vw" alt="" width="1000" height="667" loading="lazy" decoding="async"></span><span class="slab-body"><h3 data-i18n="svc.mezcla">Mezcla</h3><p data-i18n="svc.mezcla.p">Tus pistas ordenadas y balanceadas según lo que pide el tema.</p><span class="go" data-i18n="svc.go">Consultar</span></span></a></li>
+          <li class="slab" data-focus style="--g:1.15"><a href="/reservar?servicio=mastering"><span class="slab-img"><img src="/assets/media/svc-mastering-500.webp" srcset="/assets/media/svc-mastering-500.webp 500w, /assets/media/svc-mastering-1000.webp 1000w" sizes="(max-width: 1100px) 50vw, 30vw" alt="" width="1000" height="680" loading="lazy" decoding="async"></span><span class="slab-body"><h3>Mastering</h3><p data-i18n="svc.mastering.p">El último ajuste, para que el tema suene parejo en todas las plataformas.</p><span class="go" data-i18n="svc.go">Consultar</span></span></a></li>
+          <li class="slab" data-focus style="--g:0.95"><a href="/reservar?servicio=produccion"><span class="slab-img"><img src="/assets/media/svc-produccion-500.webp" srcset="/assets/media/svc-produccion-500.webp 500w, /assets/media/svc-produccion-1000.webp 1000w" sizes="(max-width: 1100px) 50vw, 30vw" alt="" width="1000" height="667" loading="lazy" decoding="async"></span><span class="slab-body"><h3 data-i18n="svc.produccion">Producción</h3><p data-i18n="svc.produccion.p">Si llegás con una idea y sin beat, lo armamos con vos.</p><span class="go" data-i18n="svc.go">Consultar</span></span></a></li>
+          <li class="slab" data-focus style="--g:1.05"><a href="/reservar?servicio=sala"><span class="slab-img"><img src="/assets/media/svc-sala-500.webp" srcset="/assets/media/svc-sala-500.webp 500w, /assets/media/svc-sala-1000.webp 1000w" sizes="(max-width: 1100px) 50vw, 30vw" alt="" width="1000" height="667" loading="lazy" decoding="async"></span><span class="slab-body"><h3 data-i18n="svc.sala.short">Sala</h3><p data-i18n="svc.sala.p">La sala por hora, para vos y tu equipo.</p><span class="go" data-i18n="svc.go">Consultar</span></span></a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="s-paper builder-sec" aria-labelledby="builder-h">
+      <div class="wrap">
+        <form class="builder s-black cut" id="builder" action="/reservar" method="get" novalidate data-reveal>
+          <div class="builder-top">
+            <h2 class="title" id="builder-h" data-i18n="b.h">Armá tu sesión</h2>
+            <p class="soft" data-i18n="b.p">Elegí los servicios y la cantidad de temas. La fecha y tus datos los completás en la reserva.</p>
+          </div>
+          <div class="builder-grid">
+            <fieldset class="field" data-field id="b-servicios">
+              <legend class="lbl" data-i18n="f.svc">Servicios</legend>
+              <p class="hint" data-i18n="f.svc.h">Podés marcar más de uno.</p>
+              <div class="chips">
+                <label class="chip"><input type="checkbox" name="servicio" value="grabacion" checked><span data-i18n="svc.grabacion">Grabación</span></label>
+                <label class="chip"><input type="checkbox" name="servicio" value="mezcla"><span data-i18n="svc.mezcla">Mezcla</span></label>
+                <label class="chip"><input type="checkbox" name="servicio" value="mastering"><span>Mastering</span></label>
+                <label class="chip"><input type="checkbox" name="servicio" value="produccion"><span data-i18n="svc.produccion">Producción</span></label>
+                <label class="chip"><input type="checkbox" name="servicio" value="sala"><span data-i18n="svc.sala">Alquiler de sala</span></label>
+              </div>
+            </fieldset>
+            <div class="field" data-field>
+              <label for="b-temas" data-i18n="f.temas">Cantidad de temas</label>
+              <div class="counter-f">
+                <button type="button" data-step-btn="-1" aria-label="Uno menos">−</button>
+                <input class="input" id="b-temas" name="temas" type="number" inputmode="numeric" min="1" max="30" value="1">
+                <button type="button" data-step-btn="1" aria-label="Uno más">+</button>
+              </div>
+            </div>
+            <div class="result" aria-live="polite">
+              <small data-i18n="b.res">Tu sesión</small>
+              <strong id="b-result">Grabación · 1 tema</strong>
+            </div>
+          </div>
+          <div class="builder-foot">
+            <button class="btn btn-primary" type="submit" data-i18n="b.go">Seguir con la reserva</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="sessions-scene s-white" id="sesiones" aria-labelledby="ses-h">
+      <div class="sessions-stage">
+        <div class="wrap sessions-head">
+          <h2 class="title" id="ses-h" data-i18n="ses.h">Sesiones</h2>
+          <div class="sessions-copy">
+            <p class="soft" data-i18n="ses.p">Registros de sesiones y consejos de producción. Los publicamos en nuestro Instagram.</p>
+            <div class="out-links">
+              <a class="link" href="https://www.instagram.com/estudiokamehouse/" target="_blank" rel="noopener noreferrer">Instagram <svg aria-hidden="true"><use href="#i-ext"/></svg></a>
+            </div>
+          </div>
+        </div>
+        <div class="strip" tabindex="0" aria-label="Clips y reels de sesiones">
+          <div class="strip-track" id="strip-track">
+            <a class="clip clip-reel clip-link" href="https://www.instagram.com/estudiokamehouse/" target="_blank" rel="noopener noreferrer"><div class="ph on-dark"><img src="/assets/media/reel-teca.webp" alt="Mariano Bilinkis sentado en el sillón de la sala hablando a cámara, con el texto &quot;y bueno para TECA REMIX fue eso..&quot;" width="454" height="723" loading="lazy" decoding="async"><span class="sticker">Reel 01</span></div><span class="clip-band"><strong>TECA remix</strong><span>Reel · Instagram <svg aria-hidden="true"><use href="#i-ext"/></svg></span></span></a>
+            <a class="clip clip-reel clip-link" href="https://www.instagram.com/estudiokamehouse/" target="_blank" rel="noopener noreferrer"><div class="ph on-dark"><img src="/assets/media/reel-consejo.webp" alt="Mariano Bilinkis haciendo el gesto del número cuatro frente a cámara, con el título &quot;Consejo N4&quot;" width="454" height="723" loading="lazy" decoding="async"><span class="sticker">Reel 02</span></div><span class="clip-band"><strong>Consejo N4</strong><span>Reel · Instagram <svg aria-hidden="true"><use href="#i-ext"/></svg></span></span></a>
+            <a class="clip clip-reel clip-link" href="https://www.instagram.com/estudiokamehouse/" target="_blank" rel="noopener noreferrer"><div class="ph on-dark"><img src="/assets/media/reel-sesion.webp" alt="Cuatro personas posando en la sala de grabación, con luces violetas y una pantalla con un dragón" width="454" height="723" loading="lazy" decoding="async"><span class="sticker">Reel 03</span></div><span class="clip-band"><strong>En sesión</strong><span>Reel · Instagram <svg aria-hidden="true"><use href="#i-ext"/></svg></span></span></a>
+            <a class="clip clip-reel clip-link" href="https://www.instagram.com/estudiokamehouse/" target="_blank" rel="noopener noreferrer"><div class="ph on-dark"><img src="/assets/media/reel-sala.webp" alt="La sala de grabación con luces violetas, consola, monitores y sillones" width="454" height="723" loading="lazy" decoding="async"><span class="sticker">Reel 04</span></div><span class="clip-band"><strong>La sala</strong><span>Reel · Instagram <svg aria-hidden="true"><use href="#i-ext"/></svg></span></span></a>
+            <figure class="clip clip-reel clip-more"><a class="ph more" href="https://www.instagram.com/estudiokamehouse/" target="_blank" rel="noopener noreferrer"><span data-i18n="more.ig">Más sesiones en Instagram</span><svg aria-hidden="true"><use href="#i-ext"/></svg></a></figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="s-black section" aria-labelledby="maker-h">
+      <div class="wrap maker-grid">
+        <div class="maker-copy" data-reveal>
+          <h2 class="title" id="maker-h" data-i18n="mk.h">Hacé tu portada</h2>
+          <p class="soft" data-i18n="mk.note">Probá la plantilla que usa el estudio para cada sesión: subí una foto, poné tu AKA y el nombre del tema, y descargala.</p>
+          <div class="field">
+            <span class="lbl" id="mk-foto-l" data-i18n="mk.foto">Tu foto</span>
+            <div class="file-row">
+              <label class="btn btn-line file-btn"><input class="visually-hidden" type="file" id="mk-foto" accept="image/*" aria-labelledby="mk-foto-l mk-foto-t"><span id="mk-foto-t" data-i18n="mk.subir">Subir foto</span></label>
+              <button class="text-btn" type="button" id="mk-quitar" hidden data-i18n="mk.quitar">Quitar foto</button>
+            </div>
+            <p class="hint" data-i18n="mk.privado">La foto queda en tu dispositivo: no se sube a ningún lado.</p>
+          </div>
+          <div class="two-cols">
+            <div class="field"><label for="mk-aka" data-i18n="mk.aka">Tu AKA</label><input class="input" id="mk-aka" type="text" maxlength="18" autocomplete="off"></div>
+            <div class="field"><label for="mk-tema" data-i18n="mk.tema">Tu tema</label><input class="input" id="mk-tema" type="text" maxlength="28" autocomplete="off"></div>
+          </div>
+          <fieldset class="swatches">
+            <legend data-i18n="mk.color">Placa</legend>
+            <label class="swatch" style="--sw:#181818"><input type="radio" name="mk-color" value="negro" id="mk-negro" checked><span data-i18n="mk.negro">Negra</span></label>
+            <label class="swatch" style="--sw:#73378c"><input type="radio" name="mk-color" value="violeta" id="mk-violeta"><span data-i18n="mk.violeta">Violeta</span></label>
+          </fieldset>
+          <div class="maker-actions">
+            <button class="btn btn-primary" type="button" id="mk-dl" data-i18n="mk.dl">Descargar portada</button>
+            <a class="btn btn-line" href="/reservar" id="mk-go" data-i18n="mk.go">Reservar para grabarlo</a>
+          </div>
+        </div>
+        <figure class="cover" id="mk-cover" data-reveal style="--i:2">
+          <div class="cover-media" id="mk-media"><img id="mk-img" alt="" hidden></div>
+          <span class="sticker">KH Session</span>
+          <figcaption class="cover-plate" aria-live="polite"><strong id="mk-out-aka">Tu AKA</strong><span id="mk-out-tema">Tu tema · Kame House</span></figcaption>
+        </figure>
+      </div>
+    </section>
+  </div>
+
+  <section class="s-white section" id="merch" aria-labelledby="merch-h">
+    <div class="wrap">
+      <div class="merch-head">
+        <h2 class="title" id="merch-h" data-reveal data-i18n="merch.h">Merch oficial</h2>
+        <p class="soft" data-i18n="merch.p">Buzos, gorras, chombas y lanyards con la marca del estudio.</p>
+      </div>
+      <ul class="products">
+        <li class="product" data-focus data-reveal style="--i:1"><div class="tile"><img src="/assets/media/merch-buzo-450.webp" srcset="/assets/media/merch-buzo-450.webp 450w, /assets/media/merch-buzo-900.webp 900w" sizes="(max-width: 900px) 50vw, 25vw" alt="" width="900" height="1479" loading="lazy" decoding="async"><div class="meta"><b data-i18n="m.1">Buzo</b></div></div></li>
+        <li class="product" data-focus data-reveal style="--i:2"><div class="tile"><img src="/assets/media/merch-gorra-450.webp" srcset="/assets/media/merch-gorra-450.webp 450w, /assets/media/merch-gorra-900.webp 900w" sizes="(max-width: 900px) 50vw, 25vw" alt="" width="900" height="1350" loading="lazy" decoding="async"><div class="meta"><b data-i18n="m.2">Gorra</b></div></div></li>
+        <li class="product" data-focus data-reveal style="--i:3"><div class="tile"><img src="/assets/media/merch-chomba-450.webp" srcset="/assets/media/merch-chomba-450.webp 450w, /assets/media/merch-chomba-900.webp 900w" sizes="(max-width: 900px) 50vw, 25vw" alt="" width="900" height="1125" loading="lazy" decoding="async"><div class="meta"><b data-i18n="m.3">Chomba</b></div></div></li>
+        <li class="product" data-focus data-reveal style="--i:4"><div class="tile"><img src="/assets/media/merch-lanyard-450.webp" srcset="/assets/media/merch-lanyard-450.webp 450w, /assets/media/merch-lanyard-900.webp 900w" sizes="(max-width: 900px) 50vw, 25vw" alt="" width="900" height="600" loading="lazy" decoding="async"><div class="meta"><b>Lanyard</b></div></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="closer s-black" id="contacto" aria-labelledby="closer-h">
+    <figure class="closer-photo">
+      <img src="/assets/media/cierre-estudio-1200.webp" srcset="/assets/media/cierre-estudio-800.webp 800w, /assets/media/cierre-estudio-1200.webp 1200w, /assets/media/cierre-estudio-1600.webp 1600w" sizes="(max-width: 960px) 100vw, 50vw" alt="Sala de control de un estudio de grabación, con consola, monitores y luz cálida" width="1600" height="1201" loading="lazy" decoding="async">
+    </figure>
+    <div class="closer-box" data-reveal>
+      <h2 class="title" id="closer-h" data-i18n="closer.h">Vení a la casa</h2>
+      <ul class="contact">
+        <li><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg><a href="https://www.google.com/maps/search/?api=1&amp;query=Av.+Corrientes+3231,+Chacarita,+Buenos+Aires" target="_blank" rel="noopener noreferrer">Av. Corrientes 3231, Chacarita</a></li>
+        <li><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg><a href="tel:+5491112345678">+54 9 11 1234-5678</a></li>
+        <li><svg class="ico" aria-hidden="true"><use href="#i-mail"/></svg><a href="mailto:EstudioKameHouse@gmail.com">EstudioKameHouse@gmail.com</a></li>
+        <li><svg class="ico" aria-hidden="true"><use href="#i-ig"/></svg><a href="https://www.instagram.com/estudiokamehouse/" target="_blank" rel="noopener noreferrer">@estudiokamehouse</a></li>
+      </ul>
+      <a class="btn btn-primary" href="/reservar" data-i18n="cta.reservar">Reservar sesión</a>
+    </div>
+  </section>
+
+</main>
+</Base>
