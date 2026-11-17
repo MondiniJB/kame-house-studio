@@ -37,7 +37,7 @@
 
   /* ---------- Navegación ----------
      Cada página es un HTML propio, servido con direcciones limpias (vercel.json: /estudio sirve estudio.html).
-     Servicios, Sesiones y Merch son secciones del inicio (/#servicios, /#sesiones, /#merch). */
+     Servicios, Redes y Merch son secciones del inicio (/#servicios, /#redes, /#merch). */
   // "/", "/index.html", "/estudio" y "/estudio.html" se comparan como la misma página
   const samePage = (path) => path.replace(/(index)?\.html$/, '').replace(/\/$/, '') || '/';
   $$('[data-nav]').forEach((a) => {

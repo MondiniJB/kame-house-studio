@@ -4,7 +4,7 @@
   KH.I18N = { en: {
     /* comunes */
     skip: 'Skip to content', menu: 'Menu',
-    'nav.inicio': 'Home', 'nav.estudio': 'Studio', 'nav.artistas': 'Artists', 'nav.servicios': 'Services', 'nav.sesiones': 'Sessions', 'nav.merch': 'Merch',
+    'nav.inicio': 'Home', 'nav.estudio': 'Studio', 'nav.artistas': 'Artists', 'nav.servicios': 'Services', 'nav.redes': 'Social', 'nav.merch': 'Merch',
     'cta.reservar': 'Book a session', copy: 'Copy', copied: 'Copied',
     'svc.grabacion': 'Recording', 'svc.mezcla': 'Mixing', 'svc.mastering': 'Mastering', 'svc.produccion': 'Production', 'svc.sala': 'Room rental', 'svc.sala.short': 'Room',
     'foot.loc': 'Chacarita, Buenos Aires',
@@ -12,8 +12,8 @@
     'err.required': 'Fill in this field.', 'err.email': 'Check the email: the @ or the domain is missing (e.g. name@gmail.com).', 'err.services': 'Pick at least one service.', 'err.temas': 'Enter a number between 1 and 30.', 'err.date': 'That date has passed. Pick today or later.',
 
     /* inicio */
-    'hero.k': 'Recording studio · Chacarita, Buenos Aires', 'hero.l1': 'Power', 'hero.l2': 'up',
-    'hero.sub': 'Over six years recording urban music, with Mariano Bilinkis leading every session.', 'hero.ses': 'See sessions',
+    'hero.k': 'Recording, mixing and mastering studio', 'hero.l1': 'Power', 'hero.l2': 'up',
+    'hero.sub': 'Over six years recording urban music, with Mariano Bilinkis leading every session.', 'hero.ses': 'See our socials',
     'art.h': 'Through the room', 'art.p': 'Some of the artists and producers who recorded with us.', 'art.all': 'See all credits',
     'temas.h': 'Made at Kame House', 'temas.p': 'Tracks that went through the studio.',
     'field.h': 'The house',
@@ -24,13 +24,13 @@
     'svc.h': 'Services', 'svc.price': 'We quote every project separately. Tell us what you have and we send you a price.', 'svc.go': 'Ask',
     'svc.grabacion.p': 'Vocals and instruments in the room, with the studio’s gear.', 'svc.mezcla.p': 'Your tracks sorted and balanced to what the song needs.', 'svc.mastering.p': 'The final pass, so the track sounds even on every platform.', 'svc.produccion.p': 'If you come with an idea and no beat, we build it with you.', 'svc.sala.p': 'The room by the hour, for you and your crew.',
     'b.h': 'Build your session', 'b.p': 'Pick the services and the number of tracks. You add the date and your details when booking.', 'b.res': 'Your session', 'b.go': 'Continue to booking',
-    'ses.h': 'Sessions', 'ses.p': 'Session footage and production tips. We post them on our Instagram.', 'more.ig': 'More sessions on Instagram',
+    'ses.h': 'Social', 'ses.p': 'Session footage and production tips. We post them on our Instagram.', 'more.ig': 'More sessions on Instagram',
     'mk.h': 'Make your cover', 'mk.note': 'Try the template the studio uses for every session: upload a photo, add your AKA and your track name, and download it.',
     'mk.foto': 'Your photo', 'mk.subir': 'Upload photo', 'mk.cambiar': 'Change photo', 'mk.quitar': 'Remove photo', 'mk.privado': 'Your photo stays on your device: it isn’t uploaded anywhere.', 'mk.dl': 'Download cover', 'mk.aka': 'Your AKA', 'mk.tema': 'Your track', 'mk.color': 'Plate', 'mk.negro': 'Black', 'mk.violeta': 'Violet', 'mk.go': 'Book to record it',
     'merch.h': 'Official merch', 'merch.p': 'Hoodies, caps, polos and lanyards with the studio’s brand.', 'm.1': 'Hoodie', 'm.2': 'Cap', 'm.3': 'Polo',
     'closer.h': 'Come to the house',
     /* estudio */
-    'est.h1': 'Studio', 'est.lead': 'A room in Chacarita to record, mix and master urban music.',
+    'est.h1': 'Studio', 'est.lead': 'A room to record, mix and master urban music.',
     'mb.h': 'Mariano Bilinkis', 'mb.p1': 'He leads the studio’s sessions. He took part in Grammy-nominated and Grammy-winning projects.',
     'mb.p2': 'He works with high-fidelity analog gear and digital tools, and stays in the room from the first take to the final file.',
     'mb.p3': 'On the studio’s Instagram he shares production tips and tells how some tracks were made.', 'mb.ig': 'See the tips on Instagram',

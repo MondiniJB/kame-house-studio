@@ -29,7 +29,7 @@ El sitio se publica en **Vercel**, que corre `npm run build` en cada push y publ
 | `/reservar` | `src/pages/reservar.astro` (acepta `?servicio=` una o varias veces, `?temas=`, `?aka=`, `?tema=`) |
 | cualquier otra | `src/pages/404.astro` |
 
-Servicios, Sesiones y Merch no son páginas: son secciones del inicio (`/#servicios`, `/#sesiones`, `/#merch`).
+Servicios, Redes y Merch no son páginas: son secciones del inicio (`/#servicios`, `/#redes`, `/#merch`).
 
 ## Estructura
 
@@ -45,7 +45,7 @@ public/                      se publica tal cual:
   js/i18n.js                 textos en inglés
   js/data.js                 temas grabados y la tarjeta de vinilo de cada uno
   js/coverflow.js            carrusel coverflow invertido de los temas (scroll, arrastre, flechas, teclado)
-  js/home.js                 inicio: artistas, coverflow, Armá tu sesión, sesiones, mux
+  js/home.js                 inicio: artistas, coverflow, Armá tu sesión, redes, mux
   js/portada.js              Hacé tu portada: foto, silueta, textos y descarga en JPG de 1080 × 1350
   js/artistas.js             créditos: lista, filtros, vista previa y carrusel
   js/reservar.js             reserva: datos que llegan del inicio, resumen en vivo, validación y envío
