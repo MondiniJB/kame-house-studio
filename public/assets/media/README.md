@@ -20,6 +20,13 @@ Originales (portadas cuadradas de 720 px, reels de unos 454×723 px):
 | `reel-sesion.jpg` | Reel "En sesión" |
 | `reel-sala.jpg` | Reel "La sala" |
 
+## Fotos de artistas
+
+Fotos de perfil para `/artistas`, con el nombre `art-<nombre>.jpg` (por ejemplo `art-khea.jpg`): verticales 4:5 y de 720 px de ancho o más, porque el script genera las versiones de 360 y 720. Después de correr el script, se anota cada una en `KH.FOTOS` (`public/js/data.js`). Si la foto tiene licencia que pide atribución, el crédito va en esta tabla.
+
+| Archivo | Fuente y crédito |
+|---|---|
+
 ## Fotos de stock (Pexels)
 
 Fotos de [Pexels](https://www.pexels.com) bajo la licencia de Pexels (uso libre, sin atribución obligatoria). Ilustran el estudio y el merch hasta tener fotos propias: no muestran la sala ni los productos reales.

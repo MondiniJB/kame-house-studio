@@ -17,6 +17,9 @@
     ['Khea', 'artista'], ['Midel', 'artista'], ['J Rei', 'artista'], ['Neo Pistea', 'artista'], ['Taichu', 'artista'],
     ['Zecca', 'productor'],
   ];
+  // Fotos de perfil: nombre del artista → archivo en assets/media sin el ancho (tools/imagenes.py genera -360 y -720).
+  // Ej.: 'Khea': 'art-khea'. Mientras un artista no tenga foto, la página muestra un recuadro con su nombre.
+  KH.FOTOS = {};
   // portada en WebP (tools/imagenes.py genera 240, 360, 540 y 720 px): chicas para miniaturas y la etiqueta del disco
   KH.cover = (file, w = 720) => `/assets/media/${file}-${w}.webp`;
   KH.temasDe = (name) => KH.TEMAS.map((t, i) => [t, i]).filter(([t]) => t[3].includes(name));

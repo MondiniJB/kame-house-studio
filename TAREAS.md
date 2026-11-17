@@ -52,21 +52,29 @@ Hecho con Astro y publicado en Vercel con direcciones limpias; local con `npm ru
 - [x] ~~Paso a Astro: `<head>`, nav, menú, footer y sprite se escriben una sola vez (`src/layouts`, `src/components`); versión de CSS/JS automática en cada build.~~
 - [x] ~~Títulos estandarizados: un estilo por nivel (h1, h2, subtítulo, tarjeta) y sin punto final.~~
 - [x] ~~Se sacó la palabra grafiti "poderes" del fondo de La casa (no quedan palabras grafiti en el sitio).~~
+- [x] ~~La sección Sesiones pasa a llamarse Redes (`/#redes`).~~ (2026-11-17)
+- [x] ~~Página simple para cada prenda de merch (`/merch/buzo`, `/gorra`, `/chomba`, `/lanyard`): foto, nombre, "Pedir por WhatsApp", y debajo solo "Vení a la casa" y el footer.~~ (2026-11-17)
+- [x] ~~`/artistas`: el panel de cada artista muestra su foto (o un recuadro con el nombre) y debajo la lista de sus temas, en lugar del vinilo.~~ (2026-11-17)
+- [x] ~~Footer: WhatsApp y mail debajo del Instagram; "Diseñado por" pasa a ser solo texto.~~ (2026-11-17)
+- [x] ~~Cintas nuevas: "Kame House Estudio" (blanca) y "Grabación · Mezcla · Mastering · Producción · Lanzamientos" (negra); Chacarita solo en la historia, la dirección, el footer y los metadatos.~~ (2026-11-17)
 
 ## Pendiente
 
 ### Datos que tiene que pasar el estudio (hoy son de ejemplo)
-- [ ] Teléfono, WhatsApp, mail y dirección reales (en `src/pages/index.astro`, `src/pages/reservar.astro` y `public/js/reservar.js`).
-- [ ] URL de la firma "Diseñado por Rocco Cámpora y Juan Bautista Mondini" (hoy `URL_A_DEFINIR`).
-- [ ] Link de cada reel de Sesiones (hoy las cuatro tarjetas llevan al perfil de Instagram, no al post).
-- [ ] Link de la tienda de merch (hoy las tarjetas no hacen nada).
+- [ ] Teléfono, WhatsApp, mail y dirección reales (en `src/components/Closer.astro`, `src/components/Footer.astro`, `src/data/merch.js`, `src/pages/reservar.astro` y `public/js/reservar.js`).
+- [ ] Link de cada reel de Redes (hoy las cuatro tarjetas llevan al perfil de Instagram, no al post).
+- [ ] Cómo se venden las prendas: hoy cada página de merch tiene "Pedir por WhatsApp". Si hay tienda online, cambiar el botón por el link.
 - [ ] Roles y años de cada artista y tema; confirmar si Khea va en la lista.
 - [ ] Nombre y catálogo del sello (la sección El sello hoy es un párrafo).
 - [ ] Condiciones del alquiler de sala.
 
 ### Material propio
 - [ ] Foto en alta de la sala o video corto en loop para el hero (las fotos propias son de ~460 px).
-- [ ] Fotos para servicios, merch (buzo, gorra, chomba, lanyard) y cierre, para reemplazar las de Pexels.
+- [ ] Cambiar las imágenes de merch (buzo, gorra, chomba, lanyard) por fotos de los productos reales.
+- [ ] Fotos para servicios y cierre, para reemplazar las de Pexels.
+- [ ] Sumar más reels a Redes (hoy hay cuatro).
+- [ ] Revisar todas las fotos del sitio y cambiar las que no convenzan (a elección de Bauti y Rocco).
+- [ ] Fotos de perfil de los 11 artistas de `/artistas` (las eligen Bauti y Rocco: actuales, buena luz y calidad, el artista solo). Hoy muestran un recuadro negro con el nombre. Cómo sumarlas: JPG vertical 4:5 de 720 px de ancho o más en `originales/art-<nombre>.jpg`, correr `python tools/imagenes.py` y anotarla en `KH.FOTOS` (`public/js/data.js`). Hay opciones con licencia libre en Wikimedia Commons para Skrillex, Feid, Khea, YSY A y Bhavi, pero son viejas o de recital.
 - [ ] Foto de Mariano Bilinkis para `/estudio`: un retrato real (hoy se usa la captura del reel "Consejo N4", con el texto encima).
 - [ ] Galería "La sala" en `/estudio`: cambiar la foto que se repite (`historia-sala` está en La casa y en la galería) por otra de la sala.
 
@@ -74,8 +82,11 @@ Hecho con Astro y publicado en Vercel con direcciones limpias; local con `npm ru
 - [ ] Escena de nombres de artistas en el inicio: probarla con el trackpad de una notebook (el paso por gesto puede sentirse a saltos).
 - [ ] Revisar el inglés con alguien que lo hable.
 
+### Para la entrega final / tesis
+- [ ] Vinilos de "Hecho en Kame House": link para escuchar cada tema (Spotify o YouTube).
+
 ### Técnico
 - [ ] Si el sitio pasa a otro dominio, cambiar `https://kame-house-studio.vercel.app` en los `<head>`, `robots.txt` y `sitemap.xml`.
 - [ ] Probar en Safari, Firefox y un celular real (hasta ahora, solo Chrome).
-- [ ] Accesibilidad: recorrer con teclado las escenas fijadas (artistas, sesiones) y el carrusel; revisar contraste de los grises.
+- [ ] Accesibilidad: recorrer con teclado las escenas fijadas (artistas, redes) y el carrusel; revisar contraste de los grises.
 - [ ] Después del primer deploy con Astro: confirmar en Vercel que el build pasa, que `/estudio`, `/artistas` y `/reservar` abren sin `.html` y que una dirección inventada muestra la 404.

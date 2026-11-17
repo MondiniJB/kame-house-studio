@@ -1,61 +1,79 @@
-/* Artistas: lista de créditos con vista previa de sus temas, filtros y el carrusel de vinilos. */
+/* Artistas: lista de créditos con el perfil de cada uno (foto y temas), filtros y el carrusel de vinilos. */
 (function () {
   const { $, $$ } = KH;
   const list = $('#credit-list'), preview = $('#credit-preview');
   const wide = matchMedia('(min-width: 961px)');
   const roleOf = (k) => (k === 'productor' ? KH.t('art.pr', 'Productor') : KH.t('art.a', 'Artista'));
-  const countOf = (n) => (KH.lang === 'en' ? `${n} ${n === 1 ? 'track' : 'tracks'}` : `${n} ${n === 1 ? 'tema' : 'temas'}`);
 
-  /* ---- Lista ---- */
+  /* ---- Perfil: foto del artista (o recuadro con su nombre) y debajo la lista de sus temas ---- */
+  function perfil(r) {
+    const frag = document.createDocumentFragment();
+    const fig = document.createElement('figure');
+    fig.className = 'pv-photo';
+    const foto = KH.FOTOS[r.name];
+    if (foto) {
+      fig.innerHTML = `<img src="/assets/media/${foto}-720.webp" srcset="/assets/media/${foto}-360.webp 360w, /assets/media/${foto}-720.webp 720w" sizes="(max-width: 960px) 100vw, 30vw" alt="" width="720" height="900" loading="lazy" decoding="async">`;
+      fig.querySelector('img').alt = r.name;
+    } else {
+      fig.classList.add('is-empty');
+      fig.setAttribute('aria-hidden', 'true');
+      fig.textContent = r.name;
+    }
+    frag.append(fig);
+    if (r.temas.length) {
+      const ul = document.createElement('ul');
+      ul.className = 'pv-temas';
+      r.temas.forEach(([t]) => {
+        const li = document.createElement('li');
+        li.innerHTML = `<img src="${KH.cover(t[2], 240)}" alt="" width="240" height="240" loading="lazy" decoding="async"><span><b></b><small></small></span>`;
+        li.querySelector('b').textContent = t[0];
+        li.querySelector('small').textContent = t[1];
+        ul.append(li);
+      });
+      frag.append(ul);
+    }
+    return frag;
+  }
+
+  /* ---- Lista: en desktop, pasar por un nombre muestra su perfil al costado; en mobile, tocarlo lo despliega debajo ---- */
   const rows = KH.ARTISTS.map(([name, kind], i) => {
     const temas = KH.temasDe(name);
     const li = document.createElement('li');
     li.dataset.k = kind;
     li.dataset.focus = '';
-    const el = document.createElement(temas.length ? 'button' : 'div');
+    const el = document.createElement('button');
     el.className = 'credit';
-    if (temas.length) {
-      el.type = 'button';
-      el.setAttribute('aria-expanded', 'false');
-      el.setAttribute('aria-controls', `cr-${i}`);
-    }
+    el.type = 'button';
+    el.setAttribute('aria-expanded', 'false');
+    el.setAttribute('aria-controls', `cr-${i}`);
     el.innerHTML = '<span class="n"></span><span class="m"></span>';
     el.querySelector('.n').textContent = name;
-    li.append(el);
-    if (temas.length) {
-      // en mobile, tocar el nombre despliega sus portadas
-      const panel = document.createElement('div');
-      panel.className = 'credit-temas';
-      panel.id = `cr-${i}`;
-      panel.hidden = true;
-      temas.forEach(([t]) => {
-        const f = document.createElement('figure');
-        f.innerHTML = `<img src="${KH.cover(t[2], 360)}" alt="" width="360" height="360" loading="lazy" decoding="async"><figcaption></figcaption>`;
-        f.querySelector('img').alt = `Portada de ${t[0]}, de ${t[1]}`;
-        f.querySelector('figcaption').textContent = t[0];
-        panel.append(f);
-      });
-      li.append(panel);
-      el.addEventListener('click', () => {
-        if (wide.matches) return select(i);
-        const open = el.getAttribute('aria-expanded') !== 'true';
-        el.setAttribute('aria-expanded', String(open));
-        panel.hidden = !open;
-      });
-    }
+    const panel = document.createElement('div');
+    panel.className = 'credit-temas';
+    panel.id = `cr-${i}`;
+    panel.hidden = true;
+    li.append(el, panel);
+    const r = { li, el, panel, name, kind, temas };
+    el.addEventListener('click', () => {
+      if (wide.matches) return select(i);
+      const open = el.getAttribute('aria-expanded') !== 'true';
+      el.setAttribute('aria-expanded', String(open));
+      if (open && !panel.firstChild) panel.append(perfil(r));
+      panel.hidden = !open;
+    });
     el.addEventListener('pointerenter', () => wide.matches && select(i));
     el.addEventListener('focus', () => wide.matches && select(i));
     list.append(li);
-    return { li, el, name, kind, temas };
+    return r;
   });
 
   function paintMeta() {
     rows.forEach((r) => {
-      r.el.querySelector('.m').textContent = roleOf(r.kind) + (r.temas.length ? ` · ${countOf(r.temas.length)}` : '');
+      r.el.querySelector('.m').textContent = roleOf(r.kind);
     });
   }
 
-  /* ---- Vista previa (desktop): el vinilo del primer tema y la lista de los demás ---- */
+  /* ---- Vista previa (desktop) ---- */
   let current = -1;
   function select(i) {
     if (i === current) return;
@@ -68,31 +86,7 @@
     head.innerHTML = '<strong></strong><span></span>';
     head.querySelector('strong').textContent = r.name;
     head.querySelector('span').textContent = roleOf(r.kind);
-    if (r.temas.length) {
-      const card = KH.temaCard(r.temas[0][0], 0, 'div');
-      card.classList.add('pv-vinyl');
-      // en la vista previa el título no es un encabezado (va antes del h2 de la página)
-      const h = card.querySelector('h3'), tt = document.createElement('strong');
-      tt.className = 'tema-t';
-      tt.textContent = h.textContent;
-      h.replaceWith(tt);
-      card.style.setProperty('--peek', '46%');
-      preview.append(card);
-      if (r.temas.length > 1) {
-        const more = document.createElement('ul');
-        more.className = 'pv-more';
-        r.temas.slice(1).forEach(([t]) => {
-          const li = document.createElement('li');
-          li.innerHTML = `<img src="${KH.cover(t[2], 240)}" alt="" width="240" height="240" loading="lazy" decoding="async"><span></span>`;
-          li.querySelector('span').textContent = t[0];
-          more.append(li);
-        });
-        preview.append(more);
-      }
-    } else {
-      preview.append(Object.assign(document.createElement('div'), { className: 'pv-empty', innerHTML: '<svg viewBox="0 0 263.96 215.49" aria-hidden="true"><use href="#kh-iso"/></svg>' }));
-    }
-    preview.prepend(head);
+    preview.append(head, perfil(r));
   }
 
   /* ---- Filtros ---- */
@@ -111,5 +105,5 @@
 
   KH.boot();
   paintMeta();
-  select(Math.max(0, rows.findIndex((r) => r.temas.length)));
+  select(0);
 })();

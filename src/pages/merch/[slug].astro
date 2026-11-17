@@ -1,0 +1,44 @@
+---
+// Página de cada prenda: foto, nombre y pedido por WhatsApp. Debajo solo van "Vení a la casa" y el footer.
+import Base from '../../layouts/Base.astro';
+import Closer from '../../components/Closer.astro';
+import { MERCH, WA } from '../../data/merch.js';
+
+export function getStaticPaths() {
+  return MERCH.map((p) => ({ params: { slug: p.slug }, props: { p } }));
+}
+const { p } = Astro.props;
+const src = (w) => `/assets/media/${p.img}-${w}.webp`;
+const wa = `https://wa.me/${WA}?text=${encodeURIComponent(`Hola, quiero consultar por ${p.art} ${p.nombre.toLowerCase()} de Kame House.`)}`;
+---
+<Base
+  page="merch"
+  title={`${p.nombre} | Kame House Estudio`}
+  description={`${p.nombre} oficial de Kame House Estudio. Consultá precio y disponibilidad por WhatsApp.`}
+  ogTitle={`${p.nombre} · Kame House Estudio`}
+  path={`/merch/${p.slug}`}
+  scripts={["/assets/js/lenis.min.js", "/js/i18n.js", "/js/core.js", "/js/pagina.js"]}
+>
+<main id="main">
+
+  <section class="s-white pdp" aria-labelledby="pdp-h">
+    <div class="wrap pdp-in">
+      <figure class="pdp-photo">
+        <img src={src(900)} srcset={`${src(450)} 450w, ${src(900)} 900w`} sizes="(max-width: 960px) 100vw, 50vw" alt="" width={p.w} height={p.h} fetchpriority="high">
+      </figure>
+      <div class="pdp-copy">
+        <p class="kicker" data-i18n="pdp.k">Merch oficial</p>
+        <h1 class="page-title" id="pdp-h" data-i18n={p.i18n}>{p.nombre}</h1>
+        <p class="lead" data-i18n="pdp.lead">Escribinos por WhatsApp para consultar precio y disponibilidad.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href={wa} target="_blank" rel="noopener noreferrer" data-i18n="pdp.wa">Pedir por WhatsApp</a>
+          <a class="btn btn-line" href="/#merch" data-i18n="pdp.back">Ver todo el merch</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Closer />
+
+</main>
+</Base>

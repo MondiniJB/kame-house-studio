@@ -7,7 +7,7 @@
     'nav.inicio': 'Home', 'nav.estudio': 'Studio', 'nav.artistas': 'Artists', 'nav.servicios': 'Services', 'nav.redes': 'Social', 'nav.merch': 'Merch',
     'cta.reservar': 'Book a session', copy: 'Copy', copied: 'Copied',
     'svc.grabacion': 'Recording', 'svc.mezcla': 'Mixing', 'svc.mastering': 'Mastering', 'svc.produccion': 'Production', 'svc.sala': 'Room rental', 'svc.sala.short': 'Room',
-    'foot.loc': 'Chacarita, Buenos Aires',
+    'foot.loc': 'Chacarita, Buenos Aires', 'foot.by': 'Designed by Rocco Cámpora and Juan Bautista Mondini',
     'closer2.h': 'Got a track to record?',
     'err.required': 'Fill in this field.', 'err.email': 'Check the email: the @ or the domain is missing (e.g. name@gmail.com).', 'err.services': 'Pick at least one service.', 'err.temas': 'Enter a number between 1 and 30.', 'err.date': 'That date has passed. Pick today or later.',
 
@@ -29,6 +29,7 @@
     'mk.foto': 'Your photo', 'mk.subir': 'Upload photo', 'mk.cambiar': 'Change photo', 'mk.quitar': 'Remove photo', 'mk.privado': 'Your photo stays on your device: it isn’t uploaded anywhere.', 'mk.dl': 'Download cover', 'mk.aka': 'Your AKA', 'mk.tema': 'Your track', 'mk.color': 'Plate', 'mk.negro': 'Black', 'mk.violeta': 'Violet', 'mk.go': 'Book to record it',
     'merch.h': 'Official merch', 'merch.p': 'Hoodies, caps, polos and lanyards with the studio’s brand.', 'm.1': 'Hoodie', 'm.2': 'Cap', 'm.3': 'Polo',
     'closer.h': 'Come to the house',
+    'pdp.k': 'Official merch', 'pdp.lead': 'Message us on WhatsApp to check price and availability.', 'pdp.wa': 'Order on WhatsApp', 'pdp.back': 'See all merch',
     /* estudio */
     'est.h1': 'Studio', 'est.lead': 'A room to record, mix and master urban music.',
     'mb.h': 'Mariano Bilinkis', 'mb.p1': 'He leads the studio’s sessions. He took part in Grammy-nominated and Grammy-winning projects.',

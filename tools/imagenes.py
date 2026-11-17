@@ -42,7 +42,8 @@ def main():
         src = os.path.join(SRC, f)
         im = ImageOps.exif_transpose(Image.open(src)).convert('RGB')
         total_antes += os.path.getsize(src)
-        anchos = ANCHOS.get(name)
+        # fotos de artistas (art-*): 360 y 720 px
+        anchos = ANCHOS.get(name) or ([360, 720] if name.startswith('art-') else None)
         salidas = []
         if not anchos:
             out = os.path.join(OUT, name + '.webp')

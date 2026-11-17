@@ -429,6 +429,8 @@ html.lenis, html.lenis body { height: auto; }
 .products { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(12px, 1.4vw, 20px); }
 .product .tile { position: relative; display: grid; grid-template-rows: minmax(0, 1fr) auto; aspect-ratio: 3 / 4; background: var(--k-black); color: var(--k-white); overflow: hidden; clip-path: polygon(0 0, calc(100% - 28px) 0, 100% 28px, 100% 100%, 0 100%); }
 .product .tile img { min-height: 0; }
+a.tile { text-decoration: none; }
+.footer-base p { margin: 0; }
 .product .meta { padding: 16px 18px 18px; background: var(--k-black); transition: background-color .3s var(--ease); }
 .product .meta b { font-family: var(--gang); font-weight: 400; text-transform: uppercase; font-size: var(--fs-card); line-height: 1; }
 .product .tile:hover .meta, .product.in-focus .tile .meta { background: var(--k-violet); }
@@ -462,10 +464,22 @@ html.lenis, html.lenis body { height: auto; }
 .footer-nav a:hover, .footer-ig:hover { text-decoration: underline; text-underline-offset: 4px; }
 .footer-ig { display: inline-flex; align-items: center; gap: 10px; }
 .footer-ig .ico { width: 22px; height: 22px; color: var(--k-white); }
+.footer-contact { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
 .footer-base { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 32px; margin-top: 36px; padding-block: 18px 20px; position: relative; color: var(--fg-soft); font-size: var(--fs-xs); }
 .footer-base::before { content: ""; position: absolute; top: 0; left: var(--gutter); right: var(--gutter-r); height: 1px; background: rgba(255,255,255,.1); }
 .footer-base a { color: var(--fg); }
 .pattern-band { height: 72px; background-color: var(--k-black); background-image: url("../assets/brand/pattern.svg"); background-size: 144px 144px; }
+
+/* ---------- Merch: página de cada prenda ---------- */
+.pdp { padding-block: clamp(40px, 6vw, 96px) var(--section); }
+.pdp-in { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 80px); align-items: center; }
+.pdp-photo { margin: 0; background: var(--k-black); aspect-ratio: 3 / 4; overflow: hidden; clip-path: polygon(0 0, calc(100% - 44px) 0, 100% 44px, 100% 100%, 0 100%); }
+.pdp-photo img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.8); }
+.pdp-copy { display: grid; gap: 22px; justify-items: start; }
+@media (max-width: 960px) {
+  .pdp-in { grid-template-columns: minmax(0, 1fr); }
+  .pdp-photo { aspect-ratio: 4 / 5; clip-path: polygon(0 0, calc(100% - 28px) 0, 100% 28px, 100% 100%, 0 100%); }
+}
 
 /* ---------- Artistas (página interna) ---------- */
 .page-head { padding-block: clamp(56px, 8vw, 120px) 40px; display: grid; gap: 22px; }
@@ -484,21 +498,23 @@ button.credit { cursor: pointer; }
 .credit-list li.sel .credit, .credit:hover, .credit:focus-visible, .credit-list li.in-focus .credit { background: var(--k-violet); color: var(--k-white); }
 .credit-list li.sel .credit .m, .credit:hover .m, .credit:focus-visible .m, .credit-list li.in-focus .credit .m { color: var(--k-white); }
 .credit:focus-visible { outline: 3px solid var(--k-black); outline-offset: -3px; }
-.credit-temas { display: flex; gap: 12px; overflow-x: auto; padding: 14px 16px 22px; scrollbar-width: none; }
-.credit-temas figure { margin: 0; flex: none; width: 140px; display: grid; gap: 6px; }
-.credit-temas img { width: 140px; height: 140px; object-fit: cover; }
-.credit-temas figcaption { font-family: var(--display); font-weight: 700; font-size: var(--fs-s); }
+.credit-temas { display: grid; gap: 16px; padding: 14px 16px 26px; }
+.credit-temas .pv-photo { max-width: 420px; }
 /* vista previa: el vinilo del primer tema del nombre elegido */
 .credit-preview { position: sticky; top: calc(var(--nav-h) + 32px); display: grid; gap: 24px; padding-right: 22%; }
 .pv-head { display: grid; gap: 4px; }
 .pv-head strong { font-family: var(--gang); font-weight: 400; text-transform: uppercase; font-size: var(--fs-subtitle); line-height: 1; }
 .pv-head span { color: var(--fg-soft); font-weight: 600; font-size: var(--fs-s); }
-.pv-vinyl { width: 100%; }
-.pv-more { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
-.pv-more li { display: flex; align-items: center; gap: 12px; font-family: var(--display); font-weight: 700; }
-.pv-more img { width: 56px; height: 56px; object-fit: cover; }
-.pv-empty { aspect-ratio: 1; background: var(--k-black); display: grid; place-items: center; }
-.pv-empty svg { width: 46%; --logo-ink: var(--k-white); }
+.pv-photo { margin: 0; aspect-ratio: 4 / 5; background: var(--k-black); overflow: hidden; clip-path: polygon(0 0, calc(100% - 32px) 0, 100% 32px, 100% 100%, 0 100%); }
+.pv-photo img { width: 100%; height: 100%; object-fit: cover; }
+/* sin foto: el nombre en grande sobre negro */
+.pv-photo.is-empty { display: flex; align-items: end; padding: 22px; color: var(--k-white); font-family: var(--gang); text-transform: uppercase; font-size: clamp(28px, 3.2vw, 52px); line-height: .95; }
+.pv-temas { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.pv-temas li { display: flex; align-items: center; gap: 12px; }
+.pv-temas img { width: 56px; height: 56px; object-fit: cover; flex: none; }
+.pv-temas span { display: grid; gap: 2px; }
+.pv-temas b { font-family: var(--display); font-weight: 700; }
+.pv-temas small { color: var(--fg-soft); font-size: var(--fs-xs); font-weight: 600; }
 /* ---------- Estudio (página interna) ---------- */
 .page-photo { position: relative; overflow: hidden; min-height: min(72svh, 680px); display: grid; align-items: end; }
 .page-photo-in { position: relative; z-index: 2; width: 100%; padding-block: 140px clamp(48px, 6vw, 88px); display: grid; gap: 20px; }
