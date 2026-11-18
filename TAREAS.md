@@ -107,7 +107,7 @@ Por página y sección:
 - [x] ~~Merch: chomba (mockup con dibujo técnico en su página), stickers, mouse pad y CD "Archive" (con la contratapa en su página). Se sacaron buzo, gorra y lanyard (`/merch/buzo`, `/gorra` y `/lanyard` ya no existen). Las fotos de merch van con su color real (sin el 50 % → 80 % de saturación, que queda solo en Servicios).~~ (2026-11-18)
 - [ ] Estudio › Encabezado: usa la foto de Sala de Servicios (Pexels, 1000 px; se agranda un poco en pantallas grandes). Cambiarla cuando haya una foto propia de la sala en alta.
 - [ ] Estudio › Mariano Bilinkis: hoy es un recorte del reel "Consejo N4" sin el título ni las vistas (388 × 485 px, se ve algo blando). Falta un retrato real. El tríptico tiene una foto suya: pedirle a Rocco el archivo original.
-- [ ] Estudio › La sala: `reel-sala` y `historia-sala` son la misma foto. Cambiar una por una miniatura de reel nueva.
+- [x] ~~Estudio › La sala: la foto repetida (`historia-sala`, igual a `reel-sala`) se cambió por un recorte de la foto de la sala del hero.~~ (2026-11-18)
 - [ ] Artistas › Créditos: si se suma un artista, la foto va como JPG vertical 4:5 de 720 px de ancho o más en `originales/art-<nombre>.jpg`; correr `python tools/imagenes.py` y anotarla en `KH.FOTOS` (`public/js/data.js`).
 - [x] ~~Reservar › Encabezado: onda de sonido de fondo (la del tríptico), a su tamaño real y repetida en espejo, teñida de violeta con el centro blanco y apoyada abajo para no pisar el título.~~ (2026-11-18)
 - [x] ~~Archivo (`/artistas`): la misma onda de sonido que Reservar en la portada.~~ (2026-11-18)

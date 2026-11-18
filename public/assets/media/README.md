@@ -18,6 +18,7 @@ Originales (portadas cuadradas de 720 px, reels de unos 454×723 px):
 | `reel-teca.jpg` | Reel "TECA remix" |
 | `reel-consejo.jpg` | Reel "Consejo N4" |
 | `casa-sala.jpg` | Foto de la sala con luz azul (captura de 715 × 1230, recortada en 4:5), para La casa |
+| `galeria-sala.jpg` | Recorte 3:4 de `hero-estudio.jpg` para la galería de `/estudio` |
 | `mariano.jpg` | Recorte de `reel-consejo.jpg` sin el título ni las vistas, para `/estudio` |
 | `reel-sesion.jpg` | Reel "En sesión" |
 | `reel-sala.jpg` | Reel "La sala" |
