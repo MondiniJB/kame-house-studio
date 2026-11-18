@@ -15,13 +15,14 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.path.join(ROOT, 'originales')
 OUT = os.path.join(ROOT, 'public', 'assets', 'media')
 CALIDAD = 86  # WebP con pérdida: a 86 no se notan diferencias con el JPG original
+# Fotos de fondo oscuras: más calidad para que las sombras no muestren escalones debajo de la capa negra
+CALIDAD_DE = {'sala-frente': 88}
 
 # anchos por imagen; None = un solo archivo al tamaño original
 ANCHOS = {
-    'hero-estudio': [800, 1280, 2000],
-    'estudio-sala': [800, 1000],
+    'sala-frente': [800, 1280, 2000],
     'casa-sala': [480, 715], 'galeria-sala': [600, 900],
-    'cierre-estudio': [800, 1200, 1600],
+    'cierre-sala': [800, 1200, 1500],
     'svc-grabacion': [500, 1000], 'svc-mezcla': [500, 1000], 'svc-mastering': [500, 1000],
     'svc-produccion': [500, 1000], 'svc-sala': [500, 1000],
     'merch-chomba': [450, 900], 'merch-stickers': [450, 900], 'merch-mouse-pad': [450, 900], 'merch-cd': [450, 900],
@@ -31,8 +32,8 @@ ANCHOS = {
 }
 
 
-def guardar(im, path):
-    im.save(path, 'WEBP', quality=CALIDAD, method=6)
+def guardar(im, path, calidad=CALIDAD):
+    im.save(path, 'WEBP', quality=calidad, method=6)
 
 
 def main():
@@ -49,7 +50,7 @@ def main():
         salidas = []
         if not anchos:
             out = os.path.join(OUT, name + '.webp')
-            guardar(im, out)
+            guardar(im, out, CALIDAD_DE.get(name, CALIDAD))
             salidas.append(out)
         else:
             for w in anchos:
@@ -57,7 +58,7 @@ def main():
                     continue
                 h = round(im.height * w / im.width)
                 out = os.path.join(OUT, f'{name}-{w}.webp')
-                guardar(im if w == im.width else im.resize((w, h), Image.LANCZOS), out)
+                guardar(im if w == im.width else im.resize((w, h), Image.LANCZOS), out, CALIDAD_DE.get(name, CALIDAD))
                 salidas.append(out)
         mayor = os.path.getsize(salidas[-1])
         total_despues += mayor

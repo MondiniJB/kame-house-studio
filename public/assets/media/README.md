@@ -18,12 +18,13 @@ Originales (portadas cuadradas de 720 px, reels de unos 454×723 px):
 | `reel-teca.jpg` | Reel "TECA remix" |
 | `reel-consejo.jpg` | Reel "Consejo N4" |
 | `casa-sala.jpg` | Foto de la sala con luz azul (captura de 715 × 1230, recortada en 4:5), para La casa |
-| `galeria-sala.jpg` | Recorte 3:4 de `hero-estudio.jpg` para la galería de `/estudio` |
+| `cierre-sala.jpg` | Recorte de `sala-frente.jpg` (micrófono, monitor y consola) para "Vení a la casa" |
+| `galeria-sala.jpg` | Recorte 3:4 de `sala-frente.jpg` para la galería de `/estudio` |
 | `mariano.jpg` | Recorte de `reel-consejo.jpg` sin el título ni las vistas, para `/estudio` |
 | `reel-sesion.jpg` | Reel "En sesión" |
 | `reel-sala.jpg` | Reel "La sala" |
 | `reel-ysy.jpg` | Reel "Cuando entra YSY A" (en la tarjeta: "Entra YSY A") |
-| `hero-estudio.jpg` | Foto de la sala del Instagram del estudio, ampliada al doble con Firefly Upscaler (se guarda en 2400 × 2400) |
+| `sala-frente.jpg` | Foto de la sala del Instagram del estudio, ampliada al doble con Firefly Upscaler (se guarda en 2400 × 2400). Hero del inicio y portada de `/estudio` |
 | `merch-chomba.jpg` | Mockup de la chomba (anexo de la tesis), recortado |
 | `merch-chomba-tecnico.jpg` | Dibujo técnico de la chomba: frente, espalda y costados |
 | `merch-stickers.jpg` | Mockup del paquete de stickers |
@@ -57,10 +58,8 @@ Fotos de [Pexels](https://www.pexels.com) bajo la licencia de Pexels (uso libre,
 
 | Archivo | Foto en Pexels |
 |---|---|
-| `cierre-estudio.jpg` | https://www.pexels.com/photo/13978776/ |
 | `svc-mezcla.jpg` | https://www.pexels.com/photo/7586137/ |
 | `svc-mastering.jpg` | https://www.pexels.com/photo/2651794/ |
 | `svc-produccion.jpg` | https://www.pexels.com/photo/4988139/ |
 | `svc-sala.jpg` | https://www.pexels.com/photo/8198136/ |
-| `estudio-sala.jpg` | https://www.pexels.com/photo/8198136/ (la misma foto que `svc-sala.jpg`) |
 

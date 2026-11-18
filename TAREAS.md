@@ -103,9 +103,9 @@ Por página y sección:
 - [x] ~~La casa (inicio y `/estudio`): foto real de la sala con luz azul y el Grammy en la consola.~~ (2026-11-18)
 - [ ] Inicio › Servicios: Mezcla, Mastering, Producción y Sala siguen con fotos de Pexels.
 - [ ] Inicio › Redes: sumar las miniaturas de reels nuevas (hoy hay cinco; el quinto, "Entra YSY A", se sumó el 2026-11-18). Los posts de Instagram no van.
-- [ ] Inicio › Vení a la casa: sigue con foto de Pexels.
+- [x] ~~Vení a la casa: recorte de la foto real de la sala (micrófono, monitor y consola).~~ (2026-11-18)
 - [x] ~~Merch: chomba (mockup con dibujo técnico en su página), stickers, mouse pad y CD "Archive" (con la contratapa en su página). Se sacaron buzo, gorra y lanyard (`/merch/buzo`, `/gorra` y `/lanyard` ya no existen). Las fotos de merch van con su color real (sin el 50 % → 80 % de saturación, que queda solo en Servicios).~~ (2026-11-18)
-- [ ] Estudio › Encabezado: usa la foto de Sala de Servicios (Pexels, 1000 px; se agranda un poco en pantallas grandes). Cambiarla cuando haya una foto propia de la sala en alta.
+- [x] ~~Estudio › Encabezado y hero del inicio: foto real de la sala ampliada (`sala-frente`), en Estudio encuadrada entre la tele y la consola. Sin el desenfoque fijo y con la capa negra más liviana.~~ (2026-11-18)
 - [ ] Estudio › Mariano Bilinkis: hoy es un recorte del reel "Consejo N4" sin el título ni las vistas (388 × 485 px, se ve algo blando). Falta un retrato real. El tríptico tiene una foto suya: pedirle a Rocco el archivo original.
 - [x] ~~Estudio › La sala: la foto repetida (`historia-sala`, igual a `reel-sala`) se cambió por un recorte de la foto de la sala del hero.~~ (2026-11-18)
 - [ ] Artistas › Créditos: si se suma un artista, la foto va como JPG vertical 4:5 de 720 px de ancho o más en `originales/art-<nombre>.jpg`; correr `python tools/imagenes.py` y anotarla en `KH.FOTOS` (`public/js/data.js`).

@@ -14,10 +14,11 @@ interface Props {
   noindex?: boolean;
   hero?: string;         // foto principal a precargar (nombre en assets/media, sin el ancho)
   heroWidths?: number[]; // anchos que existen de esa foto (tools/imagenes.py)
+  heroSizes?: string;    // ancho con que se ve (atributo sizes); por defecto, el de la pantalla
   scripts: string[];     // en orden: core.js necesita que i18n.js y data.js ya estén cargados
   mux?: boolean;         // mux de secciones (solo el inicio)
 }
-const { page, title, description, ogTitle = title, path, noindex = false, hero, heroWidths = [800, 1280, 2000], scripts, mux = false } = Astro.props;
+const { page, title, description, ogTitle = title, path, noindex = false, hero, heroWidths = [800, 1280, 2000], heroSizes = '100vw', scripts, mux = false } = Astro.props;
 
 const SITE = 'https://kame-house-studio.vercel.app';
 // Versión de CSS y JS: cambia sola en cada build, así el navegador nunca usa archivos viejos.
@@ -57,7 +58,7 @@ const heroSet = hero && heroWidths.map((w) => `/assets/media/${hero}-${w}.webp $
 <link rel="stylesheet" href={fonts} media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href={fonts}></noscript>
 <link rel="preload" href="/assets/fonts/go3v2.woff2" as="font" type="font/woff2" crossorigin>
-{hero && <link rel="preload" as="image" href={`/assets/media/${hero}-1280.webp`} imagesrcset={heroSet} imagesizes="100vw" fetchpriority="high">}
+{hero && <link rel="preload" as="image" href={`/assets/media/${hero}-1280.webp`} imagesrcset={heroSet} imagesizes={heroSizes} fetchpriority="high">}
 <link rel="stylesheet" href={`/css/styles.css?v=${v}`}>
 </head>
 <body>

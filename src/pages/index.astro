@@ -9,8 +9,9 @@ import { MERCH } from '../data/merch.js';
   description="Kame House Estudio: grabación, mezcla y mastering de música urbana en Chacarita, Buenos Aires. Armá tu sesión y reservá."
   ogTitle="Kame House Estudio"
   path="/"
-  hero="hero-estudio"
+  hero="sala-frente"
   heroWidths={[800, 1280, 2000]}
+  heroSizes="max(100vw, min(100svh, 980px))"
   scripts={["/assets/js/lenis.min.js", "/js/i18n.js", "/js/data.js", "/js/coverflow.js", "/js/core.js", "/js/home.js", "/js/portada.js"]}
   mux
 >
@@ -22,9 +23,9 @@ import { MERCH } from '../data/merch.js';
   <div class="hero-mark" id="hero" aria-hidden="true"></div>
   <section class="hero s-black" aria-labelledby="hero-h">
     <!-- Fondo: foto o video. Para usar video, reemplazar el <img> por:
-         <video autoplay muted loop playsinline poster="assets/media/hero-estudio-1280.webp"><source src="/assets/media/hero.mp4" type="video/mp4"></video> -->
+         <video autoplay muted loop playsinline poster="/assets/media/sala-frente-1280.webp"><source src="/assets/media/hero.mp4" type="video/mp4"></video> -->
     <div class="hero-media" aria-hidden="true">
-      <img src="/assets/media/hero-estudio-1280.webp" srcset="/assets/media/hero-estudio-800.webp 800w, /assets/media/hero-estudio-1280.webp 1280w, /assets/media/hero-estudio-2000.webp 2000w" sizes="100vw" alt="" width="2000" height="2000" fetchpriority="high" decoding="async">
+      <img src="/assets/media/sala-frente-1280.webp" srcset="/assets/media/sala-frente-800.webp 800w, /assets/media/sala-frente-1280.webp 1280w, /assets/media/sala-frente-2000.webp 2000w" sizes="max(100vw, min(100svh, 980px))" alt="" width="2000" height="2000" fetchpriority="high" decoding="async">
     </div>
     <svg class="bigk" viewBox="0 0 263.96 215.49" aria-hidden="true"><use href="#kh-iso"/></svg>
     <div class="wrap hero-in">
