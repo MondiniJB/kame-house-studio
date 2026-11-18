@@ -94,6 +94,11 @@
     const f = b.dataset.f;
     $$('#cr-filters button').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
     rows.forEach((r) => (r.li.hidden = f !== 'all' && r.kind !== f));
+    // si el elegido quedó oculto, el panel pasa al primero visible
+    if (current < 0 || rows[current].li.hidden) {
+      const first = rows.findIndex((r) => !r.li.hidden);
+      if (first >= 0) select(first);
+    }
   }));
 
   /* ---- Carrusel de vinilos: se arrastra, con flechas o teclado; el disco gira con el scroll ---- */
