@@ -17,6 +17,7 @@ Originales (portadas cuadradas de 720 px, reels de unos 454×723 px):
 | `neo.jpg` | Portada de Neo (Neo Pistea) |
 | `reel-teca.jpg` | Reel "TECA remix" |
 | `reel-consejo.jpg` | Reel "Consejo N4" |
+| `casa-sala.jpg` | Foto de la sala con luz azul (captura de 715 × 1230, recortada en 4:5), para La casa |
 | `mariano.jpg` | Recorte de `reel-consejo.jpg` sin el título ni las vistas, para `/estudio` |
 | `reel-sesion.jpg` | Reel "En sesión" |
 | `reel-sala.jpg` | Reel "La sala" |

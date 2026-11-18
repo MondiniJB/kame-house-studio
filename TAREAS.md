@@ -100,7 +100,7 @@ Hecho el 2026-11-18:
 Material descartado (no va en la web): posts de Instagram, la furgoneta, la camioneta, `atras`, los pósters, el cartel urbano y la foto de Firefly Upscaler.
 
 Por página y sección:
-- [ ] Inicio › La casa: sigue con `historia-sala` (la misma sala del hero, en 460 px). Cambiarla por una miniatura de reel nueva.
+- [x] ~~La casa (inicio y `/estudio`): foto real de la sala con luz azul y el Grammy en la consola.~~ (2026-11-18)
 - [ ] Inicio › Servicios: Mezcla, Mastering, Producción y Sala siguen con fotos de Pexels.
 - [ ] Inicio › Redes: sumar las miniaturas de reels nuevas (hoy hay cinco; el quinto, "Entra YSY A", se sumó el 2026-11-18). Los posts de Instagram no van.
 - [ ] Inicio › Vení a la casa: sigue con foto de Pexels.
