@@ -18,9 +18,9 @@ CALIDAD = 86  # WebP con pérdida: a 86 no se notan diferencias con el JPG origi
 
 # anchos por imagen; None = un solo archivo al tamaño original
 ANCHOS = {
-    'hero-estudio': [800, 1280, 1440],
+    'hero-estudio': [800, 1280, 2000],
     'estudio-sala': [800, 1000],
-    'casa-sala': [480, 715],
+    'casa-sala': [480, 715], 'galeria-sala': [600, 900],
     'cierre-estudio': [800, 1200, 1600],
     'svc-grabacion': [500, 1000], 'svc-mezcla': [500, 1000], 'svc-mastering': [500, 1000],
     'svc-produccion': [500, 1000], 'svc-sala': [500, 1000],

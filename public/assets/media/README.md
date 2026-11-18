@@ -23,7 +23,7 @@ Originales (portadas cuadradas de 720 px, reels de unos 454×723 px):
 | `reel-sesion.jpg` | Reel "En sesión" |
 | `reel-sala.jpg` | Reel "La sala" |
 | `reel-ysy.jpg` | Reel "Cuando entra YSY A" (en la tarjeta: "Entra YSY A") |
-| `hero-estudio.jpg` | Foto de la sala del Instagram del estudio (1440 × 1440) |
+| `hero-estudio.jpg` | Foto de la sala del Instagram del estudio, ampliada al doble con Firefly Upscaler (se guarda en 2400 × 2400) |
 | `merch-chomba.jpg` | Mockup de la chomba (anexo de la tesis), recortado |
 | `merch-chomba-tecnico.jpg` | Dibujo técnico de la chomba: frente, espalda y costados |
 | `merch-stickers.jpg` | Mockup del paquete de stickers |
