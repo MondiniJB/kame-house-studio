@@ -1,5 +1,5 @@
 ---
-// Página de cada prenda: foto, nombre y pedido por WhatsApp. Debajo solo van "Vení a la casa" y el footer.
+// Página de cada producto: foto, nombre y pedido por WhatsApp. Debajo solo van "Vení a la casa" y el footer.
 import Base from '../../layouts/Base.astro';
 import Closer from '../../components/Closer.astro';
 import { MERCH, WA } from '../../data/merch.js';
@@ -9,7 +9,7 @@ export function getStaticPaths() {
 }
 const { p } = Astro.props;
 const src = (w) => `/assets/media/${p.img}-${w}.webp`;
-const wa = `https://wa.me/${WA}?text=${encodeURIComponent(`Hola, quiero consultar por ${p.art} ${p.nombre.toLowerCase()} de Kame House.`)}`;
+const wa = `https://wa.me/${WA}?text=${encodeURIComponent(`Hola, quiero consultar por ${p.pedido} de Kame House.`)}`;
 ---
 <Base
   page="merch"
@@ -24,7 +24,7 @@ const wa = `https://wa.me/${WA}?text=${encodeURIComponent(`Hola, quiero consulta
   <section class="s-white pdp" aria-labelledby="pdp-h">
     <div class="wrap pdp-in">
       <figure class="pdp-photo">
-        <img src={src(900)} srcset={`${src(450)} 450w, ${src(900)} 900w`} sizes="(max-width: 960px) 100vw, 50vw" alt="" width={p.w} height={p.h} fetchpriority="high">
+        <img src={src(900)} srcset={`${src(450)} 450w, ${src(900)} 900w`} sizes="(max-width: 960px) 100vw, 50vw" alt="" width={p.w} height={p.h} style={p.pos && `object-position:${p.pos}`} fetchpriority="high">
       </figure>
       <div class="pdp-copy">
         <p class="kicker" data-i18n="pdp.k">Merch oficial</p>
@@ -34,6 +34,11 @@ const wa = `https://wa.me/${WA}?text=${encodeURIComponent(`Hola, quiero consulta
           <a class="btn btn-primary" href={wa} target="_blank" rel="noopener noreferrer" data-i18n="pdp.wa">Pedir por WhatsApp</a>
           <a class="btn btn-line" href="/#merch" data-i18n="pdp.back">Ver todo el merch</a>
         </div>
+        {p.extra && (
+          <figure class="pdp-extra">
+            <img src={`/assets/media/${p.extra.img}-${p.extra.anchos.at(-1)}.webp`} srcset={p.extra.anchos.map((w) => `/assets/media/${p.extra.img}-${w}.webp ${w}w`).join(', ')} sizes="(max-width: 960px) 100vw, 45vw" alt={p.extra.alt} width={p.extra.w} height={p.extra.h} loading="lazy" decoding="async">
+          </figure>
+        )}
       </div>
     </div>
   </section>

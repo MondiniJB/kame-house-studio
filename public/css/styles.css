@@ -349,8 +349,10 @@ html.lenis, html.lenis body { height: auto; }
 .slab-body { display: grid; grid-template-columns: minmax(0, 1fr); grid-template-rows: auto auto 1fr; gap: 10px; padding: 20px 22px 22px; height: 168px; box-sizing: border-box; }
 /* Fotos de tarjeta: saturación 50 %, 80 % con hover o foco */
 .slab-img img, .product .tile img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.5); transition: filter .4s var(--ease), transform .7s var(--ease); }
-.slab a:hover .slab-img img, .slab a:focus-visible .slab-img img, .slab.in-focus .slab-img img,
-.product .tile:hover img, .product.in-focus .tile img { filter: saturate(.8); transform: scale(1.04); }
+.slab a:hover .slab-img img, .slab a:focus-visible .slab-img img, .slab.in-focus .slab-img img { filter: saturate(.8); transform: scale(1.04); }
+/* Merch: los productos se ven con su color real; al pasar el mouse solo se acercan */
+.product .tile img { filter: none; }
+.product .tile:hover img, .product.in-focus .tile img { transform: scale(1.04); }
 .slab .go { align-self: end; }
 .slab h3 { font-family: var(--display); font-weight: 800; font-stretch: 108%; font-size: clamp(1rem, 9.2cqi, var(--fs-card)); line-height: 1.04; text-transform: uppercase; overflow-wrap: normal; }
 .slab p { color: var(--fg-soft); font-size: var(--fs-s); }
@@ -364,10 +366,11 @@ html.lenis, html.lenis body { height: auto; }
 .strip::-webkit-scrollbar { display: none; }
 .strip-track { --h: clamp(300px, 48vh, 520px); display: flex; align-items: flex-start; gap: 16px; padding-left: var(--edge); padding-right: var(--edge); width: max-content; }
 .clip { margin: 0; flex: none; scroll-snap-align: start; }
-.clip-reel { width: calc(var(--h) * 9 / 16); }
+/* Reels: la proporción nativa de las capturas de Instagram (456 × 724), sin recortarlas más altas */
+.clip-reel { width: calc(var(--h) * 456 / 724); }
 .clip .ph { height: var(--h); width: 100%; }
 .clip .ph img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 30% 50%; }
-.clip-reel .ph { height: auto; aspect-ratio: 9 / 16; }
+.clip-reel .ph { height: auto; aspect-ratio: 456 / 724; }
 .clip.clip-reel .sticker { left: auto; right: 6px; bottom: 34px; }
 .clip .sticker { position: absolute; left: 12px; bottom: 14px; z-index: 2; }
 .clip-band { background: var(--k-black); color: var(--k-white); padding: 14px 16px; display: grid; gap: 2px; }
@@ -474,8 +477,11 @@ a.tile { text-decoration: none; }
 .pdp { padding-block: clamp(40px, 6vw, 96px) var(--section); }
 .pdp-in { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 80px); align-items: center; }
 .pdp-photo { margin: 0; background: var(--k-black); aspect-ratio: 3 / 4; overflow: hidden; clip-path: polygon(0 0, calc(100% - 44px) 0, 100% 44px, 100% 100%, 0 100%); }
-.pdp-photo img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.8); }
+.pdp-photo img { width: 100%; height: 100%; object-fit: cover; }
 .pdp-copy { display: grid; gap: 22px; justify-items: start; }
+/* Imagen extra de cada producto: todas a la misma altura que el dibujo de la chomba (1600 × 634 a todo el ancho) */
+.pdp-extra { margin: 12px 0 0; width: 100%; container-type: inline-size; }
+.pdp-extra img { width: auto; max-width: 100%; height: calc(100cqi * 634 / 1600); object-fit: contain; }
 @media (max-width: 960px) {
   .pdp-in { grid-template-columns: minmax(0, 1fr); }
   .pdp-photo { aspect-ratio: 4 / 5; clip-path: polygon(0 0, calc(100% - 28px) 0, 100% 28px, 100% 100%, 0 100%); }
@@ -516,13 +522,16 @@ button.credit { cursor: pointer; }
 .pv-temas b { font-family: var(--display); font-weight: 700; }
 .pv-temas small { color: var(--fg-soft); font-size: var(--fs-xs); font-weight: 600; }
 /* ---------- Estudio (página interna) ---------- */
-.page-photo { position: relative; overflow: hidden; min-height: min(72svh, 680px); display: grid; align-items: end; }
-.page-photo-in { position: relative; z-index: 2; width: 100%; padding-block: 140px clamp(48px, 6vw, 88px); display: grid; gap: 20px; }
+.page-photo { position: relative; overflow: hidden; display: grid; align-items: start; }
+.page-photo-in { position: relative; z-index: 2; width: 100%; padding-block: clamp(56px, 7vw, 104px) clamp(48px, 5vw, 72px); display: grid; gap: 22px; }
 .split { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(32px, 6vw, 96px); align-items: center; }
 .split-rev { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
 .split-copy { display: grid; gap: 28px; justify-items: start; }
 .split-photo { aspect-ratio: 4 / 5; }
 .split-photo-tall { aspect-ratio: 3 / 4; }
+/* Estudio: página más corta (menos aire entre secciones y la foto de Mariano un poco más baja) */
+html[data-page="estudio"] { --section: clamp(64px, 7.5vw, 112px); }
+html[data-page="estudio"] .split-photo-tall { aspect-ratio: 4 / 5; }
 .split-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .mariano .ph { background: var(--k-black); }
 .gal { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
@@ -533,7 +542,26 @@ button.credit { cursor: pointer; }
 
 /* ---------- Reservar ---------- */
 .book-head .page-head { padding-block: clamp(56px, 7vw, 104px) clamp(48px, 5vw, 72px); }
-.book-head .lead { max-width: 52ch; }
+/* Portadas de Estudio, Archivo y Reservar: las tres con el alto de la de Reservar. Se calcula como ella:
+   margen de arriba + título + 22 px + los renglones de su bajada (2 en pantallas anchas, más en las angostas) + margen de abajo. */
+.book-head, .page-photo { --head-n: 2; min-height: calc(clamp(56px, 7vw, 104px) + .95 * var(--fs-display) + 22px + var(--head-n) * 1.5 * var(--fs-lead) + clamp(48px, 5vw, 72px)); }
+@media (max-width: 999px) { .book-head, .page-photo { --head-n: 3.5; } }
+@media (max-width: 519px) { .book-head, .page-photo { --head-n: 6.25; } }
+/* Archivo: en pantallas anchas los filtros van a la derecha de la bajada, para que entre en ese alto */
+.book-head .filters { margin-bottom: 0; }
+@media (min-width: 1000px) {
+  .head-filters { grid-template-columns: minmax(0, 1fr) auto; align-items: end; }
+  .head-filters .page-title { grid-column: 1 / -1; }
+}
+.book-head .lead, .page-photo .lead { max-width: 52ch; }
+/* Reservar y Archivo: onda de sonido de fondo (la misma del tríptico). Va a su tamaño real o menos (nunca estirada),
+   repetida en espejo, teñida de violeta con el centro blanco y apoyada abajo para no pisar el título. */
+.book-wave { position: relative; isolation: isolate; overflow: hidden; }
+.book-wave .wave { position: absolute; inset: 0; z-index: -1; mix-blend-mode: screen; opacity: var(--wave-o, .55);
+  background: #000 url(/assets/media/onda-sonido.webp) center var(--wave-y, -160%) / auto 120% repeat-x;
+  -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,.25) 0%, #000 60%); mask-image: linear-gradient(to right, rgba(0,0,0,.25) 0%, #000 60%); }
+.book-wave .wave::after { content: ""; position: absolute; inset: 0; background: var(--k-violet); mix-blend-mode: color; }
+@media (max-width: 720px) { .book-wave .wave { --wave-o: .4; } }
 .book-sec { padding-block: clamp(56px, 6vw, 96px) var(--section); }
 .book { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: clamp(28px, 5vw, 72px); align-items: start; }
 .book-form { display: grid; gap: clamp(48px, 5vw, 72px); }

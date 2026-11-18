@@ -3,18 +3,19 @@ import Base from '../layouts/Base.astro';
 ---
 <Base
   page="artistas"
-  title="Créditos | Kame House Estudio"
+  title="Archivo | Kame House Estudio"
   description="Artistas y productores que grabaron en Kame House: Bhavi, Khea, Asan, Neo Pistea, YSY A, Feid y más."
   path="/artistas"
   scripts={["/assets/js/lenis.min.js", "/js/i18n.js", "/js/data.js", "/js/coverflow.js", "/js/core.js", "/js/artistas.js"]}
 >
 <main id="main">
 
-  <section class="s-black book-head" aria-labelledby="cr-h">
-    <div class="wrap page-head">
-      <h1 class="page-title" id="cr-h" data-i18n="cr.h1">Créditos</h1>
+  <section class="s-black book-head book-wave" aria-labelledby="cr-h">
+    <div class="wave" aria-hidden="true"></div>
+    <div class="wrap page-head head-filters">
+      <h1 class="page-title" id="cr-h" data-i18n="cr.h1">Archivo</h1>
       <p class="lead" data-i18n="cr.lead">Artistas y productores que grabaron en Kame House.</p>
-      <div class="filters" role="group" aria-label="Filtrar créditos" id="cr-filters">
+      <div class="filters" role="group" aria-label="Filtrar el archivo" id="cr-filters">
         <button type="button" data-f="all" aria-pressed="true" data-i18n="f.all">Todos</button>
         <button type="button" data-f="artista" aria-pressed="false" data-i18n="f.art">Artistas</button>
         <button type="button" data-f="productor" aria-pressed="false" data-i18n="f.prod">Productores</button>
@@ -22,7 +23,7 @@ import Base from '../layouts/Base.astro';
     </div>
   </section>
 
-  <section class="s-white credits-sec" aria-label="Lista de créditos">
+  <section class="s-white credits-sec" aria-label="Archivo de artistas y productores">
     <div class="wrap credits">
       <ul class="credit-list" id="credit-list"></ul>
       <aside class="credit-preview" id="credit-preview" aria-live="polite"></aside>

@@ -7,13 +7,14 @@ import Base from '../layouts/Base.astro';
   description="Kame House: la sala, Mariano Bilinkis y el sello. Grabación, mezcla y mastering de música urbana en Chacarita."
   path="/estudio"
   hero="estudio-sala"
+  heroWidths={[800, 1000]}
   scripts={["/assets/js/lenis.min.js", "/js/i18n.js", "/js/core.js", "/js/pagina.js"]}
 >
 <main id="main">
 
   <section class="s-black page-photo" aria-labelledby="est-h">
     <div class="hero-media" aria-hidden="true">
-      <img src="/assets/media/estudio-sala-1280.webp" srcset="/assets/media/estudio-sala-800.webp 800w, /assets/media/estudio-sala-1280.webp 1280w, /assets/media/estudio-sala-2000.webp 2000w" sizes="100vw" alt="" width="2000" height="1332" fetchpriority="high" decoding="async">
+      <img src="/assets/media/estudio-sala-1000.webp" srcset="/assets/media/estudio-sala-800.webp 800w, /assets/media/estudio-sala-1000.webp 1000w" sizes="100vw" alt="" width="1000" height="667" fetchpriority="high" decoding="async">
     </div>
     <div class="wrap page-photo-in">
       <h1 class="page-title" id="est-h" data-i18n="est.h1">Estudio</h1>
@@ -36,7 +37,7 @@ import Base from '../layouts/Base.astro';
 
   <section class="s-violet section mariano" aria-labelledby="mb-h">
     <div class="wrap split split-rev">
-      <div class="ph cut split-photo split-photo-tall" data-reveal><img src="/assets/media/reel-consejo.webp" alt="Mariano Bilinkis frente a cámara en la sala del estudio" width="454" height="723" loading="lazy" decoding="async"></div>
+      <div class="ph cut split-photo split-photo-tall" data-reveal><img src="/assets/media/mariano.webp" alt="Mariano Bilinkis frente a cámara en la sala del estudio" width="388" height="485" loading="lazy" decoding="async"></div>
       <div class="split-copy">
         <h2 class="title" id="mb-h" data-reveal data-i18n="mb.h">Mariano Bilinkis</h2>
         <div class="prose">

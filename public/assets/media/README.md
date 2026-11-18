@@ -17,8 +17,19 @@ Originales (portadas cuadradas de 720 px, reels de unos 454×723 px):
 | `neo.jpg` | Portada de Neo (Neo Pistea) |
 | `reel-teca.jpg` | Reel "TECA remix" |
 | `reel-consejo.jpg` | Reel "Consejo N4" |
+| `mariano.jpg` | Recorte de `reel-consejo.jpg` sin el título ni las vistas, para `/estudio` |
 | `reel-sesion.jpg` | Reel "En sesión" |
 | `reel-sala.jpg` | Reel "La sala" |
+| `reel-ysy.jpg` | Reel "Cuando entra YSY A" (en la tarjeta: "Entra YSY A") |
+| `hero-estudio.jpg` | Foto de la sala del Instagram del estudio (1440 × 1440) |
+| `merch-chomba.jpg` | Mockup de la chomba (anexo de la tesis), recortado |
+| `merch-chomba-tecnico.jpg` | Dibujo técnico de la chomba: frente, espalda y costados |
+| `merch-stickers.jpg` | Mockup del paquete de stickers |
+| `merch-mouse-pad.jpg` | Mockup del mouse pad (anexo de la tesis), entero y con margen |
+| `merch-cd.jpg` | Tapa del CD "Archive" (anexo de la tesis), entera y con margen |
+| `merch-cd-trasera.jpg` | Contratapa del CD "Archive", recortada del mismo mockup |
+| `onda-sonido.jpg` | Onda de sonido, textura de las portadas de `/reservar` y `/artistas` (la misma que usa el tríptico) |
+| `svc-grabacion.jpg` | Artista grabando, foto de referencia que se usó en las piezas de la tesis |
 
 ## Fotos de artistas
 
@@ -26,6 +37,17 @@ Fotos de perfil para `/artistas`, con el nombre `art-<nombre>.jpg` (por ejemplo 
 
 | Archivo | Fuente y crédito |
 |---|---|
+| `art-asan.jpg` | Foto de prensa (llegó en 600 px, se amplió a 720) |
+| `art-bhavi.jpg` | Foto de prensa |
+| `art-feid.jpg` | Foto de recital |
+| `art-j-rei.jpg` | Foto de prensa (recorte de 640 px, se amplió a 720) |
+| `art-khea.jpg` | Foto de prensa |
+| `art-midel.jpg` | Foto de prensa |
+| `art-neo-pistea.jpg` | Foto de prensa |
+| `art-skrillex.jpg` | Foto de prensa |
+| `art-taichu.jpg` | Foto de prensa |
+| `art-ysy-a.jpg` | Foto de prensa (llegó en 561 px de ancho al recortarla, se amplió a 720) |
+| `art-zecca.jpg` | Foto de prensa (Latin Grammy 2023) |
 
 ## Fotos de stock (Pexels)
 
@@ -33,16 +55,10 @@ Fotos de [Pexels](https://www.pexels.com) bajo la licencia de Pexels (uso libre,
 
 | Archivo | Foto en Pexels |
 |---|---|
-| `hero-estudio.jpg` | https://www.pexels.com/photo/164938/ |
 | `cierre-estudio.jpg` | https://www.pexels.com/photo/13978776/ |
-| `svc-grabacion.jpg` | https://www.pexels.com/photo/12788538/ |
 | `svc-mezcla.jpg` | https://www.pexels.com/photo/7586137/ |
 | `svc-mastering.jpg` | https://www.pexels.com/photo/2651794/ |
 | `svc-produccion.jpg` | https://www.pexels.com/photo/4988139/ |
 | `svc-sala.jpg` | https://www.pexels.com/photo/8198136/ |
-| `merch-buzo.jpg` | https://www.pexels.com/photo/10358665/ |
-| `merch-gorra.jpg` | https://www.pexels.com/photo/26447865/ |
-| `merch-chomba.jpg` | https://www.pexels.com/photo/18708554/ |
-| `merch-lanyard.jpg` | https://www.pexels.com/photo/109361/ |
-| `estudio-sala.jpg` | https://www.pexels.com/photo/12622097/ |
+| `estudio-sala.jpg` | https://www.pexels.com/photo/8198136/ (la misma foto que `svc-sala.jpg`) |
 

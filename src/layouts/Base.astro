@@ -13,16 +13,17 @@ interface Props {
   path?: string;         // dirección pública (/estudio); sin path la página no se indexa (404)
   noindex?: boolean;
   hero?: string;         // foto principal a precargar (nombre en assets/media, sin el ancho)
+  heroWidths?: number[]; // anchos que existen de esa foto (tools/imagenes.py)
   scripts: string[];     // en orden: core.js necesita que i18n.js y data.js ya estén cargados
   mux?: boolean;         // mux de secciones (solo el inicio)
 }
-const { page, title, description, ogTitle = title, path, noindex = false, hero, scripts, mux = false } = Astro.props;
+const { page, title, description, ogTitle = title, path, noindex = false, hero, heroWidths = [800, 1280, 2000], scripts, mux = false } = Astro.props;
 
 const SITE = 'https://kame-house-studio.vercel.app';
 // Versión de CSS y JS: cambia sola en cada build, así el navegador nunca usa archivos viejos.
 const v = new Date().toISOString().replace(/\D/g, '').slice(0, 12);
 const fonts = 'https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..110,600..900&family=Instrument+Sans:wght@400;500;600&family=Sedgwick+Ave+Display&display=swap';
-const heroSet = hero && [800, 1280, 2000].map((w) => `/assets/media/${hero}-${w}.webp ${w}w`).join(', ');
+const heroSet = hero && heroWidths.map((w) => `/assets/media/${hero}-${w}.webp ${w}w`).join(', ');
 ---
 <!doctype html>
 <html lang="es-AR" data-page={page}>

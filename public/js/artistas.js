@@ -1,4 +1,4 @@
-/* Artistas: lista de créditos con el perfil de cada uno (foto y temas), filtros y el carrusel de vinilos. */
+/* Artistas: archivo de artistas con el perfil de cada uno (foto y temas), filtros y el carrusel de vinilos. */
 (function () {
   const { $, $$ } = KH;
   const list = $('#credit-list'), preview = $('#credit-preview');

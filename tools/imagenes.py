@@ -18,12 +18,13 @@ CALIDAD = 86  # WebP con pérdida: a 86 no se notan diferencias con el JPG origi
 
 # anchos por imagen; None = un solo archivo al tamaño original
 ANCHOS = {
-    'hero-estudio': [800, 1280, 2000],
-    'estudio-sala': [800, 1280, 2000],
+    'hero-estudio': [800, 1280, 1440],
+    'estudio-sala': [800, 1000],
     'cierre-estudio': [800, 1200, 1600],
     'svc-grabacion': [500, 1000], 'svc-mezcla': [500, 1000], 'svc-mastering': [500, 1000],
     'svc-produccion': [500, 1000], 'svc-sala': [500, 1000],
-    'merch-buzo': [450, 900], 'merch-gorra': [450, 900], 'merch-chomba': [450, 900], 'merch-lanyard': [450, 900],
+    'merch-chomba': [450, 900], 'merch-stickers': [450, 900], 'merch-mouse-pad': [450, 900], 'merch-cd': [450, 900],
+    'merch-chomba-tecnico': [900, 1600], 'merch-cd-trasera': [685],
     'teca-rmx': [240, 360, 540, 720], 'cinema': [240, 360, 540, 720], 'debo-cambiar': [240, 360, 540, 720], 'serotonina': [240, 360, 540, 720],
     'trapicheo': [240, 360, 540, 720], 'pochoclos': [240, 360, 540, 720], 'neo': [240, 360, 540, 720],
 }

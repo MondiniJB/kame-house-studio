@@ -10,6 +10,7 @@ import { MERCH } from '../data/merch.js';
   ogTitle="Kame House Estudio"
   path="/"
   hero="hero-estudio"
+  heroWidths={[800, 1280, 1440]}
   scripts={["/assets/js/lenis.min.js", "/js/i18n.js", "/js/data.js", "/js/coverflow.js", "/js/core.js", "/js/home.js", "/js/portada.js"]}
   mux
 >
@@ -23,7 +24,7 @@ import { MERCH } from '../data/merch.js';
     <!-- Fondo: foto o video. Para usar video, reemplazar el <img> por:
          <video autoplay muted loop playsinline poster="assets/media/hero-estudio-1280.webp"><source src="/assets/media/hero.mp4" type="video/mp4"></video> -->
     <div class="hero-media" aria-hidden="true">
-      <img src="/assets/media/hero-estudio-1280.webp" srcset="/assets/media/hero-estudio-800.webp 800w, /assets/media/hero-estudio-1280.webp 1280w, /assets/media/hero-estudio-2000.webp 2000w" sizes="100vw" alt="" width="2000" height="1211" fetchpriority="high" decoding="async">
+      <img src="/assets/media/hero-estudio-1280.webp" srcset="/assets/media/hero-estudio-800.webp 800w, /assets/media/hero-estudio-1280.webp 1280w, /assets/media/hero-estudio-1440.webp 1440w" sizes="100vw" alt="" width="1440" height="1440" fetchpriority="high" decoding="async">
     </div>
     <svg class="bigk" viewBox="0 0 263.96 215.49" aria-hidden="true"><use href="#kh-iso"/></svg>
     <div class="wrap hero-in">
@@ -49,7 +50,7 @@ import { MERCH } from '../data/merch.js';
         <div class="art-side">
           <h2 class="title" id="art-h" data-i18n="art.h">Pasaron por la sala</h2>
           <p class="soft" data-i18n="art.p">Algunos de los artistas y productores que grabaron con nosotros.</p>
-          <a class="link" href="/artistas" data-i18n="art.all">Ver todos los créditos</a>
+          <a class="link" href="/artistas" data-i18n="art.all">Ver el archivo completo</a>
         </div>
         <div class="roll-window" id="art-window">
           <ul class="roll" id="art-roll">
@@ -169,6 +170,7 @@ import { MERCH } from '../data/merch.js';
             <a class="clip clip-reel clip-link" href="https://www.instagram.com/estudiokamehouse/" target="_blank" rel="noopener noreferrer"><div class="ph on-dark"><img src="/assets/media/reel-consejo.webp" alt="Mariano Bilinkis haciendo el gesto del número cuatro frente a cámara, con el título &quot;Consejo N4&quot;" width="454" height="723" loading="lazy" decoding="async"><span class="sticker">Reel 02</span></div><span class="clip-band"><strong>Consejo N4</strong><span>Reel · Instagram <svg aria-hidden="true"><use href="#i-ext"/></svg></span></span></a>
             <a class="clip clip-reel clip-link" href="https://www.instagram.com/estudiokamehouse/" target="_blank" rel="noopener noreferrer"><div class="ph on-dark"><img src="/assets/media/reel-sesion.webp" alt="Cuatro personas posando en la sala de grabación, con luces violetas y una pantalla con un dragón" width="454" height="723" loading="lazy" decoding="async"><span class="sticker">Reel 03</span></div><span class="clip-band"><strong>En sesión</strong><span>Reel · Instagram <svg aria-hidden="true"><use href="#i-ext"/></svg></span></span></a>
             <a class="clip clip-reel clip-link" href="https://www.instagram.com/estudiokamehouse/" target="_blank" rel="noopener noreferrer"><div class="ph on-dark"><img src="/assets/media/reel-sala.webp" alt="La sala de grabación con luces violetas, consola, monitores y sillones" width="454" height="723" loading="lazy" decoding="async"><span class="sticker">Reel 04</span></div><span class="clip-band"><strong>La sala</strong><span>Reel · Instagram <svg aria-hidden="true"><use href="#i-ext"/></svg></span></span></a>
+            <a class="clip clip-reel clip-link" href="https://www.instagram.com/estudiokamehouse/" target="_blank" rel="noopener noreferrer"><div class="ph on-dark"><img src="/assets/media/reel-ysy.webp" alt="Un hombre sonriendo en el sillón azul de la sala y señalando la puerta, con el texto &quot;cuando entra YSY A&quot;" width="456" height="724" loading="lazy" decoding="async"><span class="sticker">Reel 05</span></div><span class="clip-band"><strong>Entra YSY A</strong><span>Reel · Instagram <svg aria-hidden="true"><use href="#i-ext"/></svg></span></span></a>
             <figure class="clip clip-reel clip-more"><a class="ph more" href="https://www.instagram.com/estudiokamehouse/" target="_blank" rel="noopener noreferrer"><span data-i18n="more.ig">Más sesiones en Instagram</span><svg aria-hidden="true"><use href="#i-ext"/></svg></a></figure>
           </div>
         </div>
@@ -215,11 +217,11 @@ import { MERCH } from '../data/merch.js';
     <div class="wrap">
       <div class="merch-head">
         <h2 class="title" id="merch-h" data-reveal data-i18n="merch.h">Merch oficial</h2>
-        <p class="soft" data-i18n="merch.p">Buzos, gorras, chombas y lanyards con la marca del estudio.</p>
+        <p class="soft" data-i18n="merch.p">Chombas, stickers, mouse pads y el CD "Archive" con la marca del estudio.</p>
       </div>
       <ul class="products">
         {MERCH.map((p, i) => (
-          <li class="product" data-focus data-reveal style={`--i:${i + 1}`}><a class="tile" href={`/merch/${p.slug}`}><img src={`/assets/media/${p.img}-450.webp`} srcset={`/assets/media/${p.img}-450.webp 450w, /assets/media/${p.img}-900.webp 900w`} sizes="(max-width: 900px) 50vw, 25vw" alt="" width={p.w} height={p.h} loading="lazy" decoding="async"><div class="meta"><b data-i18n={p.i18n}>{p.nombre}</b></div></a></li>
+          <li class="product" data-focus data-reveal style={`--i:${i + 1}`}><a class="tile" href={`/merch/${p.slug}`}><img src={`/assets/media/${p.img}-450.webp`} srcset={`/assets/media/${p.img}-450.webp 450w, /assets/media/${p.img}-900.webp 900w`} sizes="(max-width: 900px) 50vw, 25vw" alt="" width={p.w} height={p.h} style={p.pos && `object-position:${p.pos}`} loading="lazy" decoding="async"><div class="meta"><b data-i18n={p.i18n}>{p.nombre}</b></div></a></li>
         ))}
       </ul>
     </div>

@@ -14,7 +14,7 @@
     /* inicio */
     'hero.k': 'Recording, mixing and mastering studio', 'hero.l1': 'Power', 'hero.l2': 'up',
     'hero.sub': 'Over six years recording urban music, with Mariano Bilinkis leading every session.', 'hero.ses': 'See our socials',
-    'art.h': 'Through the room', 'art.p': 'Some of the artists and producers who recorded with us.', 'art.all': 'See all credits',
+    'art.h': 'Through the room', 'art.p': 'Some of the artists and producers who recorded with us.', 'art.all': 'See the full archive',
     'temas.h': 'Made at Kame House', 'temas.p': 'Tracks that went through the studio.',
     'field.h': 'The house',
     'field.p1': 'Kame House has been recording urban music in Chacarita for more than six years. The name comes from Dragon Ball: it is Master Roshi’s house, where Goku and Krillin train as kids. The idea here is similar: a calm place to work on a track until it is ready.',
@@ -27,7 +27,7 @@
     'ses.h': 'Social', 'ses.p': 'Session footage and production tips. We post them on our Instagram.', 'more.ig': 'More sessions on Instagram',
     'mk.h': 'Make your cover', 'mk.note': 'Try the template the studio uses for every session: upload a photo, add your AKA and your track name, and download it.',
     'mk.foto': 'Your photo', 'mk.subir': 'Upload photo', 'mk.cambiar': 'Change photo', 'mk.quitar': 'Remove photo', 'mk.privado': 'Your photo stays on your device: it isn’t uploaded anywhere.', 'mk.dl': 'Download cover', 'mk.aka': 'Your AKA', 'mk.tema': 'Your track', 'mk.color': 'Plate', 'mk.negro': 'Black', 'mk.violeta': 'Violet', 'mk.go': 'Book to record it',
-    'merch.h': 'Official merch', 'merch.p': 'Hoodies, caps, polos and lanyards with the studio’s brand.', 'm.1': 'Hoodie', 'm.2': 'Cap', 'm.3': 'Polo',
+    'merch.h': 'Official merch', 'merch.p': 'Polos, stickers, mouse pads and the "Archive" CD with the studio’s brand.', 'm.3': 'Polo',
     'closer.h': 'Come to the house',
     'pdp.k': 'Official merch', 'pdp.lead': 'Message us on WhatsApp to check price and availability.', 'pdp.wa': 'Order on WhatsApp', 'pdp.back': 'See all merch',
     /* estudio */
@@ -38,7 +38,7 @@
     'sala.h': 'The room', 'sala.p': 'Session pictures posted on the studio’s Instagram.',
     'sello.h': 'The label', 'sello.p': 'Besides recording, mixing and mastering, Kame House runs its own record label. News comes out on our Instagram.',
     /* artistas */
-    'cr.h1': 'Credits', 'cr.lead': 'Artists and producers who recorded at Kame House.',
+    'cr.h1': 'Archive', 'cr.lead': 'Artists and producers who recorded at Kame House.',
     'f.all': 'All', 'f.art': 'Artists', 'f.prod': 'Producers', 'art.a': 'Artist', 'art.pr': 'Producer',
     'temas.p2': 'Drag the covers or use the arrows.',
     /* reservar */
