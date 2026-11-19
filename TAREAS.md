@@ -76,10 +76,10 @@ Hecho con Astro y publicado en Vercel con direcciones limpias; local con `npm ru
 
 ### Entrega de Taller de Tesis (jueves 19/11/2026, 10:00; archivos listos el miércoles 18 a la noche)
 Para esta entrega importan el mapa del sitio, las capturas, la versión para celular y la fundamentación. Lo que tiene que pasar el estudio puede figurar como pendiente sin frenar la entrega.
-- [ ] Mapa del sitio completo, con la estructura y la navegación reales: `/`, `/estudio`, `/artistas`, `/reservar`, `/merch/*`, 404, las secciones del inicio y los links entre páginas.
-- [ ] Capturas de las secciones principales, en escritorio y en celular.
-- [ ] Fundamentación del diseño visual, la estructura, la navegación y las decisiones de interfaz.
-- [ ] Armar el material para las páginas 47, 48 y 49 del Anexo de Taller de Tesis.
+- [x] ~~Mapa del sitio completo, con la estructura y la navegación reales.~~ (2026-11-18, en `../anexo-web/`)
+- [x] ~~Capturas de las secciones principales, en escritorio y en celular.~~ (2026-11-18, en `../capturas/`)
+- [x] ~~Fundamentación del diseño visual, la estructura, la navegación y las decisiones de interfaz.~~ (2026-11-18, `../anexo-web/textos-pagina-web.md`)
+- [x] ~~Armar el material para las páginas 47, 48 y 49 del Anexo de Taller de Tesis.~~ (2026-11-18, `../anexo-web/paginas-web-24-26.pdf`; falta que lo revisen Juan y Rocco)
 - [ ] Probar la escena de artistas del inicio con el trackpad de una notebook (el paso por gesto puede sentirse a saltos).
 - [ ] Revisar los textos y la traducción al inglés, mejor con alguien que hable el idioma.
 
